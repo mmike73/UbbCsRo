@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Records (AJAX)</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .pagination { margin-top: 20px; }
+        button:disabled { opacity: 0.5; }
+    </style>
+</head>
+<body>
+    <h1>User Records</h1>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>First Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="pagination">
+        <button id="prevBtn" disabled>Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentOffset = 0;
+            const usersTable = document.getElementById('usersTable');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            function loadUsers(offset) {
+                const xhr = new XMLHttpRequest();
+                const url = new URL('http://localhost:8000/persoane_api.php');
+                url.searchParams.append('action', 'get_users');
+                url.searchParams.append('offset', offset);
+                
+                xhr.open('GET', url.toString(), true);
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        try {
+                            const data = JSON.parse(xhr.responseText);
+                            const tbody = usersTable.querySelector('tbody');
+                            tbody.innerHTML = '';
+                            
+                            data.users.forEach(function(user) {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${user.nume}</td>
+                                    <td>${user.prenume}</td>
+                                    <td>${user.telefon}</td>
+                                    <td>${user.email}</td>
+                                `;
+                                tbody.appendChild(row);
+                            });
+                            
+                            prevBtn.disabled = !data.hasPrev;
+                            nextBtn.disabled = !data.hasNext;
+                            currentOffset = offset;
+                        } catch (e) {
+                            console.error('Error parsing response:', e);
+                        }
+                    } else {
+                        console.error('Request failed with status:', xhr.status);
+                    }
+                };
+                xhr.onerror = function() {
+                    console.error('Request failed');
+                };
+                xhr.send();
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                loadUsers(currentOffset - 3);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                loadUsers(currentOffset + 3);
+            });
+            
+            loadUsers(0);
+        });
+    </script>
+</body>
+</html>

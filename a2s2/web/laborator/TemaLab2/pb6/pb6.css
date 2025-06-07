@@ -1,0 +1,39 @@
+input {
+    font-family: monospace;
+    font-size: 20px;
+    letter-spacing: 8px;
+    padding: 5px 0 5px 0;
+    border: 1px solid black;
+    outline: none;
+}
+
+.form-container {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.form-nume {
+    grid-template-columns: repeat(20, 19px);
+    width: calc(19px * 21);
+    background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 18px,
+        black 20px,
+        black 20px
+    );
+    height: 10px;
+}
+
+.form-cnp {
+    grid-template-columns: repeat(20, 19px);
+    width: calc(19px * 14 - 7px);
+    background: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 18px,
+        black 20px,
+        black 20px
+    );
+    height: 10px;
+}

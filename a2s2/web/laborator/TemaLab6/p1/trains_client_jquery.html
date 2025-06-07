@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>    
+    <label for="departure">Departure Station:</label>
+    <select id="departure">
+        <option value="">Select a departure station</option>
+    </select>
+    
+    <label for="arrival">Arrival Station:</label>
+    <select id="arrival" disabled>
+        <option value="">Select departure first</option>
+    </select>
+
+    <script>
+        $(document).ready(function() {
+            const API_URL = 'http://localhost:8000/trains_api.php';
+            
+            $.ajax({
+                url: API_URL,
+                method: 'GET',
+                data: { action: 'getDepartures' },
+                dataType: 'json',
+                success: function(departures) {
+                    const $departureSelect = $('#departure');
+                    $.each(departures, function(index, station) {
+                        $departureSelect.append($('<option>', {
+                            value: station,
+                            text: station
+                        }));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading departures:', status, error);
+                    alert('Failed to load departure stations');
+                }
+            });
+
+            $('#departure').on('change', function() {
+                const departure = $(this).val();
+                const $arrivalSelect = $('#arrival');
+                
+                if (!departure) {
+                    $arrivalSelect.html('<option value="">Select departure first</option>');
+                    $arrivalSelect.prop('disabled', true);
+                    return;
+                }
+                
+                $.ajax({
+                    url: API_URL,
+                    method: 'GET',
+                    data: { 
+                        action: 'getArrivals',
+                        departure: departure
+                    },
+                    dataType: 'json',
+                    success: function(arrivals) {
+                        $arrivalSelect.empty();
+                        if (arrivals && arrivals.length > 0) {
+                            $.each(arrivals, function(index, station) {
+                                $arrivalSelect.append($('<option>', {
+                                    value: station,
+                                    text: station
+                                }));
+                            });
+                            $arrivalSelect.prop('disabled', false);
+                        } else {
+                            $arrivalSelect.html('<option value="">No destinations available</option>');
+                            $arrivalSelect.prop('disabled', true);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading arrivals:', status, error);
+                        $arrivalSelect.html('<option value="">Error loading stations</option>');
+                        $arrivalSelect.prop('disabled', true);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

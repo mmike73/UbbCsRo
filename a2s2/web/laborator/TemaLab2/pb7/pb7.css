@@ -1,0 +1,58 @@
+.dialog {
+    list-style: none;
+    padding: 0;
+    width: 60%;
+    margin: auto;
+}
+
+.dialog li {
+    position: relative;
+    margin: 20px 0;
+    padding: 10px;
+    background: #fff;
+    border-radius: 15px;
+    min-width: 200px;
+    max-width: 90%;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.dialog li::after {
+    position: absolute;
+    bottom: 15px;
+}
+
+.dialog li::before {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 60px;
+    background-image: url('../images/css-pr7.png');
+    background-size: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -80px;
+}
+
+.alice {
+    margin-left: 80px;
+}
+
+.alice::before {
+    background-position: -25px -50px; 
+}
+
+.alice::after {
+    border-right-color: #fff;
+}
+
+.bob {
+    margin-left: 80px;
+}
+
+.bob::before {
+    background-position: -25px -160px;
+}
+
+.bob::after {
+    border-right-color: #fff;
+}

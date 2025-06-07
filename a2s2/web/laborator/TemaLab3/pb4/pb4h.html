@@ -1,0 +1,70 @@
+<!-- Sa se scrie o pagina HTML ce contine un tabel cu cel putin trei coloane si cel putin trei linii. 
+ Prima coloana reprezinta antetul. 
+ Cand utilizatorul va da click pe o celula din antet, elementele din tabel se vor sorta crescator sau descrescator in functie de valorile prezente pe linia corespunzatoare antetului pe care s-a dat click. 
+ Codul JavaScript va fi reutilizabil si va permite crearea unui comportament de tabel sortabil pentru mai multe tabele existente in cadrul paginii. 
+ Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc. 
+ Exemplu de tabel ce se doreste a fi sortat (sortarea se va face alfabetic dupa numele fructului, dupa pret sau dupa cantitate): 
+ 
+ Dupa rezolvarea problemei, implementati o noua varianta in care capul de tabel este orizontal, nu vertical. 
+ Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc.
+ -->
+ <!DOCTYPE html>
+ <html lang="ro">
+ <head>
+   <meta charset="UTF-8">
+   <link rel="stylesheet" href="pb4.css">
+ </head>
+ <body>
+ 
+   <h2>Tabel cu antet orizontal (click pentru sortare)</h2>
+ 
+   <table class="tabel-sortabil" id="tabel2">
+     <thead>
+       <tr>
+         <th>Fruct</th>
+         <th>Preț</th>
+         <th>Cantitate</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr><td>Mere</td><td>5</td><td>10</td></tr>
+       <tr><td>Pere</td><td>3</td><td>7</td></tr>
+       <tr><td>Banane</td><td>4</td><td>12</td></tr>
+     </tbody>
+   </table>
+ 
+   <script>
+     function sorteazaRanduriPeColoana(tabel, colIndex) {
+       const tbody = tabel.querySelector('tbody');
+       const randuri = Array.from(tbody.rows);
+       const asc = !tabel.dataset.sortAsc || tabel.dataset.sortCol != colIndex;
+ 
+       randuri.sort((a, b) => {
+         const va = a.cells[colIndex].textContent;
+         const vb = b.cells[colIndex].textContent;
+         const na = parseFloat(va);
+         const nb = parseFloat(vb);
+         const comp = isNaN(na) || isNaN(nb)
+           ? va.localeCompare(vb)
+           : na - nb;
+         return asc ? comp : -comp;
+       });
+ 
+       randuri.forEach(r => tbody.appendChild(r));
+       tabel.dataset.sortAsc = asc;
+       tabel.dataset.sortCol = colIndex;
+     }
+ 
+     document.querySelectorAll('.tabel-sortabil').forEach(tabel => {
+       const capTabel = tabel.querySelector('thead');
+       capTabel.querySelectorAll('th').forEach((th, i) => {
+         th.addEventListener('click', () => {
+           sorteazaRanduriPeColoana(tabel, i);
+         });
+       });
+     });
+   </script>
+ 
+ </body>
+ </html>
+ 

@@ -1,0 +1,56 @@
+body {
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.staircase {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateStairs 5s infinite alternate ease-in-out;
+}
+
+.scara {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    background: hsl(30, 70%, 50%);
+    border: 1px solid black;
+    transform-origin: bottom;
+}
+
+.scara:nth-child(1) { transform: translateZ(0px) translateY(0px); }
+.scara:nth-child(2) { transform: translateZ(50px) translateY(-50px); }
+.scara:nth-child(3) { transform: translateZ(100px) translateY(-100px); }
+.scara:nth-child(4) { transform: translateZ(150px) translateY(-150px); }
+.scara:nth-child(5) { transform: translateZ(200px) translateY(-200px); }
+
+@keyframes rotateStairs {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(30deg);
+    }
+}
+
+.vever {
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: jump 5s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(50px, -50px); }
+    40% { transform: translate(100px, -100px); }
+    60% { transform: translate(150px, -150px); }
+    80% { transform: translate(200px, -200px); }
+    100% { transform: translate(250px, -250px); }
+}

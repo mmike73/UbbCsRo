@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .floating {
+            align-items: center;
+            justify-self: center;
+            margin-top: 30vh;
+            width: 230px;
+            height: 230px;
+            background-color: rgb(124, 124, 124);
+            border-radius: 50%;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-300px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="floating">
+        <img src="../../../AI_de_capu_meu/Laborator/L2/p2/images/Turing.webp">
+    </div>
+
+</body>
+
+</html>

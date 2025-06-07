@@ -1,0 +1,282 @@
+{
+  "format": 1,
+  "restore": {
+    "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/ChatClientGTK.csproj": {}
+  },
+  "projects": {
+    "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/ChatClientGTK.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/ChatClientGTK.csproj",
+        "projectName": "ChatClientGTK",
+        "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/ChatClientGTK.csproj",
+        "packagesPath": "/Users/mihaimoldovan/.nuget/packages/",
+        "outputPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mihaimoldovan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/networking.csproj": {
+                "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/networking.csproj"
+              },
+              "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj": {
+                "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "GtkSharp": {
+              "target": "Package",
+              "version": "[3.24.24.95, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "log4net": {
+              "target": "Package",
+              "version": "[3.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/mihaimoldovan/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj",
+        "projectName": "model",
+        "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj",
+        "packagesPath": "/Users/mihaimoldovan/.nuget/packages/",
+        "outputPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mihaimoldovan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/mihaimoldovan/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/networking.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/networking.csproj",
+        "projectName": "networking",
+        "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/networking.csproj",
+        "packagesPath": "/Users/mihaimoldovan/.nuget/packages/",
+        "outputPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/networking/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mihaimoldovan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj": {
+                "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj"
+              },
+              "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj": {
+                "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "log4net": {
+              "target": "Package",
+              "version": "[3.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/mihaimoldovan/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj",
+        "projectName": "services",
+        "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/services.csproj",
+        "packagesPath": "/Users/mihaimoldovan/.nuget/packages/",
+        "outputPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/services/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mihaimoldovan/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj": {
+                "projectPath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/model/model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/Users/mihaimoldovan/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

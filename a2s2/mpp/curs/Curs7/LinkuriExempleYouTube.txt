@@ -1,0 +1,20 @@
+	Linkuri catre video-uri cu explicatii(Curs MPP 2020)
+
+
+
+1. Explicatii implementare MiniChat - C#
+
+https://www.youtube.com/watch?v=vpQAMt8h8wU
+
+
+
+IMPORTANT!!!
+Acest video  a fost realizat in 2020, in perioada pandemiei. Exemplul prezentat in acest an la curs a fost modificat si adaptat, deoarece serializarea binara nu mai este suportata incepand cu NET.9
+
+Solutiile voastre prezentate la laborator trebuie sa fie dezvoltate folosind indicatiile si recomandarile de ultima versiune a exemplului (prezentata in timpul cursului 7).
+
+
+
+
+
+

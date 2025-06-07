@@ -1,0 +1,64 @@
+<!-- Sa se scrie o pagina HTML ce contine 
+ - doua liste cu mai multe elemente fiecare, create cu ajutorul tagului <select>. 
+ La un dubluclick pe un element al primei liste, acesta va fi mutat in lista a doua si invers. 
+ Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+      Localități din Italia
+      <select id="lista1" multiple>
+        <option>Paris</option>
+        <option>Nisa</option>
+        <option>Milano</option>
+        <option>Bordeaux</option>
+        <option>Torino</option>
+        <option>Bergamo</option>
+        <option>Veneția</option>
+      </select>
+      Localități din Franța
+      <select id="lista2" multiple>
+        <option>Napoli</option>
+        <option>Marsilia</option>
+        <option>Catania</option>
+        <option>Lyon</option>
+        <option>Padova</option>
+     
+      </select>
+    
+
+      <script>
+        const lista1 = document.getElementById("lista1");
+        const lista2 = document.getElementById("lista2");
+    
+        function mutaElement($from, $to) {
+          $from.find("option:selected").each(function () {
+            $(this).appendTo($to);
+          });
+        }
+        // function mutaElement(sursa, destinatie) {
+        //   const optiuniSelectate = Array.from(sursa.selectedOptions);
+        //   optiuniSelectate.forEach(opt => {
+        //     sursa.removeChild(opt);
+        //     destinatie.appendChild(opt);
+        //   });
+        // }
+
+        $(document).ready(function () {
+          $("#lista1").on("dblclick", function () {
+            mutaElement($("#lista1"), $("#lista2"));
+          });
+
+          $("#lista2").on("dblclick", function () {
+            mutaElement($("#lista2"), $("#lista1"));
+          });
+        });
+        // lista1.ondblclick = () => mutaElement(lista1, lista2);
+        // lista2.ondblclick = () => mutaElement(lista2, lista1);
+      </script>
+</body>
+</html>

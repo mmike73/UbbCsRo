@@ -1,0 +1,107 @@
+<!-- Sa se scrie o pagina HTML ce contine un tabel cu cel putin trei coloane si cel putin trei linii. 
+  Prima coloana reprezinta antetul. 
+  Cand utilizatorul va da click pe o celula din antet, elementele din tabel se vor sorta crescator sau descrescator in functie de valorile prezente pe linia corespunzatoare antetului pe care s-a dat click. 
+  Codul JavaScript va fi reutilizabil si va permite crearea unui comportament de tabel sortabil pentru mai multe tabele existente in cadrul paginii. 
+  Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc. 
+  Exemplu de tabel ce se doreste a fi sortat (sortarea se va face alfabetic dupa numele fructului, dupa pret sau dupa cantitate): 
+    
+  Dupa rezolvarea problemei, implementati o noua varianta in care capul de tabel este orizontal, nu vertical. 
+  Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc.
+  -->
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="pb4.css">
+</head>
+<body>
+
+  <h2>Tabel cu antet vertical (click pentru sortare)</h2>
+
+  <table class="tabel-sortabil" id="tabel1">
+    <tr>
+      <td class="antet">Fruct</td>
+      <td>Mere</td>
+      <td>Pere</td>
+      <td>Banane</td>
+    </tr>
+    <tr>
+      <td class="antet">Preț</td>
+      <td>5</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td class="antet">Cantitate</td>
+      <td>10</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+  </table>
+
+  <script>
+    function sorteazaColoanePeRand(tabel, randIndex) {
+      const randuri = Array.from(tabel.rows);
+      const header = randuri.map(r => r.cells[0]);
+      const valori = randuri[randIndex].cells;
+
+      let coloane = [];
+      for (let i = 1; i < valori.length; i++) {
+        let coloana = [];
+        for (let r = 0; r < randuri.length; r++) {
+          coloana.push(randuri[r].cells[i]);
+        }
+        coloane.push({
+          valoare: valori[i].textContent,
+          celule: coloana
+        });
+      }
+
+      const asc = !tabel.dataset.sortAsc || tabel.dataset.sortRand != randIndex;
+      coloane.sort((a, b) => {
+        const esteNumarA = !isNaN(parseFloat(a.valoare));
+        const esteNumarB = !isNaN(parseFloat(b.valoare));
+
+        if (!esteNumarA || !esteNumarB) {
+          console.log(a.valoare + " " + b.valoare);
+          console.log(b.valoare.localeCompare(a.valoare))
+
+          if (typeof a.valoare === "string" || typeof b.valoare === "string") {
+            console.log("String: " + a.valoare)
+            console.log("String: " + b.valoare)
+            return a.valoare.localeCompare(b.valoare);
+          }
+
+          return asc ? b.valoare.localeCompare(a.valoare) : a.valoare.localeCompare(b.valoare);
+        }
+
+        const va = parseFloat(a.valoare);
+        const vb = parseFloat(b.valoare);
+        return asc ? vb - va : va - vb;
+      });
+      for (let r = 0; r < randuri.length; r++) {
+        for (let i = 0; i < coloane.length; i++) {
+          let aux = randuri[r].cells[i + 1].textContent;
+          randuri[r].cells[i + 1].textContent = coloane[i].celule[r].textContent;
+          coloane[i].celule[r].textContent = aux;
+        }
+      }
+
+      tabel.dataset.sortAsc = asc;
+      tabel.dataset.sortRand = randIndex;
+    }
+
+    document.querySelectorAll('.tabel-sortabil').forEach(tabel => {
+      const randuri = Array.from(tabel.rows);
+      randuri.forEach((rand, i) => {
+        const primaCelula = rand.cells[0];
+        primaCelula.addEventListener('click', () => {
+          sorteazaColoanePeRand(tabel, i);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+ 

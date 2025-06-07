@@ -1,0 +1,78 @@
+<!-- Intr-o pagina HTML exista o lista descrisa cu ajutorul tagului <ol>.
+    Fiecare element din lista (<li>) contine o imagine (<img>), si un link (<a>). 
+        Elemente listei, mai putin primul dintre ele, nu sunt vizibile initial (se poate folosi in acest sens CSS). 
+        Afisarea unui element din lista presupune afisarea imaginii si a textului ca link peste imagine (a se vedea ca exemplu carouselul din pagina facultatii). Dupa n secunde printr-un efect de tranzitie va fi afisat urmatorul element din lista. Se vor implementa si doua butoane Next si Previous care vor permite afisarea elementelor urmatoare sau anterioare fara a se astepta trecerea celor n secunde. Nu se vor folosi biblioteci de functii, jQuery, pluginuri, etc. -->
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Carousel cu lista și linkuri</title>
+  <link rel="stylesheet" href="./pb5.css">
+</head>
+<body>
+  <div class="carousel-container">
+    <ol class="carousel" id="carousel">
+      <li class="active">
+        <img src="./poze/Fiat_500_ID214478.jpg" alt="Imagine 1">
+        <a href="#">Fiat 500</a>
+      </li>
+      <li>
+        <img src="./poze/ds-01-2.jpg" alt="Imagine 2">
+        <a href="#">Citroen DS</a>
+      </li>
+      <li>
+        <img src="./poze/50_ans_Renault_5_-_Rétromobile_02.jpg" alt="Imagine 3">
+        <a href="#">Renault 5</a>
+      </li>
+      <li>
+        <img src="./poze/646f6b59ec03476ddfac33b0_Maserati-Ghibli-blauw-.jpeg" alt="Imagine 3">
+        <a href="#">Maseratti Ghibli</a>
+      </li>
+      <li>
+        <img src="./poze/images.jpeg" alt="Imagine 3">
+        <a href="#">Alfa Romeo GTV6</a>
+      </li>
+    </ol>
+
+  </div>
+
+  <script>
+    const lista = document.querySelectorAll("#carousel li");
+    let indexCurent = 0;
+    const durata = 3000;
+
+    function afiseazaSlide(indexNou) {
+      lista[indexCurent].classList.remove("active");
+      indexCurent = (indexNou + lista.length) % lista.length;
+      lista[indexCurent].classList.add("active");
+    }
+
+    function nextSlide() {
+      afiseazaSlide(indexCurent + 1);
+      resetTimer();
+    }
+
+    function prevSlide() {
+      afiseazaSlide(indexCurent - 1);
+      resetTimer();
+    }
+
+    let timer = setInterval(() => afiseazaSlide(indexCurent + 1), durata);
+
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => afiseazaSlide(indexCurent + 1), durata);
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowRight") {
+        nextSlide();
+      } else if (event.key === "ArrowLeft") {
+        prevSlide();
+      }
+    })
+  </script>
+
+</body>
+</html>

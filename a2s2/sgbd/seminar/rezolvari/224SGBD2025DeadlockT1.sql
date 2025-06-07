@@ -1,0 +1,8 @@
+--Deadlock T1
+USE Seminar3224SGBD2025;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN TRAN;
+UPDATE Clienti SET nume='deadlock T1' WHERE cod_c=1;
+WAITFOR DELAY '00:00:04';
+UPDATE Conturi SET detalii='deadlock cont T1' WHERE cod_cont=1;
+COMMIT TRAN;

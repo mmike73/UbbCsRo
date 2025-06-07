@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Store - Product Filter</title>
+</head>
+<body>
+    <h1>IT Store - Product Filter</h1>
+    
+    <div class="filters">
+        <select id="manufacturer">
+            <option value="">All Manufacturers</option>
+        </select>
+        <select id="processor">
+            <option value="">All Processors</option>
+        </select>
+        <select id="memory">
+            <option value="">All Memory</option>
+        </select>
+        <select id="storage">
+            <option value="">All Storage</option>
+        </select>
+        <select id="video_card">
+            <option value="">All Video Cards</option>
+        </select>
+    </div>
+    
+    <div id="products" class="products">
+        <div class="loading">Loading products...</div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            loadFilterOptions();
+
+            const filterElements = document.querySelectorAll('#manufacturer, #processor, #memory, #storage, #video_card');
+            filterElements.forEach(el => {
+                el.addEventListener('change', filterProducts);
+            });
+        });
+
+        function loadFilterOptions() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8000/filter.php?action=get_filters', true);
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        if (data.error) return showError(data.error);
+
+                        populateSelect('manufacturer', data.manufacturers);
+                        populateSelect('processor', data.processors);
+                        populateSelect('memory', data.memories);
+                        populateSelect('storage', data.storages);
+                        populateSelect('video_card', data.videoCards);
+
+                        filterProducts();
+                    } catch (err) {
+                        showError('Invalid JSON response');
+                    }
+                } else {
+                    showError('Failed to load filter options');
+                }
+            };
+            xhr.onerror = function () {
+                showError('Request error while loading filter options');
+            };
+            xhr.send();
+        }
+
+        function populateSelect(id, options) {
+            const select = document.getElementById(id);
+            [...select.options].slice(1).forEach(o => o.remove()); // Remove all but first
+
+            if (!Array.isArray(options)) return;
+
+            options.forEach(opt => {
+                if (opt && opt.name) {
+                    const option = document.createElement('option');
+                    option.value = opt.name;
+                    option.textContent = opt.name;
+                    select.appendChild(option);
+                }
+            });
+        }
+
+        function filterProducts() {
+            const filters = {
+                manufacturer: document.getElementById('manufacturer').value,
+                processor: document.getElementById('processor').value,
+                memory: document.getElementById('memory').value,
+                storage: document.getElementById('storage').value,
+                video_card: document.getElementById('video_card').value
+            };
+
+            const productsDiv = document.getElementById('products');
+            productsDiv.innerHTML = '<div class="loading">Loading products...</div>';
+
+            const params = new URLSearchParams(filters).toString();
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `http://localhost:8000/filter.php?action=get_products&${params}`, true);
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const products = JSON.parse(xhr.responseText);
+                        if (products.error) return showError(products.error);
+                        displayProducts(products);
+                    } catch (err) {
+                        showError('Invalid product data');
+                    }
+                } else {
+                    showError('Failed to load products');
+                }
+            };
+            xhr.onerror = function () {
+                showError('Request error while loading products');
+            };
+            xhr.send();
+        }
+
+        function displayProducts(products) {
+            const container = document.getElementById('products');
+            container.innerHTML = '';
+
+            if (!Array.isArray(products)) {
+                showError('Invalid products data received');
+                return;
+            }
+
+            if (products.length === 0) {
+                container.innerHTML = '<div class="product-card">No products found matching your criteria.</div>';
+                return;
+            }
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <div class="price">$${product.price}</div>
+                    <div class="specs">
+                        <div><strong>Manufacturer:</strong> ${product.manufacturer}</div>
+                        <div><strong>Processor:</strong> ${product.processor}</div>
+                        <div><strong>Memory:</strong> ${product.memory}</div>
+                        <div><strong>Storage:</strong> ${product.storage}</div>
+                        <div><strong>Video Card:</strong> ${product.video_card}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showError(message) {
+            const container = document.getElementById('products');
+            container.innerHTML = `<div class="error">${message}</div>`;
+            console.error(message);
+        }
+    </script>
+</body>
+</html>

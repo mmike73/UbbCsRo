@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp224TelefoaneSGBD2025", "WinFormsApp224TelefoaneSGBD2025.csproj", "{105A1628-2B9E-4FA9-9974-415E0C064297}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{105A1628-2B9E-4FA9-9974-415E0C064297}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{105A1628-2B9E-4FA9-9974-415E0C064297}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{105A1628-2B9E-4FA9-9974-415E0C064297}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{105A1628-2B9E-4FA9-9974-415E0C064297}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D8A3DBB-362F-45A8-915D-C6A2FEF4DBCD}
+	EndGlobalSection
+EndGlobal

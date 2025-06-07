@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    td {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 30px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    #status {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<table id="board"></table>
+<p id="status"></p>
+
+<script>
+  const table = document.getElementById("board");
+  const statusText = document.getElementById("status");
+  let board = Array(9).fill("");
+  let gameOver = false;
+  let playerSymbol = "X";
+  let computerSymbol = "O";
+  let playerTurn = true;
+
+  function drawBoard() {
+    table.innerHTML = ""; 
+    for (let i = 0; i < 3; i++) {
+      const row = document.createElement("tr");
+      for (let j = 0; j < 3; j++) {
+        const idx = i * 3 + j;
+        const cell = document.createElement("td");
+        cell.textContent = board[idx];
+        if (!gameOver && board[idx] === "" && playerTurn) {
+          cell.style.cursor = "pointer";
+          cell.addEventListener("click", () => handleMove(idx));
+        } else {
+          cell.style.cursor = "default";
+        }
+        row.appendChild(cell);
+      }
+      table.appendChild(row);
+    }
+  }
+
+  function handleMove(idx) {
+    if (board[idx] !== "" || gameOver || !playerTurn) return;
+
+    board[idx] = playerSymbol;
+    playerTurn = false;
+    drawBoard();
+    sendBoard();
+  }
+
+  function sendBoard() {
+    const xhr = new XMLHttpRequest();
+    const url = "http://localhost:8000/game.php";
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            try {
+                const res = JSON.parse(xhr.responseText);
+
+                if (res.error) {
+                    statusText.textContent = "Error: " + res.error;
+                    return;
+                }
+
+                board = res.board;
+                gameOver = res.status !== "";
+                playerTurn = !gameOver && res.status === "";
+                drawBoard();
+                statusText.textContent = res.status;
+            } catch (e) {
+                console.error("Parse Error:", e);
+                statusText.textContent = "Error parsing server response";
+            }
+        } else {
+            statusText.textContent = "Server returned an error: " + xhr.status;
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("AJAX Error");
+        statusText.textContent = "Error communicating with server";
+    };
+
+    const payload = JSON.stringify({
+        board: board,
+        player: playerSymbol
+    });
+
+    xhr.send(payload);
+}
+
+
+  function startGame() {
+    const computerStarts = Math.random() < 0.5;
+    playerSymbol = "X";
+    computerSymbol = "O";
+    board = Array(9).fill("");
+    gameOver = false;
+
+    if (computerStarts) {
+      playerTurn = false;
+      sendBoard();
+    } else {
+      playerTurn = true;
+    }
+
+    drawBoard();
+    statusText.textContent = "";
+  }
+
+  startGame();
+</script>
+
+</body>
+</html>

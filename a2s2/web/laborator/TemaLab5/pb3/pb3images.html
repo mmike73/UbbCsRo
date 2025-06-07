@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    td {
+      width: 80px;
+      height: 80px;
+      border: 1px solid black;
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: aquamarine;
+      user-select: none;
+      position: relative;
+    }
+
+    td.reveal {
+      background-color: #c1e1c1;
+    }
+
+    td.matched {
+      background-color: #9fe89f;
+      cursor: default;
+    }
+
+    #mesaj {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <h2>Memory</h2>
+  <table id="tabla"></table>
+  <div id="mesaj"></div>
+
+  <script>
+    $(document).ready(function () {
+      const numarRanduri = 4;
+      const numarColoane = 4;
+      const $tabla = $('#tabla');
+      const $mesaj = $('#mesaj');
+
+      const paths = [
+        '../pb5/poze/50_ans_Renault_5_-_Rétromobile_02.jpg',
+        '../pb5/poze/Fiat_500_ID214478.jpg',
+        '../pb5/poze/images.jpeg',
+        '../pb5/poze/646f6b59ec03476ddfac33b0_Maserati-Ghibli-blauw-.jpeg',
+        '../pb5/poze/ds-01-2.jpg',
+        '../pb5/poze/cit_old_van.jpeg',
+        '../pb5/poze/1978_Peugeot_504_Ti_Automatic_2.0_Front.jpg',
+        '../pb5/poze/oltcit.jpg'
+      ];
+
+      let valori = [];
+
+      for (const path of paths) {
+        for (let i = 0; i < 2; i++) {
+          const $img = $('<img>', {
+            src: path,
+            css: {
+              display: 'none',
+              width: '100%',
+              height: 'auto'
+            }
+          });
+          valori.push($img);
+        }
+      }
+
+      valori = valori.sort(() => Math.random() - 0.5);
+
+      let index = 0;
+      for (let i = 0; i < numarRanduri; i++) {
+        const $row = $('<tr>');
+        for (let j = 0; j < numarColoane; j++) {
+          const $cell = $('<td>');
+          $cell.append(valori[index++]);
+          $row.append($cell);
+        }
+        $tabla.append($row);
+      }
+
+      let $prima = null;
+      let blocat = false;
+
+      $tabla.on('click', 'td', function () {
+        const $celula = $(this);
+        if (blocat || $celula.hasClass('matched') || $celula[0] === $prima?.[0]) return;
+
+        const $img = $celula.find('img');
+        if ($img.length === 0) return;
+
+        $img.show();
+        $celula.addClass('reveal');
+
+        if (!$prima) {
+          $prima = $celula;
+        } else {
+          const $img1 = $prima.find('img');
+          const $img2 = $celula.find('img');
+          blocat = true;
+
+          if ($img1.attr('src') === $img2.attr('src')) {
+            $prima.addClass('matched');
+            $celula.addClass('matched');
+            $prima = null;
+            blocat = false;
+
+            if ($('td.matched').length === numarRanduri * numarColoane) {
+              $mesaj.text("Bravo, tati, campion pe sate!");
+            }
+          } else {
+            setTimeout(() => {
+              $img1.hide();
+              $img2.hide();
+              $prima.removeClass('reveal');
+              $celula.removeClass('reveal');
+              $prima = null;
+              blocat = false;
+            }, 1500);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

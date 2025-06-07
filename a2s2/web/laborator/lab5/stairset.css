@@ -1,0 +1,56 @@
+body {
+    background-image: url("./blue_sky.jpg");
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+}
+
+.scari {
+    position: fixed;
+    bottom: 0;}
+
+.scara {
+    background-image: url("./forest.jpeg");
+    background-size: cover;
+    border: 1px solid black;
+    height: 10vh;
+}
+
+.tr1 { width: 20vw; }
+.tr2 { width: 30vw; }
+.tr3 { width: 40vw; }
+.tr4 { width: 50vw; }
+.tr5 { width: 60vw; }
+.tr6 { width: 70vw; }
+.tr7 { width: 80vw; }
+.tr8 { width: 90vw; }
+.tr9 { width: 100vw; }
+
+.vever {
+    z-index: 2;
+    height: 20vh;
+    position: absolute;
+    bottom: 8vh;
+    left: 90vw;
+    animation: jump 5s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0% { transform: translate(0, 0); }
+    5.88% { transform: translate(-10vw, -10vh); }
+    11.76% { transform: translate(-20vw, -20vh); }
+    17.64% { transform: translate(-30vw, -30vh); }
+    23.52% { transform: translate(-40vw, -40vh); }
+    29.40% { transform: translate(-50vw, -50vh); }
+    35.28% { transform: translate(-60vw, -60vh); }
+    41.16% { transform: translate(-70vw, -70vh); }
+    47.04% { transform: translate(-80vw, -80vh); }
+    52.92% { transform: translate(-70vw, -70vh); }
+    58.80% { transform: translate(-60vw, -60vh); }
+    64.68% { transform: translate(-50vw, -50vh); }
+    70.56% { transform: translate(-40vw, -40vh); }
+    76.44% { transform: translate(-30vw, -30vh); }
+    82.32% { transform: translate(-20vw, -20vh); }
+    88.20% { transform: translate(-10vw, -10vh); }
+    100% { transform: translate(0, 0); }
+}

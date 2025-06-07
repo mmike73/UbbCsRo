@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--
+- taguri
+- validatea la 5
+- html5 pe server
+-->
+<html lang="ro">
+    <head>
+        <title>Formular auto</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script>
+            function previewImage(event) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    const output = document.getElementById('image-preview');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
+
+            function setSocialMediaLink() {
+                const input = document.getElementById('link-sm').value;
+                var link = document.getElementById('social-link'); // Fixed ID
+
+                if (input.trim() !== "") {
+                    link.href = input;
+                    link.textContent = "Contact me";
+                    // link.style.display = "inline"; // Show the link
+                } else {
+                    link.href = "#";
+                    link.textContent = "";
+                    // link.style.display = "none"; // Hide the link if no input
+                }
+            }
+
+            function printPage() {
+                window.print();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Formular auto</h1>
+        <p title="p_start_formular">Introdu datele automobilului tău</p>
+        <form action="javascript:printPage()">
+            <table>
+                <tr>
+                    <th>Caracteristici generale</th>
+                    <th>Motorizare</th>
+                    <th>Detalii tehnice</th>
+                    <th>Dotari</th>
+                </tr>
+                <tr>
+                    <td rowspan="3">
+                        <fieldset>
+                            <legend><strong>Brand:</strong></legend>
+                            <input type="text" name="brand" maxlength="50">
+                            <br>
+                            <strong>Model:</strong>
+                            <input type="text" name="model" maxlength="50">
+                            <br>
+                            <strong>Anul fabricației:</strong>
+                            <input type="number" name="an-fabricatie" min="1900" max="2025">
+                            <br>
+                            <strong>Tip automobil:</strong>
+                            <input type="text" id="country" name="tip-automobil" value="Automobil personal" readonly>
+                        </fieldset>
+                    </td>
+                    <td>
+                        Combustibil:
+                        <select name="motor" multiple size="5">
+                            <option value="empty-motor" selected>None</option>
+                            <option value="benzina" >Benzină</option>
+                            <option value="benzina-hibrid">Benzină hibrid</option>
+                            <option value="diesel">Diesel</option>
+                            <option value="diesel-hibrid">Diesel hibrid</option>
+                            <option value="electric">Electric</option>
+                            <option value="hidrogen">Hidrogen</option>
+                        </select>
+                    </td>
+                    <td>
+                        Tip cutie de viteze:
+                        <br>
+                        <select name="cutie">
+                            <option value="empty-cutie" selected>None</option>
+                            <option value="manuala" >Manuala</option>
+                            <option value="manuala-robotizata">Manuală robotizată</option>
+                            <option value="automata-convertizor">Automată cu convertizor</option>
+                            <option value="automata-dublu-ambreaj">Automată cu dublu ambreaj</option>
+                            <option value="automata">Automată</option>
+                        </select>
+                    </td>
+                    <td rowspan="3">
+                        <table>
+                            <tr>
+                                <th>Exterior</th>
+                                <th>Interior</th>
+                                <th>Performanta</th>
+                                <th>Siguranta</th>
+                                <th>Multimedia</th>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">
+                                    <input type="checkbox" id="jante-aliaj" name="jante-aliaj" value="Jante din aliaj" checked>
+                                    <label for="jante-aliaj">Jante din aliaj</label><br>
+                                    <input type="checkbox" id="ornamente" name="ornamente" value="Ornamente">
+                                    <label for="ornamente">Ornamente cromate</label><br>
+                                    <input type="checkbox" id="vopsea-metalizata" name="vopsea-metalizata" value="Vopsea metalizata">
+                                    <label for="vopsea-metalizata">Vopsea metalizata</label><br>
+                                </td>
+                                <td rowspan="3">
+                                    <input type="radio" id="interior-piele" name="interior" value="piele">
+                                    <label for="interior-piele">Piele</label><br>
+                                    <input type="radio" id="interior-stofa" name="interior" value="stofa">
+                                    <label for="interior-stofa">Stofa</label><br>  
+                                    <input type="radio" id="interior-mixt" name="interior" value="mixt">
+                                    <label for="interior-mixt">Mixt</label><br><br>
+                                </td>
+                                <td colspan="3">
+                                    <input type="radio" id="performanta-off-road" name="performanta" value="off-road">
+                                    <h3>Pachet off-road</h3>
+                                    <ul>
+                                        <li>Suspensie îanltă</li>
+                                        <li>Protecții de pastic</li>
+                                        <li>Anvelope all-terain</li>
+                                        <li>
+                                            Pchet de camping suplimentar:
+                                            <ol type="A" start="50">
+                                                <li>Cort rooftop</li>
+                                                <li>Kit de gatit in natură</li>
+                                                <li>Kit de vânătoare</li>
+                                            </ol>
+                                        </li>
+                                    </ul>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="radio" id="performanta-circuit" name="performanta" value="circuit">
+                                    <h3>Pachet de circuit</h3>
+                                    <ul>
+                                        <li>Evacuare</li>
+                                        <li>Suspensii rigide</li>
+                                        <li>Pachet downforce</li>
+                                        <li>Anvelope de circuit</li>
+                                        <li>Radiator endurance</li>
+                                        <li>Sistem de alimetare cu etanol</li>
+                                        <li>Calculator cu soft arăbesc 1000cp</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <input type="radio" id="performanta-eco" name="performanta" value="eco">
+                                    <h3>ECO +</h3>
+                                    <ul>
+                                        <li>Pachet aerodinamic</li>
+                                        <li>Anvelope cu rezistenta redusa</li>
+                                        <li>
+                                            Pachet suplimentar extra light:
+                                            <ol type="1">
+                                                <li>Interior fara covoare</li>
+                                                <li>Scaune din scândură</li>                                                    
+                                                <li>Scaune din scândură</li>                                                  
+                                                <li>Sclă subțiată</li>                                                  
+                                            </ol>
+                                        </li>
+                                        <li>Bilet de autobuz pentru consum 0</li>
+                                    </ul>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Capacitate cilindrică:
+                        <input type="number" name="capacitate" step="100"> cm³
+                    </td>
+                    <td rowspan="2">
+                        Tip tractiune:
+                        <br>
+                        <select name="tractiune">
+                            <option value="empty-tractiune" selected>None</option>
+                            <option value="fata" >Față</option>
+                            <option value="spate">Spate</option>
+                            <option value="4WD">4WD</option>
+                            <option value="AWD">AWD</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Numar cilindri:
+                        <select name="cilindri">
+                            <option value="empty-cilindri" selected>None</option>
+                            <option value="c2" >2</option>
+                            <option value="c3">3</option>
+                            <option value="c4">4</option>
+                            <option value="c5">5</option>
+                            <option value="c6">6</option>
+                            <option value="c8">8</option>
+                            <option value="c10">10</option>
+                            <option value="c12">12</option>
+                            <option value="c16">16</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <h1>Date anunt:</h1>
+            <table>
+                <tr>
+                    <th>Date despre utilizator</th>
+                    <th>Detalii anunț</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Nume:</b>
+                        <input type="text" name="nume-utilizator" maxlength="50" disabled>
+                    </td>
+                    <td>
+                        Numar km:
+                        <input type="text" name="nume-utilizator" maxlength="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Prenume:
+                        <input type="text" name="nume-utilizator" maxlength="50">
+                    </td>
+                    <td>
+                        Descriere:
+                        <input type="text" name="nume-utilizator" maxlength="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Adresa email:
+                        <input type="text" name="email-utilizator" maxlength="50">
+                    </td>
+                    <td>
+                        Descriere:
+                        <textarea name="descriere-automobil" rows="4" cols="50"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Adresa(Localitate, Tara):
+                        <input type="text" name="locate-utilizator" maxlength="50">
+                    </td>
+                    <td>
+                        Pret:
+                        <input type="text" name="pret-automobil" maxlength="7">
+                    </td>
+                </tr>
+                <tr>
+                    <td  colspan="2">
+                        <p>
+                            <img id="image-preview" src="#" alt="Preview imagine" width="200" height="150">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Imagine:
+                        <input type="file" name="image-upload" onchange="previewImage(event)">
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a id="social-link" href="" target="_blank">Contact me</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Social media link:
+                        <input type="text" id="link-sm" name="link-sm" maxlength="200" onchange="setSocialMediaLink()">
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <button type="submit">Salvează pagina</button>
+            </div>        
+        </form>
+    </body>
+</html>

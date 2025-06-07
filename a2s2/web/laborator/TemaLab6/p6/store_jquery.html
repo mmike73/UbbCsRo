@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Store - Product Filter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>IT Store - Product Filter</h1>
+    
+    <div class="filters">
+        <select id="manufacturer">
+            <option value="">All Manufacturers</option>
+        </select>
+        
+        <select id="processor">
+            <option value="">All Processors</option>
+        </select>
+        
+        <select id="memory">
+            <option value="">All Memory</option>
+        </select>
+        
+        <select id="storage">
+            <option value="">All Storage</option>
+        </select>
+        
+        <select id="video_card">
+            <option value="">All Video Cards</option>
+        </select>
+    </div>
+    
+    <div id="products" class="products">
+        <div class="loading">Loading products...</div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Load filter options
+            loadFilterOptions();
+            
+            // Set up event listeners for filters
+            $('#manufacturer, #processor, #memory, #storage, #video_card').change(function() {
+                filterProducts();
+            });
+        });
+        
+        function loadFilterOptions() {
+            $.ajax({
+                url: 'http://localhost:8000/filter.php?action=get_filters',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.error) {
+                        showError(data.error);
+                        return;
+                    }
+                    
+                    populateSelect('#manufacturer', data.manufacturers);
+                    populateSelect('#processor', data.processors);
+                    populateSelect('#memory', data.memories);
+                    populateSelect('#storage', data.storages);
+                    populateSelect('#video_card', data.videoCards);
+                    
+                    // Load initial products
+                    filterProducts();
+                },
+                error: function(xhr, status, error) {
+                    showError('Failed to load filter options: ' + error);
+                }
+            });
+        }
+        
+        function populateSelect(selector, options) {
+            $(selector).find('option:not(:first)').remove();
+            
+            if (!Array.isArray(options)) {
+                console.error('Options is not an array:', options);
+                return;
+            }
+            
+            options.forEach(function(option) {
+                if (option && option.name) {
+                    $(selector).append(
+                        $('<option>').val(option.name).text(option.name)
+                    );
+                }
+            });
+        }
+        
+        function filterProducts() {
+            const filters = {
+                manufacturer: $('#manufacturer').val(),
+                processor: $('#processor').val(),
+                memory: $('#memory').val(),
+                storage: $('#storage').val(),
+                video_card: $('#video_card').val()
+            };
+            
+            $('#products').html('<div class="loading">Loading products...</div>');
+            
+            $.ajax({
+                url: 'http://localhost:8000/filter.php?action=get_products',
+                method: 'GET',
+                data: filters,
+                dataType: 'json',
+                success: function(products) {
+                    if (products.error) {
+                        showError(products.error);
+                        return;
+                    }
+                    
+                    displayProducts(products);
+                },
+                error: function(xhr, status, error) {
+                    showError('Failed to load products: ' + error);
+                }
+            });
+        }
+        
+        function displayProducts(products) {
+            const $container = $('#products');
+            $container.empty();
+            
+            if (!Array.isArray(products)) {
+                showError('Invalid products data received');
+                return;
+            }
+            
+            if (products.length === 0) {
+                $container.html('<div class="product-card">No products found matching your criteria.</div>');
+                return;
+            }
+            
+            products.forEach(function(product) {
+                $container.append(`
+                    <div class="product-card">
+                        <h3>${product.name}</h3>
+                        <div class="price">$${product.price}</div>
+                        <div class="specs">
+                            <div><strong>Manufacturer:</strong> ${product.manufacturer}</div>
+                            <div><strong>Processor:</strong> ${product.processor}</div>
+                            <div><strong>Memory:</strong> ${product.memory}</div>
+                            <div><strong>Storage:</strong> ${product.storage}</div>
+                            <div><strong>Video Card:</strong> ${product.video_card}</div>
+                        </div>
+                    </div>
+                `);
+            });
+        }
+        
+        function showError(message) {
+            $('#products').html(`<div class="error">${message}</div>`);
+            console.error(message);
+        }
+    </script>
+</body>
+</html>

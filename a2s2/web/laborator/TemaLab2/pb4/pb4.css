@@ -1,0 +1,57 @@
+.social-media-bar {
+    display: flex;
+    flex-direction: row;
+}
+
+.logo {
+    width: 84px;
+    height: 84px;
+    background-image: url('../images/css-pr4.png');
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+
+.facebook   { background-position: 0px 0px; }
+.flickr     { background-position: -84px 0px; }
+.dribbble   { background-position: -168px 0px; }
+.google     { background-position: -252px 0px; }
+.linkedin   { background-position: -336px 0px; }
+.pinterest  { background-position: -420px 0px; }
+.rss        { background-position: -504px 0px; }
+.skype      { background-position: -588px 0px; }
+.twitter    { background-position: -672px 0px; }
+.vimeo      { background-position: -756px 0px; }
+.youtube    { background-position: -840px 0px; }
+
+.facebook.disabled   { background-position: 0px -84px; }
+.facebook.disabled:hover   { background-position: 0px 0px; }
+
+.flickr.disabled     { background-position: -84px -84px; }
+.flickr.disabled:hover   { background-position: -84px 0px; }
+
+.dribbble.disabled   { background-position: -168px -84px; }
+.dribbble.disabled:hover   { background-position: -168px 0px; }
+
+.google.disabled     { background-position: -252px -84px; }
+.google.disabled:hover     { background-position: -252px 0px; }
+
+.linkedin.disabled   { background-position: -336px -84px; }
+.linkedin.disabled:hover   { background-position: -336px 0px; }
+
+.pinterest.disabled  { background-position: -420px -84px; }
+.pinterest.disabled:hover  { background-position: -420px 0px; }
+
+.rss.disabled        { background-position: -504px -84px; }
+.rss.disabled:hover        { background-position: -504px 0px; }
+
+.skype.disabled      { background-position: -588px -84px; }
+.skype.disabled:hover      { background-position: -588px 0px; }
+
+.twitter.disabled    { background-position: -672px -84px; }
+.twitter.disabled:hover    { background-position: -672px 0px; }
+
+.vimeo.disabled      { background-position: -756px -84px; }
+.vimeo.disabled:hover      { background-position: -756px 0px; }
+
+.youtube.disabled    { background-position: -840px -84px; }
+.youtube.disabled:hover    { background-position: -840px 0px; }

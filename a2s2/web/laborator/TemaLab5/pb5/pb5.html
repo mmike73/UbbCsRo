@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Carousel cu lista și linkuri (jQuery)</title>
+  <style>
+    .carousel-container {
+      position: relative;
+      width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carousel {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      height: 400px;
+    }
+
+    .carousel li {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 1s ease;
+      text-align: center;
+    }
+
+    .carousel li img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .carousel li a {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+
+    .carousel li.active {
+      display: block;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .carousel-buttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .carousel-buttons button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel-container">
+    <ol class="carousel" id="carousel">
+      <li class="active">
+        <img src="./poze/Fiat_500_ID214478.jpg" alt="Imagine 1">
+        <a href="#">Fiat 500</a>
+      </li>
+      <li>
+        <img src="./poze/ds-01-2.jpg" alt="Imagine 2">
+        <a href="#">Citroen DS</a>
+      </li>
+      <li>
+        <img src="./poze/50_ans_Renault_5_-_Rétromobile_02.jpg" alt="Imagine 3">
+        <a href="#">Renault 5</a>
+      </li>
+      <li>
+        <img src="./poze/646f6b59ec03476ddfac33b0_Maserati-Ghibli-blauw-.jpeg" alt="Imagine 4">
+        <a href="#">Maseratti Ghibli</a>
+      </li>
+      <li>
+        <img src="./poze/images.jpeg" alt="Imagine 5">
+        <a href="#">Alfa Romeo GTV6</a>
+      </li>
+    </ol>
+
+    <div class="carousel-buttons">
+      <button id="prevBtn">Previous</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      const $items = $('#carousel li');
+      let indexCurent = 0;
+      const durata = 3000;
+      let timer;
+
+      function afiseazaSlide(indexNou) {
+        $items.removeClass('active');
+        indexCurent = (indexNou + $items.length) % $items.length;
+        $items.eq(indexCurent).addClass('active');
+      }
+
+      function nextSlide() {
+        afiseazaSlide(indexCurent + 1);
+        resetTimer();
+      }
+
+      function prevSlide() {
+        afiseazaSlide(indexCurent - 1);
+        resetTimer();
+      }
+
+      function startTimer() {
+        timer = setInterval(() => afiseazaSlide(indexCurent + 1), durata);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        startTimer();
+      }
+
+      $('#nextBtn').on('click', nextSlide);
+      $('#prevBtn').on('click', prevSlide);
+
+      $(document).on('keydown', function (e) {
+        if (e.key === "ArrowRight") nextSlide();
+        else if (e.key === "ArrowLeft") prevSlide();
+      });
+
+      startTimer();
+    });
+  </script>
+
+</body>
+</html>

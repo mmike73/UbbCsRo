@@ -1,0 +1,19 @@
+	Linkuri catre video-uri cu explicatii(Curs MPP 2020)
+
+
+1. Proiectare MiniChat
+
+https://www.youtube.com/watch?v=ccBbwNR5lwc
+
+2. Explicatii proiectare MiniChat
+
+https://www.youtube.com/watch?v=yjzDOAzUecw
+
+3. Explicatii implementare MiniChat - Java
+
+https://www.youtube.com/watch?v=SNmW68mNSbw
+
+
+IMPORTANT!!!
+Aceste video-uri au fost realizate in 2020, in perioada pandemiei. Exemplul prezentat in acest an la curs a fost modificat si adaptat.
+Solutiile voastre prezentate la laborator trebuie sa fie dezvoltate folosind indicatiile si recomandarile de ultima versiune a exemplului (prezentata in timpul cursului 6).

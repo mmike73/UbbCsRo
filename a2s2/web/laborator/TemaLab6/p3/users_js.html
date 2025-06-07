@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Editor (Axios)</title>
+    <style>
+        #container { display: flex; gap: 20px; }
+        #recordList { width: 200px; }
+        #recordForm { flex-grow: 1; }
+        li { cursor: pointer; padding: 5px; }
+        li:hover { background: #eee; }
+        li.selected { background: #ddf; }
+        #saveBtn { margin-top: 10px; }
+        .modified { background: #ffd !important; }
+    </style>
+</head>
+<body>
+    <h1>Record Editor</h1>
+    <div id="container">
+        <div id="recordList">
+            <h3>Records</h3>
+            <ul id="idList"></ul>
+        </div>
+        <div id="recordForm">
+            <h3>Edit Record</h3>
+            <form id="editForm">
+                <input type="hidden" id="recordId">
+                <div>
+                    <label>Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div>
+                    <label>Status:</label>
+                    <select id="status" name="status">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <button type="button" id="saveBtn" disabled>Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentId = null;
+        let isModified = false;
+        let originalData = {};
+        
+        function loadRecordIds() {
+            axios.get('http://localhost:8000/api.php?action=get_ids')
+                .then(response => {
+                    const list = document.getElementById('idList');
+                    list.innerHTML = '';
+                    response.data.forEach(id => {
+                        const li = document.createElement('li');
+                        li.textContent = id;
+                        li.addEventListener('click', () => selectRecord(id));
+                        list.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading record IDs:', error);
+                });
+        }
+        
+        function selectRecord(id) {
+            if (isModified && !confirm('You have unsaved changes. Continue?')) {
+                return;
+            }
+            
+            axios.get(`http://localhost:8000/api.php?action=get_record&id=${id}`)
+                .then(response => {
+                    const record = response.data;
+                    
+                    if (record.error) {
+                        alert(record.error);
+                        return;
+                    }
+                    
+                    document.querySelectorAll('#idList li').forEach(li => {
+                        li.classList.toggle('selected', li.textContent == id);
+                    });
+                    
+                    document.getElementById('recordId').value = record.id;
+                    document.getElementById('name').value = record.name;
+                    document.getElementById('email').value = record.email;
+                    document.getElementById('status').value = record.status;
+                    document.getElementById('saveBtn').disabled = true;
+                    
+                    currentId = id;
+                    isModified = false;
+                    originalData = {...record};
+                    
+                    document.querySelectorAll('#editForm input, #editForm select').forEach(el => {
+                        el.addEventListener('input', checkForChanges);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading record:', error);
+                });
+        }
+        
+        function checkForChanges() {
+            const form = document.getElementById('editForm');
+            isModified = (
+                form.name.value !== originalData.name ||
+                form.email.value !== originalData.email ||
+                form.status.value !== originalData.status
+            );
+            
+            document.getElementById('saveBtn').disabled = !isModified;
+            
+            document.querySelectorAll('#editForm input, #editForm select').forEach(el => {
+                el.classList.toggle('modified', isModified);
+            });
+        }
+        
+        function saveChanges() {
+            const form = document.getElementById('editForm');
+            const formData = new FormData(form);
+            
+            axios.post('http://localhost:8000/api.php?action=save_record', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => {
+                const result = response.data;
+                if (result.success) {
+                    alert('Changes saved successfully');
+                    isModified = false;
+                    document.getElementById('saveBtn').disabled = true;
+                    originalData = {
+                        name: form.name.value,
+                        email: form.email.value,
+                        status: form.status.value
+                    };
+                    
+                    document.querySelectorAll('#editForm input, #editForm select').forEach(el => {
+                        el.classList.remove('modified');
+                    });
+                    
+                    loadRecordIds();
+                } else {
+                    alert('Failed to save changes');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving record:', error);
+                alert('Error saving changes');
+            });
+        }
+        
+        document.getElementById('saveBtn').addEventListener('click', saveChanges);
+        
+        loadRecordIds();
+    </script>
+</body>
+</html>

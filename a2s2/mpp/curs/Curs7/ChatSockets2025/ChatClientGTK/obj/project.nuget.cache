@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "czA19Qh1+pc=",
+  "success": true,
+  "projectFilePath": "/Volumes/D/Faculta/A2S2/MPP/OneDrive_2_5-2-2025/Curs7/ChatSockets2025/ChatClientGTK/ChatClientGTK.csproj",
+  "expectedPackageFiles": [
+    "/Users/mihaimoldovan/.nuget/packages/atksharp/3.24.24.95/atksharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/cairosharp/3.24.24.95/cairosharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/gdksharp/3.24.24.95/gdksharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/giosharp/3.24.24.95/giosharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/glibsharp/3.24.24.95/glibsharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/gtksharp/3.24.24.95/gtksharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/log4net/3.0.4/log4net.3.0.4.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/pangosharp/3.24.24.95/pangosharp.3.24.24.95.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/system.configuration.configurationmanager/9.0.3/system.configuration.configurationmanager.9.0.3.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/system.diagnostics.eventlog/9.0.3/system.diagnostics.eventlog.9.0.3.nupkg.sha512",
+    "/Users/mihaimoldovan/.nuget/packages/system.security.cryptography.protecteddata/9.0.3/system.security.cryptography.protecteddata.9.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

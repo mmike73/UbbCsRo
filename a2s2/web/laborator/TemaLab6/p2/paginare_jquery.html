@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Records (jQuery AJAX)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .pagination { margin-top: 20px; }
+        button:disabled { opacity: 0.5; }
+        .loading { opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <h1>User Records</h1>
+    <div id="loadingIndicator" style="display: none;">Loading...</div>
+    <table id="usersTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>First Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="pagination">
+        <button id="prevBtn" disabled>Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let currentOffset = 0;
+            const API_URL = 'http://localhost:8000/persoane_api.php';
+            
+            function loadUsers(offset) {
+                $('#loadingIndicator').show();
+                $('body').addClass('loading');
+                
+                $.ajax({
+                    url: API_URL,
+                    method: 'GET',
+                    dataType: 'json',
+                    data: {
+                        action: 'get_users',
+                        offset: offset
+                    },
+                    success: function(data) {
+                        const $tbody = $('#usersTable tbody');
+                        $tbody.empty();
+                        
+                        if (data.users && data.users.length > 0) {
+                            $.each(data.users, function(index, user) {
+                                $tbody.append(`
+                                    <tr>
+                                        <td>${user.nume}</td>
+                                        <td>${user.prenume}</td>
+                                        <td>${user.telefon}</td>
+                                        <td>${user.email}</td>
+                                    </tr>
+                                `);
+                            });
+                        } else {
+                            $tbody.append('<tr><td colspan="4">No users found</td></tr>');
+                        }
+                        
+                        $('#prevBtn').prop('disabled', !data.hasPrev);
+                        $('#nextBtn').prop('disabled', !data.hasNext);
+                        currentOffset = offset;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                        $('#usersTable tbody').html(`
+                            <tr>
+                                <td colspan="4" class="error">
+                                    Error loading data. Please try again.
+                                </td>
+                            </tr>
+                        `);
+                    },
+                    complete: function() {
+                        $('#loadingIndicator').hide();
+                        $('body').removeClass('loading');
+                    }
+                });
+            }
+            
+            $('#prevBtn').on('click', function() {
+                loadUsers(currentOffset - 3);
+            });
+            
+            $('#nextBtn').on('click', function() {
+                loadUsers(currentOffset + 3);
+            });
+            
+            loadUsers(0);
+        });
+    </script>
+</body>
+</html>

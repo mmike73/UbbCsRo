@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    input {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .eroare {
+      border: 2px solid red;
+    }
+
+    #mesaj.succes {
+      color: green;
+    }
+
+    #mesaj.eroare {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Introduceți cu încredere datele dv.</h1>
+
+  <form id="formular">
+    <input type="text" id="nume" placeholder="Nume complet">
+    <input type="date" id="dataNasterii">
+    <input type="number" id="varsta" placeholder="Vârsta">
+    <input type="email" id="email" placeholder="Email">
+    <button type="submit">Trimite</button>
+  </form>
+
+  <div id="mesaj"></div>
+
+  <script>
+    $(document).ready(function () {
+      $('#formular').on('submit', function (event) {
+        event.preventDefault();
+
+        const $nume = $('#nume');
+        const $dataNasterii = $('#dataNasterii');
+        const $varsta = $('#varsta');
+        const $email = $('#email');
+        const $mesaj = $('#mesaj');
+
+        let campuriInvalide = [];
+        let anSelectat = null;
+
+        $nume.removeClass('eroare');
+        $dataNasterii.removeClass('eroare');
+        $varsta.removeClass('eroare');
+        $email.removeClass('eroare');
+        $mesaj.text('').removeClass('succes eroare');
+
+        if ($.trim($nume.val()).length < 2) {
+          campuriInvalide.push('nume');
+          $nume.addClass('eroare');
+        }
+
+        if (!$dataNasterii.val()) {
+          campuriInvalide.push('data nasterii');
+          $dataNasterii.addClass('eroare');
+        } else {
+          const data = new Date($dataNasterii.val());
+          anSelectat = data.getFullYear();
+        }
+
+        const v = parseInt($varsta.val());
+        const anCurent = new Date().getFullYear();
+
+        if (isNaN(v) || v < 1 || v > 120) {
+          campuriInvalide.push('varsta');
+          $varsta.addClass('eroare');
+        } else if (anSelectat !== null && (anCurent - anSelectat !== v)) {
+          campuriInvalide.push('varsta');
+          $varsta.addClass('eroare');
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($.trim($email.val()))) {
+          campuriInvalide.push('email');
+          $email.addClass('eroare');
+        }
+
+        if (campuriInvalide.length === 0) {
+          $mesaj.text('Datele sunt completate corect.').addClass('succes');
+        } else {
+          $mesaj.text('Câmpurile ' + campuriInvalide.join(' și ') + ' nu au fost completate corect.').addClass('eroare');
+        }
+      });
+    });
+
+    // document.getElementById('formular').addEventListener('submit', function(event) {
+    //   event.preventDefault();
+
+    //   const nume = document.getElementById('nume');
+    //   const dataNasterii = document.getElementById('dataNasterii');
+    //   const varsta = document.getElementById('varsta');
+    //   const email = document.getElementById('email');
+    //   const mesaj = document.getElementById('mesaj');
+
+    //   let campuriInvalide = [];
+    //   let anSelectat = null;
+
+    //   [nume, dataNasterii, varsta, email].forEach(camp => camp.classList.remove('eroare'));
+    //   mesaj.textContent = "";
+
+    //   if (nume.value.trim().length < 2) {
+    //     campuriInvalide.push('nume');
+    //     nume.classList.add('eroare');
+    //   }
+
+    //   if (!dataNasterii.value) {
+    //     campuriInvalide.push('data nasterii');
+    //     dataNasterii.classList.add('eroare');
+    //   } else {
+    //     const data = new Date(dataNasterii.value);
+    //     anSelectat = data.getFullYear();
+    //   }
+
+    //   const v = parseInt(varsta.value);
+    //   const anCurent = new Date().getFullYear();
+
+    //   if (isNaN(v) || v < 1 || v > 120) {
+    //     campuriInvalide.push('varsta');
+    //     varsta.classList.add('eroare');
+    //   } else if (anSelectat !== null && (anCurent - anSelectat !== v)) {
+    //     campuriInvalide.push('varsta');
+    //     varsta.classList.add('eroare');
+    //   }
+
+    //   if (!email.value.trim().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    //     campuriInvalide.push('email');
+    //     email.classList.add('eroare');
+    //   }
+
+    //   if (campuriInvalide.length === 0) {
+    //     mesaj.textContent = "Datele sunt completate corect.";
+    //     mesaj.className = "succes";
+    //   } else {
+    //     mesaj.textContent = "Câmpurile " + campuriInvalide.join(' și ') + " nu au fost completate corect.";
+    //     mesaj.className = "eroare";
+    //   }
+    // });
+  </script>
+</body>
+</html>

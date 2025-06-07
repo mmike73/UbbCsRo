@@ -1,0 +1,20 @@
+Setarea contului personal de la facultate pentru gazduirea paginilor web
+
+Serverul Linux al studentilor de la facultate (www.scs.ubbcluj.ro) este accesibil prin protocolul SSH si orice client compatibil (putty, WinSCP) pe portul 8937 (atentie, portul implicit este 22, trebuie modificat in 8937).
+
+Dupa logarea cu un client ssh (spre exemplu putty):
+
+- $HOME reprezinta valoarea variabile de mediu HOME ce contine home directory-ul utilizatorului (rulati echo $HOME)
+- Fiind pozitionati in directorul personal (rulati pwd), creati directorul public_html
+mkdir $HOME/public_html
+- Pe directorul personal trebuie sa dati drept de "x" pentru "altii" (se da dreptul de a intra in directorul vostru personal pentru "others" - categorie de utilizatori sub care ruleaza si serverul web Apache care trebuie sa fie capabil sa intre in directorul vostru personal pentru a ajunge in directorul public_html de unde va citi fisierele cerute de catre browser):
+chmod o+x $HOME
+
+Paginile din directorul public_html vor fi servite browserelor de catre
+un server-ul Web Apache care ruleaza pe www.scs.ubbcluj.ro (folosind comanda "ps auxf" puteti vedea un proces parinte cu multe procese fii denumite "httpd" (de la http deamon) care ruleaza sub un utilizator fictiv numit apache (pe alte distributii Linux, spre exemplu in Ubuntu serverul web ruleaza sub un utilizator fictiv denumit www-data). Paginile web si resursele (imagini, fisiere CSS, fisiere JavaScript) din directorul public_html pot sa fie accesate cu un URL de forma:
+
+http://www.scs.ubbcluj.ro/~username
+
+Atentie: in URL nu mai trebuie sa scrieti "public_html" (greseala destul de frecvet intalnita la studenti).
+
+Pentru copierea de pagini web de pe calculatorul personal pe serverul Linux se poate folosi WinSCP cu conectare pe www.scs.ubbcluj.ro, port  8937.

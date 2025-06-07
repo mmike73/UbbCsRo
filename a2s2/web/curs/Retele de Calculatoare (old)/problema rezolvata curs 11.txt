@@ -1,0 +1,48 @@
+Sa se reprezinte intervalul de mai jos:
+
+[ 79.85.23.48 ... 94.16.25.63 ]
+
+in clase de adrese (si numarul de clase sa fie minim).
+
+- 79.85.23.48/255.255.255.240 /28 bcast: 79.85.23.63
+- 79.85.23.64/255.255.255.192 /26 bcast: 79.85.23.127
+- 79.85.23.128/255.255.255.128 /25 bcast: 79.85.23.255
+- 79.85.24.0/255.255.248.0 /21 bcast: 79.85.31.255
+- 79.85.32.0/19 255.255.224.0    bcast: 79.85.63.255
+- 79.85.64.0/18 255.255.192.0    bcast: 79.85.127.255
+- 79.85.128.0/17 255.255.128.0   bcast: 79.85.255.255
+- 79.86.0.0/15   255.254.0.0  bcast: 79.87.255.255
+- 79.88.0.0/13   255.248.0.0  bcast: 79.95.255.255
+- 79.96.0.0/11   255.224.0.0 bcast: 79.127.255.255
+- 79.128.0.0/9 255.128.0.0 (jumatate de clasa A) bcast: 79.255.255.255
+- 80.0.0.0 -> aici am sa consider 8 clase A (a 2^24 adrese IP fiecare)
+=> incepe clasa de 8 * 2^24 = 2^27 => netmask /5 sau 248.0.0.0
+  80.0.0.0/5 sau 80.0.0.0/248.0.0.0, bcast 87.255.255.255
+
+Observatie: 80 e multiplu de 16, dar nu incepem clasa de 16*2^24 adrese IP (nu agregam 16 clase A incepand de la 80. pentru ca am depasi limita din dreapta a intervalului 94.16.25.630)
+
+Pana aici au tot crestu clasele, de acum vor incepe sa scada
+- 88.0.0.0 - consideram 4 clase A agregate
+  88.0.0.0/6 sau 88.0.0.0/252.0.0.0, bcast: 91.255.255.255
+- 92.0.0.0 - cosideram 2 clase A agregate
+  92.0.0.0/7 sau 92.0.0.0/254.0.0.0 bcast 93.255.255.255
+- 94.0.0.0 (ma uit sa nu il depasesc pe 94.16.25.63)
+  La 94.0.0.0 pot incepe 16 clase B
+  16 * 2^16 = 2^20 => netmask /12 sau 255.240.0.0
+  94.0.0.0 /12 sau 94.0.0.0/255.240.0.0, bcast: 94.15.255.255
+- 94.16.0.0 (ma uit sa nu il depasesc pe 94.16.25.63)
+  La 94.16.0.0 pot incepe 16 clase C
+  16 * 256 = 2^4 * 2^8 = 2^12 => netmask /20 sau 255.255.240.0
+  94.16.0.0/20 sau 94.16.0.0/255.255.240, bcast: 94.16.15.255
+- 94.16.16.0 (ma uit sa nu il depasesc pe 94.16.25.63)
+  La 94.16.16.0 pot incepe 8 clase C
+  94.16.16.0/21 sau 94.16.16.0/255.255.248.0, bcast: 94.16.23.255
+- 94.16.24.0 (ma uit sa nu il depasesc pe 94.16.25.63)
+  94.16.24.0/24 sau 94.16.24.0/255.255.255.0, bcast: 94.16.24.255
+- 94.16.25.0 (ma uit sa nu il depasesc pe 94.16.25.63)
+  94.16.25.0/26 sau 94.16.25.0/255.255.255.192, bcast: 94.16.25.63 GATA!
+
+Observatie: Ideal o astfel de problema pentru a se rezolva "frumos" incepe cu o adresa de retea si se termina cu o adresa de bcast. Initial am dat limita intervalului din dreapta 94.16.25.64 care "seamana" cu o adresa de retea. Daca trebuia sa mergeti pana la 94.16.25.64, puteti considera la final:
+
+- 94.16.25.0/26, bcast 94.16.25.63
+- 94.16.25.64/32 sau 94.16.25.64/255.255.255.255 - adresa IP 94.16.25.64 o exprimati singura folosint netmask-ul /32 sau 255.255.255.255 - un netmask prin care se denota un singur IP individual.

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    
+    <label for="departure">Departure Station:</label>
+    <select id="departure">
+        <option value="">Select a departure station</option>
+    </select>
+    
+    <label for="arrival">Arrival Station:</label>
+    <select id="arrival" disabled>
+        <option value="">Select departure first</option>
+    </select>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:8000/trains_api.php';
+
+        function makeRequest(url, params, successCallback, errorCallback) {
+            const xhr = new XMLHttpRequest();
+            const queryString = params ? '?' + new URLSearchParams(params).toString() : '';
+            
+            xhr.open('GET', url + queryString, true);
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        successCallback(data);
+                    } catch (e) {
+                        errorCallback(new Error('Invalid JSON response'));
+                    }
+                } else {
+                    errorCallback(new Error('Request failed with status: ' + xhr.status));
+                }
+            };
+            xhr.onerror = function() {
+                errorCallback(new Error('Request failed'));
+            };
+            xhr.send();
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            axios.get(`${API_BASE_URL}?action=getDepartures`)
+                .then(response => {
+                    const select = document.getElementById('departure');
+                    response.data.forEach(station => {
+                        const option = document.createElement('option');
+                        option.value = station;
+                        option.textContent = station;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading departures:', error);
+                    alert('Failed to load departure stations');
+                });
+        });
+
+        document.getElementById('departure').addEventListener('change', function() {
+            const departureSelect = this;
+            const arrivalSelect = document.getElementById('arrival');
+            const selectedDeparture = departureSelect.value;
+            
+            if (!selectedDeparture) {
+                arrivalSelect.innerHTML = '<option value="">Select departure first</option>';
+                arrivalSelect.disabled = true;
+                return;
+            }
+            
+            axios.get(API_BASE_URL, {
+                params: {
+                    action: 'getArrivals',
+                    departure: selectedDeparture
+                }
+            })
+            .then(response => {
+                arrivalSelect.innerHTML = '';
+                if (response.data.length > 0) {
+                    response.data.forEach(station => {
+                        const option = document.createElement('option');
+                        option.value = station;
+                        option.textContent = station;
+                        arrivalSelect.appendChild(option);
+                    });
+                    arrivalSelect.disabled = false;
+                } else {
+                    arrivalSelect.innerHTML = '<option value="">No destinations available</option>';
+                    arrivalSelect.disabled = true;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading arrivals:', error);
+                arrivalSelect.innerHTML = '<option value="">Error loading stations</option>';
+            });
+        });
+    </script>
+</body>
+</html>

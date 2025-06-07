@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    td {
+      width: 80px;
+      height: 80px;
+      border: 1px solid black;
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: aquamarine;
+      user-select: none;
+    }
+
+    td.reveal {
+      background-color: #c1e1c1;
+    }
+
+    td.matched {
+      background-color: #9fe89f;
+      cursor: default;
+    }
+
+    #mesaj {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <h2>Memory</h2>
+  <table id="tabla"></table>
+  <div id="mesaj"></div>
+
+  <script>
+    $(document).ready(function() {
+      const numarRanduri = 4;
+      const numarColoane = 4;
+      const $tabla = $('#tabla');
+      const $mesaj = $('#mesaj');
+
+      let valori = [];
+      for (let i = 1; i <= (numarRanduri * numarColoane) / 2; i++) {
+        valori.push(i, i);
+      }
+
+      valori = valori.sort(() => Math.random() - 0.5);
+
+      let index = 0;
+      for (let i = 0; i < numarRanduri; i++) {
+        const $row = $('<tr>');
+        for (let j = 0; j < numarColoane; j++) {
+          const $cell = $('<td>')
+            .attr('data-valoare', valori[index++])
+            .text('');
+          $row.append($cell);
+        }
+        $tabla.append($row);
+      }
+
+      let prima = null;
+      let blocat = false;
+
+      $tabla.on('click', 'td', function() {
+        const $celula = $(this);
+        
+        if ($celula.hasClass("matched") || blocat || $celula[0] === prima) {
+          return;
+        }
+
+        // Afișăm valoarea
+        $celula.text($celula.data('valoare')).addClass("reveal");
+
+        if (!prima) {
+          prima = $celula[0];
+        } else {
+          blocat = true;
+          if ($celula.data('valoare') === $(prima).data('valoare')) {
+            $celula.addClass("matched");
+            $(prima).addClass("matched");
+            prima = null;
+            blocat = false;
+
+            if ($("td.matched").length === numarRanduri * numarColoane) {
+              $mesaj.text("Bravo, tati, campion pe sate!");
+            }
+          } else {
+            setTimeout(() => {
+              $celula.text("").removeClass("reveal");
+              $(prima).text("").removeClass("reveal");
+              prima = null;
+              blocat = false;
+            }, 500);
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

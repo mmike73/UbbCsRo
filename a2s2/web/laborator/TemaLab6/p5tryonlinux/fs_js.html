@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .container { display: flex; }
+        .tree-view { width: 40%; padding: 20px; border-right: 1px solid #ccc; }
+        .file-content { width: 60%; padding: 20px; }
+        ul.tree { list-style-type: none; padding-left: 20px; }
+        ul.tree li { margin: 5px 0; cursor: pointer; padding: 2px 5px; }
+        ul.tree li:hover { background-color: #f0f0f0; }
+        ul.tree li.directory::before { content: "📁 "; }
+        ul.tree li.file::before { content: "📄 "; }
+        ul.tree li.loading::before { content: "⏳ "; }
+        ul.tree li.error { color: #d32f2f; }
+        pre {
+            overflow-x: auto;
+            white-space: pre-wrap; word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tree-view">
+            <h2>Directory Tree</h2>
+            <ul id="directoryTree" class="tree">
+                <li class="directory" data-path="/">Root</li>
+            </ul>
+        </div>
+        <div class="file-content">
+            <h2>File Content</h2>
+            <div id="fileContent"><p>Select a file to view its content</p></div>
+        </div>
+    </div>
+
+    <script>
+        const directoryTree = document.getElementById('directoryTree');
+        const fileContent = document.getElementById('fileContent');
+
+        function initTreeView() {
+            directoryTree.addEventListener('click', (event) => {
+                const target = event.target.closest('li');
+                if (!target) return;
+
+                const path = target.getAttribute('data-path');
+                if (target.classList.contains('directory')) {
+                    const wasExpanded = target.classList.contains('expanded');
+                    if (wasExpanded) {
+                        target.classList.remove('expanded');
+                        const childUl = target.querySelector('ul');
+                        if (childUl) childUl.style.display = 'none';
+                        return;
+                    }
+                    if (!target.querySelector('ul')) {
+                        fetchDirectoryContents(path, target);
+                    } else {
+                        target.classList.add('expanded');
+                        const childUl = target.querySelector('ul');
+                        childUl.style.display = 'block';
+                    }
+                } else if (target.classList.contains('file')) {
+                    fetchFileContent(path);
+                }
+            });
+            fetchDirectoryContents('/', directoryTree.querySelector('li'));
+        }
+
+        function fetchDirectoryContents(path, parentElement) {
+            parentElement.classList.add('loading');
+
+            const xhr = new XMLHttpRequest();
+            const url = `http://192.168.64.24:8000/api.php?action=list&path=${encodeURIComponent(path)}`;
+
+            xhr.open('GET', url, true);
+
+            xhr.onload = function () {
+                parentElement.classList.remove('loading');
+
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        displayDirectoryContents(data, parentElement);
+                    } catch (e) {
+                        parentElement.classList.add('error');
+                        parentElement.textContent = 'Error parsing response';
+                    }
+                } else {
+                    parentElement.classList.add('error');
+                    parentElement.textContent = 'Error loading directory';
+                }
+            };
+
+            xhr.onerror = function () {
+                parentElement.classList.remove('loading');
+                parentElement.classList.add('error');
+                parentElement.textContent = 'Error loading directory';
+            };
+
+            xhr.send();
+        }
+
+
+        function displayDirectoryContents(data, parentElement) {
+            parentElement.classList.remove('loading');
+            const existingUl = parentElement.querySelector('ul');
+            if (existingUl) existingUl.remove();
+
+            if (data.error) {
+                parentElement.classList.add('error');
+                parentElement.textContent = data.error;
+                return;
+            }
+
+            if (!data.items.length) {
+                const emptyMsg = document.createElement('span');
+                emptyMsg.textContent = ' (empty)';
+                emptyMsg.style.color = '#999';
+                emptyMsg.style.fontStyle = 'italic';
+                parentElement.appendChild(emptyMsg);
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            ul.style.display = 'block';
+
+            data.items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = item.type;
+                li.setAttribute('data-path', item.path);
+                li.textContent = item.name;
+                ul.appendChild(li);
+            });
+
+            parentElement.appendChild(ul);
+            parentElement.classList.add('expanded');
+        }
+
+        function fetchFileContent(path) {
+            fileContent.innerHTML = '<p>Loading file content...</p>';
+
+            const xhr = new XMLHttpRequest();
+            const url = `http://192.168.64.24:8000/api.php?action=read&path=${encodeURIComponent(path)}`;
+
+            xhr.open('GET', url, true);
+
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const data = JSON.parse(xhr.responseText);
+                        displayFileContent(data);
+                    } catch (e) {
+                        fileContent.innerHTML = '<p class="error">Error parsing file content</p>';
+                    }
+                } else {
+                    fileContent.innerHTML = '<p class="error">Error loading file content</p>';
+                }
+            };
+
+            xhr.onerror = function () {
+                fileContent.innerHTML = '<p class="error">Error loading file content</p>';
+            };
+
+            xhr.send();
+        }
+
+
+        function displayFileContent(data) {
+            if (data.error) {
+                fileContent.innerHTML = `<p class="error">${data.error}</p>`;
+                return;
+            }
+            if (data.isBinary) {
+                fileContent.innerHTML = `<h3>${data.name}</h3><p>Binary file (${data.size} bytes) - content not displayed</p>`;
+            } else {
+                fileContent.innerHTML = `
+                    <h3>${data.name}</h3>
+                    <p><small>Path: ${data.path} | Size: ${data.size} bytes</small></p>
+                    <pre>${escapeHtml(data.content)}</pre>`;
+            }
+        }
+
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        document.addEventListener('DOMContentLoaded', initTreeView);
+    </script>
+</body>
+</html>

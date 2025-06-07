@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Tabel sortabil cu jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+    th {
+      cursor: pointer;
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Tabel cu antet orizontal (click pentru sortare)</h2>
+
+  <table class="tabel-sortabil" id="tabel2">
+    <thead>
+      <tr>
+        <th>Fruct</th>
+        <th>Preț</th>
+        <th>Cantitate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Mere</td><td>5</td><td>10</td></tr>
+      <tr><td>Pere</td><td>3</td><td>7</td></tr>
+      <tr><td>Banane</td><td>4</td><td>12</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    function sorteazaRanduriPeColoana($tabel, colIndex) {
+      const $tbody = $tabel.find('tbody');
+      const $randuri = $tbody.find('tr').toArray();
+      const asc = !$tabel.data('sortAsc') || $tabel.data('sortCol') !== colIndex;
+
+      $randuri.sort((a, b) => {
+        const va = $(a).children().eq(colIndex).text();
+        const vb = $(b).children().eq(colIndex).text();
+        const na = parseFloat(va);
+        const nb = parseFloat(vb);
+        const comp = isNaN(na) || isNaN(nb) ? va.localeCompare(vb) : na - nb;
+        return asc ? comp : -comp;
+      });
+
+      $.each($randuri, (_, row) => $tbody.append(row));
+      $tabel.data('sortAsc', asc);
+      $tabel.data('sortCol', colIndex);
+    }
+
+    $(document).ready(function () {
+      $('.tabel-sortabil').each(function () {
+        const $tabel = $(this);
+        $tabel.find('thead th').each(function (index) {
+          $(this).on('click', function () {
+            sorteazaRanduriPeColoana($tabel, index);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

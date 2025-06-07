@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    td {
+      width: 80px;
+      height: 80px;
+      border: 1px solid black;
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
+      background-color: aquamarine;
+      user-select: none;
+    }
+
+    td.reveal {
+      background-color: #c1e1c1;
+    }
+
+    td.matched {
+      background-color: #9fe89f;
+      cursor: default;
+    }
+
+    #mesaj {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Memory</h2>
+  <table id="tabla"></table>
+  <div id="mesaj"></div>
+
+  <script>
+    const numarRanduri = 4;
+    const numarColoane = 4;
+    const tabla = document.getElementById('tabla');
+    const mesaj = document.getElementById('mesaj');
+
+    let valori = [];
+    for (let i = 1; i <= (numarRanduri * numarColoane) / 2; i++) {
+      valori.push(i, i);
+    }
+
+    valori = valori.sort(() => Math.random() - 0.5);
+
+    let index = 0;
+    for (let i = 0; i < numarRanduri; i++) {
+      const row = document.createElement('tr');
+      for (let j = 0; j < numarColoane; j++) {
+        const cell = document.createElement('td');
+        cell.dataset.valoare = valori[index++];
+        cell.textContent = "";
+        row.appendChild(cell);
+      }
+      tabla.appendChild(row);
+    }
+
+    let prima = null;
+    let blocat = false;
+
+    tabla.addEventListener('click', function (e) {
+      const celula = e.target;
+      if (celula.tagName !== "TD" || blocat || celula.classList.contains("matched") || celula === prima) {
+        return;
+      }
+
+      // Afișăm valoarea
+      celula.textContent = celula.dataset.valoare;
+      celula.classList.add("reveal");
+
+      if (!prima) {
+        prima = celula;
+      } else {
+        blocat = true;
+        if (celula.dataset.valoare === prima.dataset.valoare) {
+          celula.classList.add("matched");
+          prima.classList.add("matched");
+          prima = null;
+          blocat = false;
+
+          if (document.querySelectorAll("td.matched").length === numarRanduri * numarColoane) {
+            mesaj.textContent = "Bravo, tati, campion pe sate!";
+          }
+        } else {
+          setTimeout(() => {
+            celula.textContent = "";
+            prima.textContent = "";
+            celula.classList.remove("reveal");
+            prima.classList.remove("reveal");
+            prima = null;
+            blocat = false;
+          }, 500);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

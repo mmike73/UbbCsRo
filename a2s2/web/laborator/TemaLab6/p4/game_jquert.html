@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    td {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 30px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    #status {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<table id="board"></table>
+<p id="status"></p>
+
+<script>
+const table = $("#board");
+const statusText = $("#status");
+let board = Array(9).fill("");
+let gameOver = false;
+let playerSymbol = "X";
+let computerSymbol = "O";
+let playerTurn = true;
+
+function drawBoard() {
+  table.empty();
+  for (let i = 0; i < 3; i++) {
+    let row = $("<tr>");
+    for (let j = 0; j < 3; j++) {
+      let idx = i * 3 + j;
+      let cell = $("<td>").text(board[idx]);
+      if (!gameOver && board[idx] === "" && playerTurn) {
+        cell.click(() => handleMove(idx));
+      }
+      row.append(cell);
+    }
+    table.append(row);
+  }
+}
+
+function handleMove(idx) {
+  if (board[idx] !== "" || gameOver || !playerTurn) return;
+
+  board[idx] = playerSymbol;
+  playerTurn = false;
+  drawBoard();
+  sendBoard();
+}
+
+function sendBoard() {
+  $.ajax({
+    url: "http://localhost:8000/game.php",
+    type: "POST",
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      board: board,
+      player: playerSymbol
+    }),
+    success: function(res) {
+      if (res.error) {
+        statusText.text("Error: " + res.error);
+        return;
+      }
+
+      board = res.board;
+      gameOver = res.status !== "";
+      playerTurn = !gameOver && res.status === "";  // allow player if game continues
+      drawBoard();
+      statusText.text(res.status);
+    },
+    error: function(xhr, status, error) {
+      console.error("AJAX Error:", status, error);
+      statusText.text("Error communicating with server");
+    }
+  });
+}
+
+function startGame() {
+  const computerStarts = Math.random() < 0.5;
+  playerSymbol = "X";
+  computerSymbol = "O";
+  if (computerStarts) {
+    playerTurn = false;
+    sendBoard();
+  } else {
+    playerTurn = true;
+  }
+
+  drawBoard();
+}
+
+startGame();
+</script>
+
+</body>
+</html>

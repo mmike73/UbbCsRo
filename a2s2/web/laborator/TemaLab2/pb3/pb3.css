@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    background-color: red;
+    height: 15vh;
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.page-menu {
+    display: flex;
+    justify-content: center;
+    background-color: yellow;
+    padding: 10px;
+}
+
+.page-main-view {
+    background-color: green;
+    flex-grow: 1;
+    padding: 5px;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    table, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 8px;
+    }
+    td.antet {
+      font-weight: bold;
+      cursor: pointer;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Tabel cu antet vertical (click pentru sortare)</h2>
+
+  <table class="tabel-sortabil" id="tabel1">
+    <tr>
+      <td class="antet">Fruct</td>
+      <td>Mere</td>
+      <td>Pere</td>
+      <td>Banane</td>
+    </tr>
+    <tr>
+      <td class="antet">Preț</td>
+      <td>5</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td class="antet">Cantitate</td>
+      <td>10</td>
+      <td>7</td>
+      <td>12</td>
+    </tr>
+  </table>
+
+  <script>
+    function sorteazaColoanePeRand($tabel, randIndex) {
+      const $randuri = $tabel.find('tr');
+      const $valori = $randuri.eq(randIndex).find('td');
+
+      let coloane = [];
+      for (let i = 1; i < $valori.length; i++) {
+        let celuleColoana = [];
+        $randuri.each(function () {
+          celuleColoana.push($(this).find('td').eq(i));
+        });
+
+        coloane.push({
+          valoare: $valori.eq(i).text(),
+          celule: celuleColoana
+        });
+      }
+
+      let asc = !$tabel.data('sortAsc') || $tabel.data('sortRand') !== randIndex;
+      $tabel.data('sortAsc', asc);
+      $tabel.data('sortRand', randIndex);
+
+      coloane.sort((a, b) => {
+        let va = a.valoare;
+        let vb = b.valoare;
+
+        const isNumA = !isNaN(parseFloat(va));
+        const isNumB = !isNaN(parseFloat(vb));
+
+        if (isNumA && isNumB) {
+          return asc ? parseFloat(va) - parseFloat(vb) : parseFloat(vb) - parseFloat(va);
+        } else {
+          return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+        }
+      });
+
+      // Reordonare
+      $randuri.each(function (r) {
+        for (let i = 0; i < coloane.length; i++) {
+          const $td = $(this).find('td').eq(i + 1);
+          const temp = $td.text();
+          $td.text(coloane[i].celule[r].text());
+          coloane[i].celule[r].text(temp);
+        }
+      });
+    }
+
+    $(document).ready(function () {
+      $('.tabel-sortabil').each(function () {
+        const $tabel = $(this);
+        $tabel.find('tr').each(function (index) {
+          $(this).find('td.antet').on('click', function () {
+            sorteazaColoanePeRand($tabel, index);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

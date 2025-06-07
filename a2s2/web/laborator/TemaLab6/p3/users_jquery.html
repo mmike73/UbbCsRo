@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Editor (jQuery)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #container { display: flex; gap: 20px; }
+        #recordList { width: 200px; }
+        #recordForm { flex-grow: 1; }
+        li { cursor: pointer; padding: 5px; }
+        li:hover { background: #eee; }
+        li.selected { background: #ddf; }
+        #saveBtn { margin-top: 10px; }
+        .modified { background: #ffd !important; }
+    </style>
+</head>
+<body>
+    <h1>Record Editor</h1>
+    <div id="container">
+        <div id="recordList">
+            <h3>Records</h3>
+            <ul id="idList"></ul>
+        </div>
+        <div id="recordForm">
+            <h3>Edit Record</h3>
+            <form id="editForm">
+                <input type="hidden" id="recordId" name="id">
+                <div>
+                    <label>Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div>
+                    <label>Status:</label>
+                    <select id="status" name="status">
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                <button type="button" id="saveBtn" disabled>Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let currentId = null;
+            let isModified = false;
+            let originalData = {};
+            
+            function loadRecordIds() {
+                $.ajax({
+                    url: 'http://localhost:8000/api.php',
+                    method: 'GET',
+                    data: { action: 'get_ids' },
+                    dataType: 'json',
+                    success: function(ids) {
+                        $('#idList').empty();
+                        $.each(ids, function(index, id) {
+                            $('<li>').text(id)
+                                .click(function() { selectRecord(id); })
+                                .appendTo('#idList');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading record IDs:', error);
+                    }
+                });
+            }
+
+            
+            function selectRecord(id) {
+                if (isModified && !confirm('You have unsaved changes. Continue?')) {
+                    return;
+                }
+
+                $.ajax({
+                    url: 'http://localhost:8000/api.php',
+                    method: 'GET',
+                    data: { action: 'get_record', id: id },
+                    dataType: 'json',
+                    success: function(record) {
+                        if (record.error) {
+                            alert(record.error);
+                            return;
+                        }
+
+                        // Update UI
+                        $('#idList li').removeClass('selected')
+                            .filter(function() { return $(this).text() == id; })
+                            .addClass('selected');
+
+                        $('#recordId').val(record.id);
+                        $('#name').val(record.name);
+                        $('#email').val(record.email);
+                        $('#status').val(record.status);
+                        $('#saveBtn').prop('disabled', true);
+
+                        // Track state
+                        currentId = id;
+                        isModified = false;
+                        originalData = $.extend({}, record);
+
+                        // Remove previous handlers and add new ones
+                        $('#editForm input, #editForm select').off('input').on('input', checkForChanges);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading record:', error);
+                        alert('Failed to load record');
+                    }
+                });
+            }
+
+            
+            function checkForChanges() {
+                isModified = (
+                    $('#name').val() !== originalData.name ||
+                    $('#email').val() !== originalData.email ||
+                    $('#status').val() !== originalData.status
+                );
+                
+                $('#saveBtn').prop('disabled', !isModified);
+                $('#editForm input, #editForm select').toggleClass('modified', isModified);
+            }
+            
+            function saveChanges() {
+                $.ajax({
+                    url: 'http://localhost:8000/api.php?action=save_record',
+                    method: 'POST',
+                    data: $('#editForm').serialize(),
+                    dataType: 'json',
+                    success: function(result) {
+                        if (result.success) {
+                            alert('Changes saved successfully');
+                            isModified = false;
+                            $('#saveBtn').prop('disabled', true);
+                            originalData = {
+                                name: $('#name').val(),
+                                email: $('#email').val(),
+                                status: $('#status').val()
+                            };
+                            $('#editForm input, #editForm select').removeClass('modified');
+                        } else {
+                            alert('Failed to save changes');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error saving record:', error);
+                        alert('Error saving changes');
+                    }
+                });
+            }
+
+            
+            $('#saveBtn').click(saveChanges);
+            
+            loadRecordIds();
+        });
+    </script>
+</body>
+</html>

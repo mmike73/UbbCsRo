@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { display: flex; }
+        .tree-view { width: 40%; padding: 20px; border-right: 1px solid #ccc; }
+        .file-content { width: 60%; padding: 20px; }
+        ul.tree { list-style-type: none; padding-left: 20px; }
+        ul.tree li { margin: 5px 0; cursor: pointer; padding: 2px 5px; }
+        ul.tree li:hover { background-color: #f0f0f0; }
+        ul.tree li.directory::before { content: "📁 "; }
+        ul.tree li.file::before { content: "📄 "; }
+        ul.tree li.loading::before { content: "⏳ "; }
+        ul.tree li.error { color: #d32f2f; }
+        pre {
+            background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow-x: auto;
+            white-space: pre-wrap; word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tree-view">
+            <h2>Directory Tree</h2>
+            <ul id="directoryTree" class="tree">
+                <li class="directory" data-path="/">Root</li>
+            </ul>
+        </div>
+        <div class="file-content">
+            <h2>File Content</h2>
+            <div id="fileContent"><p>Select a file to view its content</p></div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            const $directoryTree = $('#directoryTree');
+            const $fileContent = $('#fileContent');
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            function displayDirectoryContents(data, $parent) {
+                $parent.removeClass('loading');
+                $parent.find('ul').remove();
+
+                if (data.error) {
+                    $parent.addClass('error').text(data.error);
+                    return;
+                }
+
+                if (!data.items.length) {
+                    const $emptyMsg = $('<span>').text(' (empty)').css({'color': '#999', 'font-style': 'italic'});
+                    $parent.append($emptyMsg);
+                    return;
+                }
+
+                const $ul = $('<ul>').css('display', 'block');
+
+                data.items.forEach(item => {
+                    const $li = $('<li>')
+                        .addClass(item.type)
+                        .attr('data-path', item.path)
+                        .text(item.name);
+                    $ul.append($li);
+                });
+
+                $parent.append($ul).addClass('expanded');
+            }
+
+            function fetchDirectoryContents(path, $parent) {
+                $parent.removeClass('error').addClass('loading');
+
+                $.ajax({
+                    url: 'http://192.168.64.24:8000/api.php',
+                    method: 'GET',
+                    data: {
+                        action: 'list',
+                        path: path
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        displayDirectoryContents(data, $parent);
+                    },
+                    error: function () {
+                        $parent.removeClass('loading').addClass('error').text('Error loading directory');
+                    }
+                });
+            }
+
+
+            function displayFileContent(data) {
+                if (data.error) {
+                    $fileContent.html(`<p class="error">${data.error}</p>`);
+                    return;
+                }
+                if (data.isBinary) {
+                    $fileContent.html(`
+                        <h3>${data.name}</h3>
+                        <p>Binary file (${data.size} bytes) - content not displayed</p>
+                    `);
+                } else {
+                    $fileContent.html(`
+                        <h3>${data.name}</h3>
+                        <p><small>Path: ${data.path} | Size: ${data.size} bytes</small></p>
+                        <pre>${escapeHtml(data.content)}</pre>
+                    `);
+                }
+            }
+
+            function fetchFileContent(path) {
+                $fileContent.html('<p>Loading file content...</p>');
+
+                $.ajax({
+                    url: 'http://192.168.64.24:8000/api.php',
+                    method: 'GET',
+                    data: {
+                        action: 'read',
+                        path: path
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        displayFileContent(data);
+                    },
+                    error: function () {
+                        $fileContent.html('<p class="error">Error loading file content</p>');
+                    }
+                });
+            }
+
+
+            $directoryTree.on('click', 'li', function(event) {
+                event.stopPropagation(); // prevent event bubbling
+                const $target = $(this);
+                const path = $target.data('path');
+
+                if ($target.hasClass('directory')) {
+                    if ($target.hasClass('expanded')) {
+                        $target.removeClass('expanded').children('ul').hide();
+                    } else {
+                        if ($target.children('ul').length === 0) {
+                            fetchDirectoryContents(path, $target);
+                        } else {
+                            $target.addClass('expanded').children('ul').show();
+                        }
+                    }
+                } else if ($target.hasClass('file')) {
+                    fetchFileContent(path);
+                }
+            });
+
+            // Initial load
+            fetchDirectoryContents('/', $directoryTree.find('li.directory').first());
+        });
+    </script>
+</body>
+</html>
