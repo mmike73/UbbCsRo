@@ -1,0 +1,4 @@
+/Volumes/D/Faculta/A2S2/MPP/Laborator/GestiuneTurism/GestiuneTurism/obj/Debug/net8.0/GestiuneTurism.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/D/Faculta/A2S2/MPP/Laborator/GestiuneTurism/GestiuneTurism/obj/Debug/net8.0/GestiuneTurism.AssemblyInfoInputs.cache
+/Volumes/D/Faculta/A2S2/MPP/Laborator/GestiuneTurism/GestiuneTurism/obj/Debug/net8.0/GestiuneTurism.AssemblyInfo.cs
+/Volumes/D/Faculta/A2S2/MPP/Laborator/GestiuneTurism/GestiuneTurism/obj/Debug/net8.0/GestiuneTurism.csproj.CoreCompileInputs.cache
