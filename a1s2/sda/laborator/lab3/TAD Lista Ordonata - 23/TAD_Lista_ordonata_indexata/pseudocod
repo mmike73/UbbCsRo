@@ -1,0 +1,11 @@
+
+Subalgoritm avanseazăKPasi( k intreg )
+|   dacă iterator_valid() = fals atunci
+|   |   aruncă excepție
+|   dacă k <= 0 atunnci
+|   |   aruncă excepție
+|
+|   câtTimp k > 0 sau curent != NIL executa
+|   |   curent = [curent].succesor()
+|   |   k <- k - 1
+SfSubalgoritm

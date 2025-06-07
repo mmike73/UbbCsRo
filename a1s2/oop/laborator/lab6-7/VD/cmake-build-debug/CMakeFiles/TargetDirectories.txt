@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VD/cmake-build-debug/CMakeFiles/VD.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VD/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VD/cmake-build-debug/CMakeFiles/rebuild_cache.dir

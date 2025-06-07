@@ -1,0 +1,5 @@
+/Volumes/D/Faculta/A1S2/OOP/practice/partial/p2/untitled/cmake-build-debug/CMakeFiles/untitled.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/partial/p2/untitled/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/partial/p2/untitled/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/partial/p2/untitled/cmake-build-debug/CMakeFiles/untitled_autogen_timestamp_deps.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/partial/p2/untitled/cmake-build-debug/CMakeFiles/untitled_autogen.dir

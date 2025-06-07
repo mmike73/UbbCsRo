@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.26"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "TAD_Lista_ordonata_indexata",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "TAD_Lista_ordonata_indexata::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-TAD_Lista_ordonata_indexata-Debug-0180135c327442e30e13.json",
+					"name" : "TAD_Lista_ordonata_indexata",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Volumes/D/Faculta/A1S2/SDA/lab/lab3/TAD Lista Ordonata - 23/TAD_Lista_ordonata_indexata copy/cmake-build-debug",
+		"source" : "/Volumes/D/Faculta/A1S2/SDA/lab/lab3/TAD Lista Ordonata - 23/TAD_Lista_ordonata_indexata copy"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

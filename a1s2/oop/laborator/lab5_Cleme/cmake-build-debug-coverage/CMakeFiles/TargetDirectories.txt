@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/OOP/labs/Lab5 - Cleme/cmake-build-debug-coverage/CMakeFiles/OOP_lab2_4.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Lab5 - Cleme/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Lab5 - Cleme/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir

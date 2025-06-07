@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "magazin_gui",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "magazin_gui::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-magazin_gui-Debug-a56c6829d843bd0a5e74.json",
+					"name" : "magazin_gui",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "magazin_gui_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-magazin_gui_autogen-Debug-3fbf4b500a0aeec22fee.json",
+					"name" : "magazin_gui_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "magazin_gui_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-magazin_gui_autogen_timestamp_deps-Debug-cfd16e693e52f41cd3e5.json",
+					"name" : "magazin_gui_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui copy/cmake-build-debug",
+		"source" : "/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui copy"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

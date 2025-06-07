@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/SDA/lab/lab1/l1/TAD Coada/cmake-build-debug/CMakeFiles/TAD_Coada.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab1/l1/TAD Coada/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab1/l1/TAD Coada/cmake-build-debug/CMakeFiles/rebuild_cache.dir

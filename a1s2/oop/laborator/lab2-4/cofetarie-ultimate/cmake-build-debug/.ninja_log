@@ -1,0 +1,9 @@
+# ninja log v5
+0	44	1711214511961519971	CMakeFiles/untitled.dir/main.c.o	e9d0eaf99148ccb3
+1	42	1711214511959699897	CMakeFiles/untitled.dir/validation.c.o	6939febbdd32f49b
+1	199	1711220511746456126	CMakeFiles/untitled.dir/tests.c.o	6a33f3e5b0192e5a
+1	199	1711220511744985374	CMakeFiles/untitled.dir/domain.c.o	6ba8047f56db0dc8
+1	46	1711214511964508748	CMakeFiles/untitled.dir/repo.c.o	ea625d66262b8ff5
+1	49	1711214511967327151	CMakeFiles/untitled.dir/ui.c.o	fabc51091fa74489
+1	45	1711214511963426295	CMakeFiles/untitled.dir/service.c.o	f99b79ae11498b61
+199	302	1711220511848167236	untitled	8aab9c108188496e

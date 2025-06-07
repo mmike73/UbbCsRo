@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/OOP/labs/lab0/probleme/cmake-build-debug/CMakeFiles/untitled.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab0/probleme/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab0/probleme/cmake-build-debug/CMakeFiles/rebuild_cache.dir

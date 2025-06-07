@@ -1,0 +1,10 @@
+aaaa,Connected,11111,info
+aaab,Received mail,11112,warning
+aaac,Logged out,11113,error
+aaad,Connected,11114,critical
+aaae,Deleted file,11115,info
+aaaf,Connected,11116,info
+aaag,Logged out,11117,info
+aaah,Connected,11118,info
+aaai,Connected,11119,info
+aaaj,Sent mail,11120,critical

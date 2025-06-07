@@ -1,0 +1,5 @@
+#!/bin/sed
+1i DATE DESPRE PERSONAL
+/49$/d
+s/\([^ ]*\) \([^ ]*\) \([^ ]*\)/\2 \1 \3/
+$20 TERMINAT

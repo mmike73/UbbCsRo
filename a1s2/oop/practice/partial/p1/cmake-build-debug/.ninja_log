@@ -1,0 +1,19 @@
+# ninja log v5
+33	507	1716059700888326426	CMakeFiles/p1.dir/domain_placa.cpp.o	196470ede1ad33ad
+35	482	1716059700860876426	CMakeFiles/p1.dir/exception.cpp.o	19b388aa75d0e0aa
+31	480	1716059700859271804	CMakeFiles/p1.dir/domain_procesor.cpp.o	e2adc6e714dd18b6
+31	538	1716059700919932045	CMakeFiles/p1.dir/repo.cpp.o	620882bf66bccaa6
+28	837	1716117810323043806	CMakeFiles/p1.dir/main.cpp.o	4ccb51b594f3d4de
+55	393	1716060502656848478	CMakeFiles/p1.dir/validator.cpp.o	b4c8c1fb64018d0d
+837	930	1716117810417591648	p1	906e9c2509295904
+0	162	1716117813284858432	build.ninja	3a94fd5443b6ff87
+6	27	1716117809518439440	/Volumes/D/Faculta/A1S2/OOP/practice/partial/p1/cmake-build-debug/p1_autogen/mocs_compilation.cpp	a1bb73db9ef2637c
+6	27	1716117809518439440	p1_autogen/mocs_compilation.cpp	a1bb73db9ef2637c
+43	65	1716052262843557219	CMakeFiles/p1.dir/p1_autogen/mocs_compilation.cpp.o	2a62c750b410f6cd
+6	27	1716117809518439440	p1_autogen/timestamp	a1bb73db9ef2637c
+33	469	1716114634227768884	CMakeFiles/p1.dir/tests.cpp.o	c811743da3f1f792
+33	759	1716114634517517770	CMakeFiles/p1.dir/gui.cpp.o	3300ed33bdaf476d
+33	469	1716114634227771967	CMakeFiles/p1.dir/service.cpp.o	b4f98a0521eca489
+6	27	1716117809518439440	/Volumes/D/Faculta/A1S2/OOP/practice/partial/p1/cmake-build-debug/p1_autogen/timestamp	a1bb73db9ef2637c
+37	372	1716117769259251868	CMakeFiles/p1.dir/repo_procesoare.cpp.o	9e4ea78601b3942
+37	370	1716117769256042559	CMakeFiles/p1.dir/repo_placi.cpp.o	8894670d1507c824

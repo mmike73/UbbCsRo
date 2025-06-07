@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z $* ]; then
+	echo NO ARGUMENTS
+fi
+
+for f in $*; do
+	echo $f
+done

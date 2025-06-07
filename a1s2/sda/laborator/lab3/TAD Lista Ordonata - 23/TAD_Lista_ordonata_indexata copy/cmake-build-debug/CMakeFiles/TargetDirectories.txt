@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/SDA/lab/lab3/TAD Lista Ordonata - 23/TAD_Lista_ordonata_indexata copy/cmake-build-debug/CMakeFiles/TAD_Lista_ordonata_indexata.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab3/TAD Lista Ordonata - 23/TAD_Lista_ordonata_indexata copy/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab3/TAD Lista Ordonata - 23/TAD_Lista_ordonata_indexata copy/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,4 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VectorDinamicCPP -B /Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VectorDinamicCPP/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Volumes/D/Faculta/A1S2/OOP/labs/lab6-7/VectorDinamicCPP/cmake-build-debug

@@ -1,0 +1,22 @@
+# ninja log v5
+0	45	1718962223488013971	selectable_painter_autogen/timestamp	91759e7f186d1021
+0	45	1718962223488013971	selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+0	45	1718962223488013971	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/timestamp	91759e7f186d1021
+0	45	1718962223488013971	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+45	67	1718962223515137029	CMakeFiles/selectable_painter.dir/selectable_painter_autogen/mocs_compilation.cpp.o	bd1c339849a3c7c8
+45	623	1718962224066266078	CMakeFiles/selectable_painter.dir/main.cpp.o	defeae2d22dd3c87
+624	724	1718962224170209874	selectable_painter	f6d0bcfc1561f3b5
+6	745	1718962592020012000	selectable_painter_autogen/timestamp	91759e7f186d1021
+6	745	1718962592020012000	selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+6	745	1718962592020012000	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/timestamp	91759e7f186d1021
+6	745	1718962592020012000	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+745	1702	1718962592975470420	CMakeFiles/selectable_painter.dir/selectable_painter_autogen/mocs_compilation.cpp.o	bd1c339849a3c7c8
+746	1703	1718962592977797703	CMakeFiles/selectable_painter.dir/main.cpp.o	defeae2d22dd3c87
+746	1709	1718962592987487923	CMakeFiles/selectable_painter.dir/gui.cpp.o	1dd4ff6dfce63659
+1709	1817	1718962593099761586	selectable_painter	17d12af98266ade0
+9	41	1718962939642052321	selectable_painter_autogen/timestamp	91759e7f186d1021
+9	41	1718962939642052321	selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+9	41	1718962939642052321	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/timestamp	91759e7f186d1021
+9	41	1718962939642052321	/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug/selectable_painter_autogen/mocs_compilation.cpp	91759e7f186d1021
+45	906	1718962940499634885	CMakeFiles/selectable_painter.dir/gui.cpp.o	1dd4ff6dfce63659
+906	1030	1718962940627773105	selectable_painter	17d12af98266ade0

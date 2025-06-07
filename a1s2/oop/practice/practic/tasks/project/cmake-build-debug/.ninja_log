@@ -1,0 +1,16 @@
+# ninja log v5
+36	53	1718810621571841361	CMakeFiles/project.dir/project_autogen/mocs_compilation.cpp.o	3133f8ebfd4c0107
+45	209	1718813399569906711	CMakeFiles/project.dir/validation.cpp.o	e97bc653a3fceaa
+5	26	1718814776176576518	project_autogen/mocs_compilation.cpp	5bb7118aa04938ce
+25	334	1718814487631223432	CMakeFiles/project.dir/domain.cpp.o	30db90920de480c2
+5	26	1718814776176576518	/Volumes/D/Faculta/A1S2/OOP/practice/practic/tasks/project/cmake-build-debug/project_autogen/mocs_compilation.cpp	5bb7118aa04938ce
+45	209	1718813399570010711	CMakeFiles/project.dir/my_model.cpp.o	757d20998629d119
+45	209	1718813399569845294	CMakeFiles/project.dir/exception.cpp.o	b9149c7c7016ffd4
+46	209	1718813399570103879	CMakeFiles/project.dir/gui.cpp.o	cf2be38c7e5183c2
+5	26	1718814776176576518	/Volumes/D/Faculta/A1S2/OOP/practice/practic/tasks/project/cmake-build-debug/project_autogen/timestamp	5bb7118aa04938ce
+26	354	1718814776501596090	CMakeFiles/project.dir/test.cpp.o	ade090e1e4945dd8
+31	386	1718814387980073273	CMakeFiles/project.dir/service.cpp.o	e319c7bc7142b172
+31	362	1718814387954803136	CMakeFiles/project.dir/main.cpp.o	b2a6186720d638cc
+5	26	1718814776176576518	project_autogen/timestamp	5bb7118aa04938ce
+24	407	1718814661818226088	CMakeFiles/project.dir/repo.cpp.o	d0331d1b86525c33
+354	440	1718814776588711819	project	e85b452db45d646a

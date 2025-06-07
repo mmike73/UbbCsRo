@@ -1,0 +1,17 @@
+# ninja log v5
+948	1048	1718768399408792730	project	1c29e8f29a54cce8
+32	608	1718767893574748201	CMakeFiles/project.dir/repo.cpp.o	94ecd2afb057ce97
+6	31	1718768398396228007	project_autogen/timestamp	56513dfe711a2bbe
+30	1327	1718766471028002636	CMakeFiles/project.dir/main.cpp.o	3e368c87ebeea2f6
+29	461	1718764344637564659	CMakeFiles/project.dir/service.cpp.o	7e043bd440e499f
+32	268	1718729863569183910	CMakeFiles/project.dir/domain.cpp.o	7016ea8a80397906
+44	69	1718729277428601514	CMakeFiles/project.dir/project_autogen/mocs_compilation.cpp.o	be34c69819097005
+6	31	1718768398396228007	project_autogen/mocs_compilation.cpp	56513dfe711a2bbe
+6	31	1718768398396228007	/Volumes/D/Faculta/A1S2/OOP/practice/practic/melodii1/project/cmake-build-debug-coverage/project_autogen/timestamp	56513dfe711a2bbe
+0	159	1718811494567668878	build.ninja	f98abe7816acea39
+34	488	1718734454223449702	CMakeFiles/project.dir/observer.cpp.o	3460ff29fd6bf118
+27	586	1718740076952729941	CMakeFiles/project.dir/test.cpp.o	e739a3b91f5a40ad
+6	31	1718768398396228007	/Volumes/D/Faculta/A1S2/OOP/practice/practic/melodii1/project/cmake-build-debug-coverage/project_autogen/mocs_compilation.cpp	56513dfe711a2bbe
+32	948	1718768399304831106	CMakeFiles/project.dir/gui.cpp.o	ec395b675daad857
+45	274	1718729277630884267	CMakeFiles/project.dir/exception.cpp.o	3c80f27df2ba1dbf
+30	1053	1718766470752136315	CMakeFiles/project.dir/my_model.cpp.o	73e71403f3083c46

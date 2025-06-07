@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/SDA/lab/lab7/model/cmake-build-debug/CMakeFiles/model.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab7/model/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab7/model/cmake-build-debug/CMakeFiles/rebuild_cache.dir

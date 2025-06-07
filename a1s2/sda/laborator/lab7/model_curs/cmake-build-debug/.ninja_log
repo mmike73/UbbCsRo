@@ -1,0 +1,25 @@
+# ninja log v5
+1	412	1717142411176680314	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+0	415	1717142411176596564	CMakeFiles/model_curs.dir/main.cpp.o	868bf2a44f51a203
+415	504	1717142411270155692	model_curs	d07d7d4e565cdae9
+4	456	1717143074422741613	CMakeFiles/model_curs.dir/main.cpp.o	868bf2a44f51a203
+5	459	1717143074426294205	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+459	546	1717143074514383792	model_curs	d07d7d4e565cdae9
+4	347	1717143111673322831	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+347	380	1717143111708761749	model_curs	d07d7d4e565cdae9
+3	305	1717143183929481731	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+305	337	1717143183963307187	model_curs	d07d7d4e565cdae9
+5	345	1717143235687843365	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+345	379	1717143235722848449	model_curs	d07d7d4e565cdae9
+4	325	1717143244734956790	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+325	358	1717143244768902622	model_curs	d07d7d4e565cdae9
+14	319	1717143260499536110	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+319	352	1717143260532361898	model_curs	d07d7d4e565cdae9
+4	313	1717143268046532378	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+313	345	1717143268079502458	model_curs	d07d7d4e565cdae9
+4	462	1717143635744497928	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+462	551	1717143635834564520	model_curs	d07d7d4e565cdae9
+4	395	1717143707685270485	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+395	434	1717143707726872836	model_curs	d07d7d4e565cdae9
+5	479	1717143739280161409	CMakeFiles/model_curs.dir/colectie.cpp.o	937c3e94cbbfbdc
+479	594	1717143739400947950	model_curs	d07d7d4e565cdae9

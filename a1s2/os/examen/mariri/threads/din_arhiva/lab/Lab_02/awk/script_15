@@ -1,0 +1,9 @@
+BEGIN {
+	print "Nume","Prenume", "Data_nasterii", "Telefon", "Salariu"
+}
+{
+	print
+}
+END {
+	print "Total", NR, "angajati."
+}

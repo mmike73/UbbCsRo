@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/Grafuri/lab/lab5/problema2/cmake-build-debug/CMakeFiles/problema2.dir
+/Volumes/D/Faculta/A1S2/Grafuri/lab/lab5/problema2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/Grafuri/lab/lab5/problema2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

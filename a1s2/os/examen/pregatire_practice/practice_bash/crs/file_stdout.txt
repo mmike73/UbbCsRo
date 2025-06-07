@@ -1,0 +1,22 @@
+total 68
+lrwxrwxrwx   1 root root     7 Feb 19 20:43 bin -> usr/bin
+drwxr-xr-x   5 root root  4096 Apr 11 06:36 boot
+dr-xr-xr-x   2 root root  4096 Feb 20 00:52 cdrom
+drwxr-xr-x  20 root root  4020 Apr 10 18:13 dev
+drwxr-xr-x 102 root root  4096 Apr 11 06:35 etc
+drwxr-xr-x   4 root root  4096 Mar 17 13:29 home
+lrwxrwxrwx   1 root root     7 Feb 19 20:43 lib -> usr/lib
+drwx------   2 root root 16384 Mar 16 11:15 lost+found
+drwxr-xr-x   2 root root  4096 Feb 19 20:43 media
+drwxr-xr-x   2 root root  4096 Feb 19 20:43 mnt
+drwxr-xr-x   2 root root  4096 Feb 19 20:43 opt
+dr-xr-xr-x 176 root root     0 Apr 10 18:13 proc
+drwx------   6 root root  4096 Apr 12 06:30 root
+drwxr-xr-x  36 root root  1100 Apr 12 04:51 run
+lrwxrwxrwx   1 root root     8 Feb 19 20:43 sbin -> usr/sbin
+drwxr-xr-x   8 root root  4096 Mar 16 11:20 snap
+drwxr-xr-x   2 root root  4096 Feb 19 20:43 srv
+dr-xr-xr-x  13 root root     0 Apr 10 18:13 sys
+drwxrwxrwt  13 root root  4096 Apr 12 05:25 tmp
+drwxr-xr-x  11 root root  4096 Feb 19 20:43 usr
+drwxr-xr-x  13 root root  4096 Feb 19 20:48 var

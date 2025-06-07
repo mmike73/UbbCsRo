@@ -1,0 +1,5 @@
+/Users/mihaimoldovan/Desktop/Practic_OOP/cmake-build-debug/CMakeFiles/Practic_OOP.dir
+/Users/mihaimoldovan/Desktop/Practic_OOP/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mihaimoldovan/Desktop/Practic_OOP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mihaimoldovan/Desktop/Practic_OOP/cmake-build-debug/CMakeFiles/Practic_OOP_autogen_timestamp_deps.dir
+/Users/mihaimoldovan/Desktop/Practic_OOP/cmake-build-debug/CMakeFiles/Practic_OOP_autogen.dir

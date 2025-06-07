@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/SDA/lab/lab6/TAD Matrice/TAD Matrice/cmake-build-debug/CMakeFiles/TAD_Matrice.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab6/TAD Matrice/TAD Matrice/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/SDA/lab/lab6/TAD Matrice/TAD Matrice/cmake-build-debug/CMakeFiles/rebuild_cache.dir

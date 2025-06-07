@@ -1,0 +1,15 @@
+# ninja log v5
+1	42	1711220531081166906	CMakeFiles/untitled.dir/validation.c.o	c58aeeb5dc24833c
+0	35	1711257148615412448	CMakeFiles/untitled.dir/main.c.o	f8dec694d83ef897
+1	27	1711228713960664743	CMakeFiles/untitled.dir/repo.c.o	4d6a4227e0d0ebc5
+0	50	1711220531088694750	CMakeFiles/untitled.dir/domain.c.o	7c0e770742fdd1f1
+0	28	1711257381318676771	CMakeFiles/untitled.dir/vector_dinamic.c.o	aac3a701633ecf3c
+0	34	1711231150624114436	CMakeFiles/untitled.dir/service.c.o	bcaf765d822818e7
+1	31	1711223777284948043	CMakeFiles/untitled.dir/ui.c.o	1fd90df322ba76b1
+1	46	1711230111425280602	CMakeFiles/untitled.dir/tests.c.o	81cabd5d7c0d7123
+28	58	1711257381348960381	untitled	ea1dee1d94693d74
+0	43	1711529986039401173	CMakeFiles/untitled.dir/repo.c.o	4d6a4227e0d0ebc5
+0	44	1711529986039469631	CMakeFiles/untitled.dir/vector_dinamic.c.o	aac3a701633ecf3c
+0	45	1711529986041559478	CMakeFiles/untitled.dir/main.c.o	f8dec694d83ef897
+0	53	1711529986048778674	CMakeFiles/untitled.dir/tests.c.o	81cabd5d7c0d7123
+53	84	1711529986079321146	untitled	ea1dee1d94693d74

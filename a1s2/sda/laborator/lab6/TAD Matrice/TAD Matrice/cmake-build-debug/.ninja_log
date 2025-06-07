@@ -1,0 +1,14 @@
+# ninja log v5
+5	348	1716374137264134386	CMakeFiles/TAD_Matrice.dir/Teste/TestExtins.cpp.o	9d1a34d5ef4e8fc7
+4	337	1716374755235761201	CMakeFiles/TAD_Matrice.dir/Proiect_C++/App.cpp.o	6b7055fe26fa69f3
+4	359	1716374702660825056	CMakeFiles/TAD_Matrice.dir/Proiect_C++/Matrice.cpp.o	3c992c3335f51ca
+337	368	1716374755268385194	TAD_Matrice	f5799ddca24da176
+4	345	1716374137261435281	CMakeFiles/TAD_Matrice.dir/Teste/TestScurt.cpp.o	d6cff4e16c3d70cd
+0	52	1716374945360637748	build.ninja	516be704d1de1cf3
+11	334	1716374947250851265	CMakeFiles/TAD_Matrice.dir/Teste/TestScurt.cpp.o	86ff862e410a2c40
+11	336	1716374947252687776	CMakeFiles/TAD_Matrice.dir/Proiect_C++/Matrice.cpp.o	bc1c23df43fab2a1
+11	337	1716374947252792068	CMakeFiles/TAD_Matrice.dir/Teste/TestExtins.cpp.o	3a259e5e34353880
+11	343	1716374947259942779	CMakeFiles/TAD_Matrice.dir/Proiect_C++/App.cpp.o	dc2a269c09f41b1
+343	373	1716374947291640724	TAD_Matrice	f5799ddca24da176
+4	332	1716375384615274906	CMakeFiles/TAD_Matrice.dir/Proiect_C++/Matrice.cpp.o	bc1c23df43fab2a1
+332	364	1716375384649640677	TAD_Matrice	f5799ddca24da176

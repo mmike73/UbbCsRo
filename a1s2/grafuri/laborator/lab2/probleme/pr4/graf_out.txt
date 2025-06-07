@@ -1,0 +1,6 @@
+Nod: 1, distanta: 0
+Nod: 2, distanta: 1
+Nod: 3, distanta: 1
+Nod: 6, distanta: 1
+Nod: 4, distanta: 2
+Nod: 5, distanta: 2

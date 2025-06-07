@@ -1,0 +1,22 @@
+# ninja log v5
+0	49	1718983627315260736	Observer_autogen/timestamp	90c6a8b5d25b2247
+0	49	1718983627315260736	Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+0	49	1718983627315260736	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/timestamp	90c6a8b5d25b2247
+0	49	1718983627315260736	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+49	85	1718983627349111793	CMakeFiles/Observer.dir/Observer_autogen/mocs_compilation.cpp.o	ac7fea801ba7170f
+52	458	1718983627709513916	CMakeFiles/Observer.dir/Song.cpp.o	3993aec3ee4b483
+51	629	1718983627894312317	CMakeFiles/Observer.dir/Repository.cpp.o	6ae911d5faccb6a3
+50	659	1718983627925140606	CMakeFiles/Observer.dir/Playlist.cpp.o	6320f5458f742efe
+88	701	1718983627968166502	CMakeFiles/Observer.dir/UI.cpp.o	45334ba00edb3e03
+52	771	1718983628037269402	CMakeFiles/Observer.dir/Service.cpp.o	de43ceb460818fb3
+50	1254	1718983628518203376	CMakeFiles/Observer.dir/PlaylistGUI.cpp.o	d69d9284ebe1a841
+7	29	1718983635879524145	Observer_autogen/timestamp	90c6a8b5d25b2247
+7	29	1718983635879524145	Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+7	29	1718983635879524145	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/timestamp	90c6a8b5d25b2247
+7	29	1718983635879524145	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+30	922	1718983636767524407	CMakeFiles/Observer.dir/main.cpp.o	56da6ad7361cb53c
+12	36	1718983646858542742	Observer_autogen/timestamp	90c6a8b5d25b2247
+12	36	1718983646858542742	Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+12	36	1718983646858542742	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/timestamp	90c6a8b5d25b2247
+12	36	1718983646858542742	/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/Observer_autogen/mocs_compilation.cpp	90c6a8b5d25b2247
+36	1057	1718983647874070061	CMakeFiles/Observer.dir/main.cpp.o	56da6ad7361cb53c

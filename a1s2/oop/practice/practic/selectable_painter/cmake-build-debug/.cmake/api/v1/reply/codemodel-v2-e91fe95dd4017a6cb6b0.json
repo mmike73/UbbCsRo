@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "selectable_painter",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "selectable_painter::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-selectable_painter-Debug-69ff746f0694f0afcc64.json",
+					"name" : "selectable_painter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "selectable_painter_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-selectable_painter_autogen-Debug-643bf5f46a587ce26112.json",
+					"name" : "selectable_painter_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "selectable_painter_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-selectable_painter_autogen_timestamp_deps-Debug-7447f73f3bb8ab88e8f8.json",
+					"name" : "selectable_painter_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter/cmake-build-debug",
+		"source" : "/Volumes/D/Faculta/A1S2/OOP/practice/practic/selectable_painter"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

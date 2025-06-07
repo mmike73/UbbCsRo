@@ -1,0 +1,12 @@
+# ninja log v5
+11	35	1716191951500526048	untitled_autogen/timestamp	f451ab8ac134a36d
+33	995	1716191849582210105	CMakeFiles/untitled.dir/main.cpp.o	a46a0ba3d897c13f
+0	158	1716355726936045244	build.ninja	355b08385c9e4ae5
+400	496	1716191951958472013	untitled	edb72e01a819cac8
+34	1098	1716190071672316652	CMakeFiles/untitled.dir/gui.cpp.o	5e7aa30be555c772
+35	400	1716191951862488556	CMakeFiles/untitled.dir/teste.cpp.o	19013a88e49cc500
+38	56	1716183861271426558	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.o	f6f2106d8835310c
+34	437	1716187888171666640	CMakeFiles/untitled.dir/domain.cpp.o	acb6e28d8c963f5e
+11	35	1716191951500526048	untitled_autogen/mocs_compilation.cpp	f451ab8ac134a36d
+30	460	1716190154085861027	CMakeFiles/untitled.dir/repo.cpp.o	737522d5a78cb6e9
+33	442	1716189705719192854	CMakeFiles/untitled.dir/service.cpp.o	a4494a16484d59d3

@@ -1,0 +1,7 @@
+total 20
+-rw-r--r-- 1 root root    0 Apr 12  2024 all_in_one.txt
+-rw-r--r-- 1 root root   52 Apr 12 06:38 file_stderror.txt
+-rw-r--r-- 1 root root 1068 Apr 12 06:38 file_stdout.tx
+-rw-r--r-- 1 root root 1068 Apr 12 06:31 file_stdout.txt
+-rwxrwxrwx 1 root root   33 Apr 12 06:28 hello_world.sh
+-rwxrwxrwx 1 root root  233 Apr 12 06:38 stdin_out_err.sh

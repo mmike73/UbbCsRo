@@ -1,0 +1,13 @@
+BEGIN {
+	NR_CUV = 0
+	NR_CARACT = 0
+}
+{
+	NR_CUV += NF
+	for( i = 1; i <= NF; ++i) {
+		NR_CARACT += length($i)
+	}
+}
+END {
+	{print "Numar linii: ", NR, "\nNumar cuvinte:", NR_CUV, "\nNumar caractere:", NR_CARACT}
+}

@@ -1,0 +1,5 @@
+/Users/mihaimoldovan/Desktop/practic_oop/project/cmake-build-debug-coverage/CMakeFiles/project.dir
+/Users/mihaimoldovan/Desktop/practic_oop/project/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+/Users/mihaimoldovan/Desktop/practic_oop/project/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir
+/Users/mihaimoldovan/Desktop/practic_oop/project/cmake-build-debug-coverage/CMakeFiles/project_autogen_timestamp_deps.dir
+/Users/mihaimoldovan/Desktop/practic_oop/project/cmake-build-debug-coverage/CMakeFiles/project_autogen.dir

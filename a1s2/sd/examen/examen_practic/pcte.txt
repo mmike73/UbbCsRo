@@ -1,0 +1,12 @@
+#Puncte de echilibru in sisteme liniare:
+#instabil derivata(x) > 0 INSTABIL
+#local asimptotic stabil der(x) < 0
+
+#Stabilitatea punctelor de echilibru in sisteme neliniare:
+#instabil          - x > 0, y > 0
+#asimptotic stabil - x < 0, y < 0
+#INSTABIL de tip sa         - x * y < 0, reale, mereu instabil
+#de tip nod - 
+#instabil de tip focus    - complexe, conjugate, cu partea reala (alpha) > 0
+#asimptotic stabil de tip focus - compl. -||- alpha < 0
+#local stabil de tip centru, complexe i*betha

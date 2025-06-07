@@ -1,0 +1,3 @@
+/Volumes/D/Faculta/A1S2/OOP/practice/teoretic/modele2/model2/cmake-build-debug/CMakeFiles/model2.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/teoretic/modele2/model2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/teoretic/modele2/model2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,7 @@
+# ninja log v5
+0	471	1717140501735239411	CMakeFiles/model.dir/TestScurt.cpp.o	a1069456f7bc09ed
+0	474	1717140501736835715	CMakeFiles/model.dir/App.cpp.o	bcb5ecf07c8971a2
+0	545	1717140501812828771	CMakeFiles/model.dir/TestExtins.cpp.o	22fb7c25ac4b0500
+0	574	1717140501842600713	CMakeFiles/model.dir/IteratorColectie.cpp.o	e8ab68b2f82a176a
+0	601	1717140501869790010	CMakeFiles/model.dir/Colectie.cpp.o	347e77778242e453
+601	696	1717140501966149808	model	896eea654c55f0b3

@@ -1,0 +1,17 @@
+# ninja log v5
+3323	4979	1715713020746679827	TAD_Multimeb	a17aa95f59085d40
+3	40	1714805838456988035	CMakeFiles/TAD_Multimeb.dir/Teste/TestScurt.cpp.o	b1e2d61c678f18d2
+2	417	1714845014115844627	CMakeFiles/TAD_Multimeb.dir/Teste/TestExtins.cpp.o	655a036e06bf78f9
+2	3322	1715713019086777566	CMakeFiles/TAD_Multimeb.dir/Multime.cpp.o	4be808006b4051cd
+2	32	1714839294450076992	CMakeFiles/TAD_Multimeb.dir/IteratorMultime.cpp.o	d4b7cf056f51a0d4
+0	47	1715713026248854812	build.ninja	bfad1c834f2893d9
+2	361	1714845121291532150	CMakeFiles/TAD_Multimeb.dir/App.cpp.o	6bb6d253465c9e84
+2	48	1715713035224121922	CMakeFiles/TAD_Multimeb.dir/IteratorMultime.cpp.o	74da25bd1fcd8fc8
+3	50	1715713035225884494	CMakeFiles/TAD_Multimeb.dir/Teste/TestScurt.cpp.o	c9bcf1bfbe716319
+2	374	1715713035548869221	CMakeFiles/TAD_Multimeb.dir/Multime.cpp.o	2d2b21556ba1b6e8
+2	378	1715713035552361198	CMakeFiles/TAD_Multimeb.dir/App.cpp.o	ba365fcbda0e6fc2
+2	382	1715713035557258875	CMakeFiles/TAD_Multimeb.dir/Teste/TestExtins.cpp.o	19e8a4ac764aa77f
+382	414	1715713035589794501	TAD_Multimeb	afa5d792fb3f9783
+4	35	1715923879235971331	CMakeFiles/TAD_Multimeb.dir/IteratorMultime.cpp.o	74da25bd1fcd8fc8
+3	379	1715923879579977615	CMakeFiles/TAD_Multimeb.dir/Multime.cpp.o	2d2b21556ba1b6e8
+379	411	1715923879613490312	TAD_Multimeb	afa5d792fb3f9783

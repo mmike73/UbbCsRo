@@ -1,0 +1,17 @@
+# ninja log v5
+6	367	1717579089840500220	CMakeFiles/TAD_Colectie.dir/Teste/TestScurt.cpp.o	d71f1e1d078502ab
+6	369	1717579089842889160	CMakeFiles/TAD_Colectie.dir/Colectie/Colectie.cpp.o	f35a1876779cd6b1
+5	304	1717579197246177239	CMakeFiles/TAD_Colectie.dir/Colectie/App.cpp.o	a2a248eb69253927
+305	342	1717579197284755727	TAD_Colectie	ead0bd41c3f895a9
+6	426	1717579089900369999	CMakeFiles/TAD_Colectie.dir/Colectie/IteratorColectie.cpp.o	8427a6bcb7a46205
+6	396	1717579089869225411	CMakeFiles/TAD_Colectie.dir/Teste/TestExtins.cpp.o	88d3d3d018b40d07
+5	305	1717579207635347811	CMakeFiles/TAD_Colectie.dir/Colectie/App.cpp.o	a2a248eb69253927
+305	341	1717579207673865675	TAD_Colectie	ead0bd41c3f895a9
+5	305	1717579231429447045	CMakeFiles/TAD_Colectie.dir/Colectie/App.cpp.o	a2a248eb69253927
+305	341	1717579231467645078	TAD_Colectie	ead0bd41c3f895a9
+5	297	1717579317902138928	CMakeFiles/TAD_Colectie.dir/Colectie/App.cpp.o	a2a248eb69253927
+297	333	1717579317940359044	TAD_Colectie	ead0bd41c3f895a9
+5	312	1717580202789941065	CMakeFiles/TAD_Colectie.dir/Colectie/App.cpp.o	a2a248eb69253927
+5	367	1717580202844848325	CMakeFiles/TAD_Colectie.dir/Colectie/Colectie.cpp.o	f35a1876779cd6b1
+5	425	1717580202902151016	CMakeFiles/TAD_Colectie.dir/Colectie/IteratorColectie.cpp.o	8427a6bcb7a46205
+425	461	1717580202942017193	TAD_Colectie	ead0bd41c3f895a9

@@ -1,0 +1,5 @@
+/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/CMakeFiles/Observer.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/CMakeFiles/Observer_autogen_timestamp_deps.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/Observer/cmake-build-debug/CMakeFiles/Observer_autogen.dir

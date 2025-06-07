@@ -1,0 +1,5 @@
+/Volumes/D/Faculta/A1S2/OOP/practice/practic/tractoare/project_clickable/cmake-build-debug-coverage/CMakeFiles/project.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/practic/tractoare/project_clickable/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/practic/tractoare/project_clickable/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/practic/tractoare/project_clickable/cmake-build-debug-coverage/CMakeFiles/project_autogen_timestamp_deps.dir
+/Volumes/D/Faculta/A1S2/OOP/practice/practic/tractoare/project_clickable/cmake-build-debug-coverage/CMakeFiles/project_autogen.dir

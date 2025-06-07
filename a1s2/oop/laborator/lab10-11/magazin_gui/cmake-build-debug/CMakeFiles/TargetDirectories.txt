@@ -1,0 +1,5 @@
+/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/CMakeFiles/magazin_gui.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/CMakeFiles/magazin_gui_autogen_timestamp_deps.dir
+/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/CMakeFiles/magazin_gui_autogen.dir

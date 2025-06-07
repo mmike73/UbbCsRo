@@ -1,0 +1,38 @@
+# ninja log v5
+7	37	1716969339671804609	/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui/cmake-build-debug/magazin_gui_autogen/mocs_compilation.cpp	2fa314e7d989b056
+7	37	1716969339671804609	/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui/cmake-build-debug/magazin_gui_autogen/timestamp	2fa314e7d989b056
+58	103	1716378186411806036	CMakeFiles/magazin_gui.dir/magazin_gui_autogen/mocs_compilation.cpp.o	8ef0fc673e12d3b
+59	601	1716378186906347301	CMakeFiles/magazin_gui.dir/actiune_undo.cpp.o	409103c7b183dbf1
+6	31	1716050261414094625	/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/magazin_gui_autogen/mocs_compilation.cpp	6d529a1d6c1eb228
+38	1728	1716969341355791200	CMakeFiles/magazin_gui.dir/gui.cpp.o	fb01c915933b2594
+4	234	1716971839218128954	build.ninja	15f8192d0b523825
+1729	1869	1716969341495661229	magazin_gui	e71df15ceb0b79ba
+6	31	1716050261414094625	/Volumes/D/Faculta/A1S2/OOP/labs/lab10-11/magazin_gui/cmake-build-debug/magazin_gui_autogen/timestamp	6d529a1d6c1eb228
+37	1282	1716969340909040858	CMakeFiles/magazin_gui.dir/main.cpp.o	74a4148e67124334
+7	37	1716969339671804609	magazin_gui_autogen/mocs_compilation.cpp	2fa314e7d989b056
+47	1212	1716697691764270258	CMakeFiles/magazin_gui.dir/ui.cpp.o	e21f5829ecb77730
+47	772	1716697691323925371	CMakeFiles/magazin_gui.dir/cos_cumparaturi.cpp.o	4a377a5341cfc395
+47	823	1716697691377064601	CMakeFiles/magazin_gui.dir/tests.cpp.o	d749550f02bc62a7
+7	37	1716969339671804609	magazin_gui_autogen/timestamp	2fa314e7d989b056
+38	1229	1716969340848563784	CMakeFiles/magazin_gui.dir/gui_cos.cpp.o	bddd71f8e099cfeb
+47	779	1716697691331817790	CMakeFiles/magazin_gui.dir/service.cpp.o	d4d15a422a615b43
+444	772	1716378187080629918	CMakeFiles/magazin_gui.dir/validation.cpp.o	e6fc7effdfc9562f
+62	665	1716378186970115224	CMakeFiles/magazin_gui.dir/repo.cpp.o	c03b43fc8eff3904
+61	443	1716378186749137794	CMakeFiles/magazin_gui.dir/domain.cpp.o	ee666403b80580c7
+7	51	1716971842907967614	magazin_gui_autogen/timestamp	3a2fba379827a70b
+7	51	1716971842907967614	magazin_gui_autogen/mocs_compilation.cpp	3a2fba379827a70b
+7	51	1716971842907967614	/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui copy/cmake-build-debug/magazin_gui_autogen/timestamp	3a2fba379827a70b
+7	51	1716971842907967614	/Volumes/D/Faculta/A1S2/OOP/labs/lab13-14/magazin_gui copy/cmake-build-debug/magazin_gui_autogen/mocs_compilation.cpp	3a2fba379827a70b
+51	85	1716971842932838381	CMakeFiles/magazin_gui.dir/magazin_gui_autogen/mocs_compilation.cpp.o	baa89d6c778dafb3
+52	417	1716971843268571427	CMakeFiles/magazin_gui.dir/domain.cpp.o	fb2a7120b6a8ef8c
+52	593	1716971843442947086	CMakeFiles/magazin_gui.dir/actiune_undo.cpp.o	4366754f2bb50ae8
+52	692	1716971843539523020	CMakeFiles/magazin_gui.dir/cos_cumparaturi.cpp.o	7a3f0fc430f47ca9
+52	694	1716971843541441707	CMakeFiles/magazin_gui.dir/repo.cpp.o	3953cef66b96d47c
+52	694	1716971843544911085	CMakeFiles/magazin_gui.dir/service.cpp.o	c621acbf41acb264
+52	714	1716971843565403318	CMakeFiles/magazin_gui.dir/tests.cpp.o	e8a9b98c9a95b3a4
+417	762	1716971843614818814	CMakeFiles/magazin_gui.dir/validation.cpp.o	ca053cd3b71e25aa
+85	1216	1716971844065252385	CMakeFiles/magazin_gui.dir/ui.cpp.o	fe31d5fdc55f4952
+51	1240	1716971844090106486	CMakeFiles/magazin_gui.dir/main.cpp.o	bdfcbf3410e89df9
+693	1724	1716971844575121676	CMakeFiles/magazin_gui.dir/gui_cos.cpp.o	e53039aff7226f2
+593	2016	1716971844865397472	CMakeFiles/magazin_gui.dir/gui.cpp.o	99341d22cf0041a1
+2016	2113	1716971844966268484	magazin_gui	e71df15ceb0b79ba

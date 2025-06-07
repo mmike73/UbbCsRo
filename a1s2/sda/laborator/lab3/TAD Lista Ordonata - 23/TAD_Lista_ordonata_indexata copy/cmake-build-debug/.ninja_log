@@ -1,0 +1,16 @@
+# ninja log v5
+471	566	1713333834152962249	TAD_Lista_ordonata_indexata	79d5858d16bdb158
+3	154	1713333833740840623	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/nod.cpp.o	89740ff4479155ec
+2	273	1713330201143070672	CMakeFiles/TAD_Lista_ordonata_indexata.dir/main.cpp.o	eda6a24d5e62381e
+2	407	1713333833992652932	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/Iterator.cpp.o	2e3663943b4e9de5
+3	408	1713333833994290797	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/LO.cpp.o	8c1cbed3d49bf60e
+2	252	1713295257310123874	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Teste/TestScurt.cpp.o	c4e1916779160d1c
+3	471	1713333834056163912	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Teste/TestExtins.cpp.o	4ea60f66e4d8b3ea
+0	46	1713346490440877470	build.ninja	bccdcc7ab1190317
+3	27	1713346491756354916	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/nod.cpp.o	109692fa2f870469
+3	273	1713346492000377019	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Teste/TestScurt.cpp.o	22745a58194ad9e
+2	284	1713346492011947611	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/Iterator.cpp.o	75d6a7e537e4d407
+2	297	1713346492024685155	CMakeFiles/TAD_Lista_ordonata_indexata.dir/main.cpp.o	f761e824e6e4dd8c
+2	298	1713346492024784529	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Proiect_C++/LO.cpp.o	288f29dd9b35e581
+2	344	1713346492071716562	CMakeFiles/TAD_Lista_ordonata_indexata.dir/Teste/TestExtins.cpp.o	55d8c4d503e2ce6e
+344	374	1713346492103034028	TAD_Lista_ordonata_indexata	79d5858d16bdb158
