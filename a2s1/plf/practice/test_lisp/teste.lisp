@@ -1,0 +1,6 @@
+(defun teste_zig_zag ()
+    (equal (este_zig_zag '(1 a b c 2 1 f 40 5 y 6 1 h)) T)
+    (equal (este_zig_zag '(1 2 1 40 5 6 1)) T)
+    (equal (este_zig_zag '(1 2 3 4)) NIL)
+    (equal (este_zig_zag '(1 2 c 1 40 50)) NIL)
+)

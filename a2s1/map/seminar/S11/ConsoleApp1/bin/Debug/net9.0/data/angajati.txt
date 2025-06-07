@@ -1,0 +1,4 @@
+﻿c,adad,1000,Junior
+f,vasdj,20000,Medium
+p,Ion,1100,Junior
+m,Vas,2500,Senior

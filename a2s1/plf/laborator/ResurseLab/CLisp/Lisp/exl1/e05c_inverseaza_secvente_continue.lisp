@@ -1,0 +1,11 @@
+(defun inv_cont (l)
+    (cond
+        ((null l) nil)
+        ((and (atom (car l)) (atom (cadr l))) 
+            (label)
+            (append (inv_cont (cdr l)) (list (car l)))
+        )
+        ((atom (car l)) (cons (car l) (inv_cont (cdr l))))
+        (t (cons (inv_cont (car l)) (inv_cont (cdr l)) ))
+    )
+)

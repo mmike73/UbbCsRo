@@ -1,0 +1,80 @@
+use std::io::{self, BufRead, Read, Write};
+use std::net::TcpStream;
+
+fn main() {
+    let server_address = "192.168.64.24:57577";
+    
+    match TcpStream::connect(server_address) {
+        Ok(mut stream) => {
+            println!("Connected to the server");
+
+            let stdin = io::stdin();
+            let mut input = String::new();
+
+            // Get the first string
+            print!("Enter the first string: ");
+            io::stdout().flush().unwrap();  // flush to ensure prompt shows up
+            stdin.lock().read_line(&mut input).expect("Failed to read line");
+            let s1 = input.trim().to_string();
+            
+            // Get the second string
+            input.clear();
+            print!("Enter the second string: ");
+            io::stdout().flush().unwrap();
+            stdin.lock().read_line(&mut input).expect("Failed to read line");
+            let s2 = input.trim().to_string();
+
+            // Check length constraint
+            if s1.len() > 100 || s2.len() > 100 {
+                println!("Maximum length of 100 exceeded!");
+                return;
+            }
+
+            // Convert lengths to byte arrays (2 bytes each)
+            let l1_bytes = (s1.len() as u16).to_be_bytes();
+            let l2_bytes = (s2.len() as u16).to_be_bytes();
+
+            // Send data to the server
+            if let Err(e) = stream.write_all(&l1_bytes) {
+                println!("Failed to send length of first string: {}", e);
+                return;
+            }
+            if let Err(e) = stream.write_all(s1.as_bytes()) {
+                println!("Failed to send first string: {}", e);
+                return;
+            }
+            if let Err(e) = stream.write_all(&l2_bytes) {
+                println!("Failed to send length of second string: {}", e);
+                return;
+            }
+            if let Err(e) = stream.write_all(s2.as_bytes()) {
+                println!("Failed to send second string: {}", e);
+                return;
+            }
+
+            // Read the response from the server
+            let mut result_char = [0; 1];
+            let mut result_count = [0; 2];
+
+            // Read the character result from the server (1 byte)
+            if let Err(e) = stream.read_exact(&mut result_char) {
+                println!("Failed to read result character: {}", e);
+                return;
+            }
+
+            // Read the count result from the server (2 bytes)
+            if let Err(e) = stream.read_exact(&mut result_count) {
+                println!("Failed to read result count: {}", e);
+                return;
+            }
+
+            let result_char = result_char[0] as char;
+            let result_count = u16::from_be_bytes(result_count);
+
+            println!("Character '{}' appears {} times", result_char, result_count);
+        }
+        Err(e) => {
+            println!("Error connecting to server: {}", e);
+        }
+    }
+}

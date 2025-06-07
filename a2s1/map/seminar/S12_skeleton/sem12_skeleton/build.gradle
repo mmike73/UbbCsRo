@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'application'
+}
+
+group 'ro.ubbcluj.cs.map'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+}
+
+javafx {
+    version = '21-ea+24'
+    modules = [ 'javafx.controls' , 'javafx.fxml']
+}

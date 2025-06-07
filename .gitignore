@@ -1,0 +1,64 @@
+# ----------------------------------------
+# Java and Maven / Gradle build artifacts
+# ----------------------------------------
+
+# Maven / Gradle build output
+target/
+build/
+out/
+
+# Gradle wrapper
+.gradle/
+gradlew
+gradlew.bat
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS X / macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Compiled Java files
+*.class
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# ----------------------------------------
+# Git folders inside copied projects / avoid submodule errors
+# ----------------------------------------
+
+**/.git/
+**/.gitmodules
+
+# ----------------------------------------
+# Specific modules causing problems
+# ----------------------------------------
+
+a2s1/map/examen/Practic/ARezolvari/vancanta_21/OferteVacanta/
+a2s1/map/examen/Practic/ARezolvari/fapte_bune_21/ComenziRestaurant/
+a2s1/map/examen/Practic/ARezolvari/fapte_bune_21/FapteBune/
+a2s1/map/examen/Practic/ARezolvari/trenuri_23/Trains/
+a2s1/map/laborator/Lab10/NBALeagueRomania/
+a2s1/map/laborator/Lab6/SocialNetworkJavaFX/NettworkingUtils/
+a2s1/map/laborator/Lab9/Lab9 2/Lab9/
+a2s1/map/laborator/Lab9/Lab9/Lab9/
+a2s1/map/seminar/S13/
+a2s1/map/seminar/S2/SEM 2 - final
+a2s1/map/seminar/S5/
+a2s1/map/seminar/S8/
+
+# ----------------------------------------
+# Optional - ignore exam solution folders if you don't want them in main repo
+# ----------------------------------------
+#a2s1/map/examen/Practic/ARezolvari/
+

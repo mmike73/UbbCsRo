@@ -1,0 +1,4 @@
+CREATE NONCLUSTERED INDEX IX_CPUs_Price_NoCores
+ON CPUs(noCores DESC, price)
+INCLUDE (model);
+GO

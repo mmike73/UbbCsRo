@@ -1,0 +1,33 @@
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.exe
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.deps.json
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.runtimeconfig.json
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.dll
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.pdb
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.dll
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\refint\ConsoleApp1.dll
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.pdb
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.genruntimeconfig.cache
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ref\ConsoleApp1.dll
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\data\angajati.txt
+C:\Users\negre\RiderProjects\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\data\sarcini.txt
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.exe
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\data\angajati.txt
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\data\sarcini.txt
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.deps.json
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.runtimeconfig.json
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.dll
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\ConsoleApp1.pdb
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.AssemblyInfoInputs.cache
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.AssemblyInfo.cs
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.dll
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\refint\ConsoleApp1.dll
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.pdb
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ConsoleApp1.genruntimeconfig.cache
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\obj\Debug\net9.0\ref\ConsoleApp1.dll
+D:\Semestrul 3\Metode avansate de programare\c#\ConsoleApp1\ConsoleApp1\bin\Debug\net9.0\data\pontaje.txt

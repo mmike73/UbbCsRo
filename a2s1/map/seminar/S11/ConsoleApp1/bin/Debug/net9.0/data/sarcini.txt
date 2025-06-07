@@ -1,0 +1,6 @@
+q,Grea,2
+w,Usoara,4
+e,Medie,3
+t,Grea,8
+y,Grea,9
+u,Usoara,5
