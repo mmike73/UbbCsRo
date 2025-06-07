@@ -1,0 +1,65 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit
+     6                                  
+     7                                  import exit msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10                                  
+    11 00000000 02010303040206              A db 2, 1, 3, 3, 4, 2, 6
+    12                                      la equ $ - A
+    13 00000007 040507060201                B db 4, 5, 7, 6, 2, 1
+    14                                      lb equ $ - B
+    15 0000000D 0D                          R db 13
+    16                                      
+    17                                      
+    18                                  
+    19                                  segment code use32 class=code
+    20                                    
+    21                                  start:
+    22                                  
+    23 00000000 B906000000                  mov ecx, lb
+    24 00000005 BE06000000                  mov esi, lb
+    25 0000000A BF00000000                  mov edi, 0
+    26                                      
+    27 0000000F E33D                        jecxz final
+    28                                      
+    29                                      
+    30                                      
+    31                                          copiaza_b_invers:
+    32 00000011 8A86[06000000]                      mov al, [B + esi - 1]
+    33 00000017 8887[0D000000]                      mov [R + edi], al
+    34 0000001D 4E                                  dec esi
+    35 0000001E 47                                  inc edi
+    36                                          
+    37 0000001F E2F0                            loop copiaza_b_invers
+    38                                          
+    39 00000021 B907000000                  mov ecx, la
+    40 00000026 BE00000000                  mov esi, 0
+    41                                      
+    42 0000002B E321                        jecxz final
+    43 0000002D B202                        mov dl, 2
+    44                                      copiaza_pare_a:
+    45 0000002F 8A86[00000000]                  mov al, [A + esi]
+    46 00000035 6698                            cbw
+    47                                          
+    48 00000037 F6F2                            div dl
+    49                                          
+    50 00000039 80FC00                          cmp ah, 0
+    51                                          
+    52 0000003C 750D                            jne not_par  
+    53 0000003E 8A86[00000000]                      mov al, [A + esi]
+    54 00000044 8887[0D000000]                      mov [R + edi], al
+    55 0000004A 47                                  inc edi     
+    56                                          not_par:
+    57                                          
+    58                                          
+    59 0000004B 46                              inc esi
+    60 0000004C E2E1                        loop copiaza_pare_a
+    61                                      
+    62                                      final:
+    63                                  
+    64 0000004E 6A00                    push dword 0
+    65 00000050 FF15[00000000]          call [exit]

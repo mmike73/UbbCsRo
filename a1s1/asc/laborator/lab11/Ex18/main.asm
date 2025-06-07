@@ -1,0 +1,180 @@
+bits 32
+global start
+extern exit, printf, scanf
+import exit msvcrt.dll
+import printf msvcrt.dll
+import scanf msvcrt.dll
+
+segment data use32 class=data
+
+    a resb 101 
+    num resw 101
+    ind dd 0
+    format_inp db "Introdu numerele: ", 0
+    format db "%s", 0
+    format_d db "Numarul maxim in baza 16 este: %x", 0xA, 0
+    maximumul dd 0
+
+
+segment code use32 class=code
+
+val_max:
+    mov edx, 0
+    
+    maxim:
+        mov ax, [num + ecx - 2]
+        cmp dx, ax
+        jae nup
+            mov dx, ax
+            
+        nup:
+        dec ecx
+    loop maxim
+    
+    mov eax, edx
+    
+    ret
+    
+convert_b16:
+    push ecx
+    mov ebx, 0
+    add bl, al
+    
+    push eax
+        shr eax, 4
+        shl eax, 4
+        sub bl, al
+    pop eax
+    
+    shr eax, 4
+    
+    push eax
+    
+    mov dl, 10
+    
+    mov ecx, eax
+    shr ecx, 4
+    shl ecx, 4
+    sub al, cl
+    
+    mul dl
+    add bx, ax
+    
+    pop eax
+    
+    shr eax, 4
+    
+    push eax
+    
+    mov dl, 100
+    
+    mul dl
+    add bx, ax
+    
+    pop eax
+    
+    pop ecx
+    
+    mov eax, ebx
+    ret
+
+start:
+
+    push format_inp
+    call [printf]
+    add esp, 4
+    
+    push a
+    push format
+    call [scanf]
+    add esp, 4 * 2
+    
+    mov esi, a
+    mov edi, a
+    mov ebx, 0
+    
+    parc:
+    cmp [edi], byte','
+    
+    jne digit
+        dec edi
+        
+        mov ecx, edi
+        sub ecx, esi
+        inc ecx
+        mov eax, 0
+        push esi
+        
+        scrie_reg:
+            mov dl, [esi]
+            sub dl, byte '0'
+            shl eax, 4
+            add al, dl
+            inc esi 
+        loop scrie_reg
+        call convert_b16
+        pop esi
+        add edi, 2
+        mov esi, edi
+        dec edi
+        
+        mov ebx, [ind]
+        mov [num + ebx], ax
+        inc dword[ind]
+        inc dword[ind]
+        
+    digit:
+    
+    
+    
+    inc edi
+    cmp [edi + 1], byte 0
+    je gata
+    jmp parc
+    gata:
+    
+        
+        mov ecx, edi
+        sub ecx, esi
+        inc ecx
+        mov eax, 0
+        push esi
+        
+        scrie_reg1:
+            mov dl, [esi]
+            sub dl, byte '0'
+            shl eax, 4
+            add al, dl
+            inc esi 
+        loop scrie_reg1
+        call convert_b16
+        pop esi
+        add edi, 2
+        mov esi, edi
+        dec edi
+        
+        mov ebx, [ind]
+        mov [num + ebx], ax
+        inc dword[ind]
+        inc dword[ind]
+        
+    mov ecx, [ind]
+    call val_max
+    
+    mov [maximumul], eax
+    
+    push eax
+    push format_d
+    call [printf]
+    add esp, 4 * 2
+    
+    push dword 0
+    call [exit]
+    
+    
+    
+    
+    
+
+    
+    

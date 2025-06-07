@@ -1,0 +1,161 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit, fread, printf, fopen, fclose
+     5                                  
+     6                                  import exit msvcrt.dll
+     7                                  import fread msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  import fopen msvcrt.dll
+    10                                  import fclose msvcrt.dll
+    11                                  
+    12                                  segment data use32 class=data
+    13                                  
+    14 00000000 746578742E74787400          nume_fisier db "text.txt",0
+    15 00000009 7200                        mod_acces db "r",0
+    16 0000000B 00000000                    descriptor dd 0
+    17 0000000F 65000000                    cnt dd 101
+    18 00000013 01000000                    sz dd 1
+    19                                      
+    20 00000017 00<rept>                    inp times 101 db 0
+    21 0000007C 00000000                    len_txt dd 0
+    22                                      
+    23 00000080 00<rept>                    propozitie times 101 db 0
+    24 000000E5 00000000                    len_prop dd 0
+    25 000000E9 00000000                    nr_cuv dd 0
+    26                                  
+    27 000000ED 00<rept>                    cuvant times 21 db 0
+    28 00000102 00000000                    len_cuv dd 0
+    29                                  
+    30 00000106 00<rept>                    primul_rev times 21 db 0
+    31 0000011B 00000000                    len_prim dd 0 
+    32 0000011F 00000000                    pus dd 0
+    33                                      
+    34                                  segment code use32 class=code
+    35                                  
+    36                                  
+    37                                  
+    38                                  start:
+    39 00000000 68[09000000]                push mod_acces
+    40 00000005 68[00000000]                push nume_fisier
+    41 0000000A FF15[00000000]              call [fopen]
+    42 00000010 83C408                      add esp, 4 * 2
+    43                                      
+    44 00000013 A3[0B000000]                mov dword[descriptor], eax
+    45                                      
+    46 00000018 FF35[0B000000]              push dword[descriptor]
+    47 0000001E FF35[0F000000]              push dword[cnt]
+    48 00000024 FF35[13000000]              push dword[sz]
+    49 0000002A 68[17000000]                push inp
+    50 0000002F FF15[00000000]              call [fread]
+    51 00000035 83C410                      add esp, 4 * 4
+    52                                      
+    53 00000038 BE[17000000]                mov esi, inp
+    54 0000003D BF[17000000]                mov edi, inp
+    55                                      
+    56                                      parcurge_text:
+    57 00000042 83FF00                          cmp edi, 0
+    58 00000045 0F84B2000000                    je parcurgere_terminata
+    59                                          
+    60 0000004B 803F2E                          cmp byte[edi], '.'
+    61 0000004E 0F85A3000000                    jne nu_propozitie
+    62                                              
+    63                                              
+    64 00000054 56                                  push esi
+    65 00000055 57                                  push edi
+    66                                              
+    67                                                  elim_sp:
+    68 00000056 803E20                                      cmp [esi], byte' '
+    69 00000059 7503                                        jne eltd
+    70 0000005B 46                                          inc esi
+    71 0000005C EBF8                                    jmp elim_sp
+    72                                                  eltd:
+    73                                                  
+    74 0000005E 89F8                                    mov eax, edi
+    75 00000060 29F0                                    sub eax, esi
+    76 00000062 40                                      inc eax
+    77 00000063 A3[E5000000]                            mov [len_prop], eax
+    78                                                  
+    79 00000068 89C1                                    mov ecx, eax
+    80 0000006A BF[80000000]                            mov edi, propozitie
+    81 0000006F F3A4                                    rep movsb
+    82                                                  
+    83 00000071 C705[1F010000]0000-                     mov dword[pus], 0
+    83 00000079 0000               
+    84 0000007B C705[E9000000]0000-                     mov dword[nr_cuv], 0
+    84 00000083 0000               
+    85                                                  
+    86 00000085 B915000000                              mov ecx, 21
+    87 0000008A B000                                    mov al, 0
+    88 0000008C BF[06010000]                            mov edi, primul_rev
+    89 00000091 F3A4                                    rep movsb
+    90                                                  
+    91 00000093 C705[1B010000]0000-                     mov dword[len_prim], 0
+    91 0000009B 0000               
+    92                                                  
+    93 0000009D BE[80000000]                            mov esi, propozitie
+    94 000000A2 BF[80000000]                            mov edi, propozitie
+    95                                                  
+    96 000000A7 8B0D[E5000000]                          mov ecx, [len_prop]
+    97                                                  
+    98                                                  parcurge_propozitie:
+    99 000000AD 83FF20                                      cmp edi, ' '
+   100 000000B0 753D                                        jne nuc
+   101 000000B2 89F8                                            mov eax, edi
+   102 000000B4 29F0                                            sub eax, esi
+   103                                                          
+   104 000000B6 83F801                                          cmp eax, 1
+   105 000000B9 7431                                            je not_c
+   106                                                          
+   107 000000BB FF05[E9000000]                                      inc dword[nr_cuv]
+   108 000000C1 833D[1B010000]00                                    cmp dword[len_prim], 0
+   109 000000C8 7522                                                jne deja_pus
+   110 000000CA 8B0D[1B010000]                                          mov ecx, dword[len_prim]
+   111 000000D0 56                                                      push esi
+   112 000000D1 57                                                      push edi
+   113                                                                  
+   114 000000D2 BF[ED000000]                                                mov edi, cuvant
+   115 000000D7 033D[02010000]                                              add edi, dword[len_cuv]
+   116 000000DD BE[06010000]                                                mov esi, primul_rev
+   117                                                                      
+   118                                                                      copiaza:
+   119 000000E2 8A07                                                            mov al, byte[edi]
+   120 000000E4 8806                                                            mov byte[esi], al
+   121 000000E6 46                                                              inc esi
+   122 000000E7 4F                                                              dec edi
+   123 000000E8 E2F8                                                        loop copiaza
+   124                                                                  
+   125 000000EA 5F                                                      pop edi
+   126 000000EB 5E                                                      pop esi 
+   127                                                              deja_pus:
+   128                                                              
+   129                                                          not_c:
+   130 000000EC 89FE                                            mov esi, edi
+   131 000000EE 46                                              inc esi
+   132                                                           
+   133                                                      nuc:
+   134 000000EF 47                                          inc edi
+   135                                                  
+   136 000000F0 E2BB                                    loop parcurge_propozitie
+   137                                                  
+   138                                                  
+   139                                              
+   140 000000F2 5F                                  pop edi
+   141 000000F3 5E                                  pop esi
+   142                                              
+   143                                              
+   144 000000F4 89FE                                mov esi, edi
+   145 000000F6 46                                  inc esi
+   146                                      
+   147                                          nu_propozitie:
+   148 000000F7 47                              inc edi
+   149 000000F8 E945FFFFFF                  jmp parcurge_text
+   150                                      parcurgere_terminata:
+   151                                      
+   152 000000FD FF35[0B000000]              push dword[descriptor]
+   153 00000103 FF15[00000000]              call [fclose]
+   154 00000109 83C404                      add esp, 4
+   155                                      
+   156 0000010C 6A00                        push dword 0
+   157 0000010E FF15[00000000]              call [exit]
+   158                                      

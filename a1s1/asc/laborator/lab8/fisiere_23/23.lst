@@ -1,0 +1,64 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit, fprintf, fopen, fclose
+     4                                  
+     5                                  import exit msvcrt.dll
+     6                                  import fprintf msvcrt.dll
+     7                                  import fopen msvcrt.dll
+     8                                  import fclose msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data
+    11                                  
+    12 00000000 6E756D61722E747874-         nume_fisier db "numar.txt", 0
+    12 00000009 00                 
+    13 0000000A 7700                        mod_acces db "w", 0
+    14 0000000C 25630A00                    format db "%c", 0xa, 0
+    15 00000010 3C2B1A00                    n dd 1a2b3ch
+    16 00000014 00000000                    descriptor dd 0
+    17                                      
+    18                                  segment code use32 class=code
+    19                                  start:
+    20 00000000 68[0A000000]                push mod_acces
+    21 00000005 68[00000000]                push nume_fisier
+    22 0000000A FF15[00000000]              call [fopen]
+    23 00000010 83C408                      add esp, 4 * 2
+    24                                      
+    25 00000013 A3[14000000]                mov [descriptor], eax
+    26                                      
+    27 00000018 A1[10000000]                mov eax, [n]
+    28 0000001D B910000000                  mov ecx, 16
+    29 00000022 BA0F000000                  mov edx, 0Fh
+    30                                      
+    31                                      parc:
+    32 00000027 50                              push eax
+    33 00000028 BA0F000000                      mov edx, 0fh
+    34 0000002D 21D0                            and eax, edx
+    35                                          
+    36 0000002F 3C09                            cmp al, 9
+    37 00000031 7705                            ja mai_mare
+    38 00000033 83C030                          add eax, '0'
+    39 00000036 EB03                            jmp atat
+    40                                          mai_mare:
+    41 00000038 83C057                          add eax, 'W'
+    42                                          atat:
+    43                                          
+    44 0000003B 50                              push eax
+    45 0000003C 68[0C000000]                    push format
+    46 00000041 FF35[14000000]                  push dword [descriptor]
+    47 00000047 FF15[00000000]                  call [fprintf]
+    48 0000004D 83C40C                          add esp, 4 * 3
+    49                                          
+    50 00000050 58                              pop eax
+    51 00000051 C1E804                          shr eax, 4
+    52 00000054 83F800                      cmp eax, 0
+    53 00000057 7402                        je gata
+    54 00000059 E2CC                        loop parc
+    55                                      gata:
+    56                                      
+    57 0000005B FF35[14000000]              push dword[descriptor]
+    58 00000061 FF15[00000000]              call [fclose]
+    59                                      
+    60 00000067 6A00                        push dword 0
+    61 00000069 FF15[00000000]              call [exit]
+    62                                      
+    63                                      

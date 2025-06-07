@@ -1,0 +1,85 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit, fopen, fread, fclose, printf
+     6                                  
+     7                                  import exit msvcrt.dll
+     8                                  import fopen msvcrt.dll
+     9                                  import fread msvcrt.dll
+    10                                  import fclose msvcrt.dll
+    11                                  import printf msvcrt.dll
+    12                                  
+    13                                  segment data use32 class=data
+    14                                      
+    15 00000000 496E20746578742073-         format db "In text sunt %d cifre impare", 0
+    15 00000009 756E74202564206369-
+    15 00000012 66726520696D706172-
+    15 0000001B 6500               
+    16 0000001D <res 00000065>              continut resb 101
+    17 00000082 0000                        contor dw 0
+    18 00000084 00000000                    descriptor dd 0
+    19 00000088 6E756D6572655F7061-         nume_fisier db "numere_pare.txt", 0
+    19 00000091 72652E74787400     
+    20 00000098 7200                        mod_acces db "r", 0
+    21 0000009A 64                          count db 100
+    22 0000009B 01                          size_of_element db 1
+    23 0000009C 00000000                    lth dd 0
+    24                                      
+    25                                  segment code use32 class=code
+    26                                  
+    27                                  start:
+    28                                      ;FILE * fopen(const char* nume_fisier, const char * mod_acces)
+    29 00000000 68[98000000]                push dword mod_acces
+    30 00000005 68[88000000]                push dword nume_fisier
+    31 0000000A FF15[00000000]              call [fopen]
+    32 00000010 A3[84000000]                mov [descriptor], eax  
+    33 00000015 83C408                      add esp, 4 * 2
+    34                                      
+    35                                      ;int fread(void * str, int size, int count, FILE * stream)
+    36 00000018 FF35[84000000]              push dword [descriptor]
+    37 0000001E FF35[9A000000]              push dword [count]
+    38 00000024 FF35[9B000000]              push dword [size_of_element]
+    39                                      
+    40 0000002A 68[1D000000]                push continut
+    41 0000002F FF15[00000000]              call [fread]
+    42 00000035 83C410                      add esp, 4 * 4
+    43                                      
+    44 00000038 A3[9C000000]                mov [lth], eax
+    45                                      ;parcurgere si numarare
+    46 0000003D 8B0D[9C000000]              mov ecx, [lth]
+    47 00000043 E323                        jecxz final
+    48 00000045 BE00000000                  mov esi, 0
+    49 0000004A B302                        mov bl, 2
+    50                                      parcurge:
+    51                                     
+    52 0000004C 8A81[1C000000]                  mov al, [continut + ecx - 1]
+    53 00000052 2C30                            sub al, byte '0'
+    54 00000054 6698                            cbw
+    55                                          
+    56 00000056 3C09                            cmp al, 9
+    57 00000058 770C                            ja impar
+    58 0000005A 3C00                            cmp al, 0
+    59 0000005C 7208                            jb impar
+    60 0000005E F6F3                            div bl
+    61                                          
+    62 00000060 80FC01                          cmp ah, byte 1        
+    63 00000063 7401                            je impar     
+    64 00000065 46                                  inc esi
+    65                                          impar:
+    66                                      
+    67 00000066 E2E4                        loop parcurge
+    68                                      
+    69                                      final:
+    70                                      
+    71 00000068 56                          push esi
+    72 00000069 68[00000000]                push dword format
+    73 0000006E FF15[00000000]              call [printf]
+    74                                      
+    75 00000074 FF35[84000000]              push dword[descriptor]
+    76 0000007A FF15[00000000]              call [fclose]
+    77 00000080 83C404                      add esp, 4
+    78                                      
+    79                                      
+    80 00000083 6A00                        push dword 0
+    81                                      ;call [exit]

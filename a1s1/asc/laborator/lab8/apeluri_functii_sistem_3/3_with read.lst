@@ -1,0 +1,63 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit
+     4                                  extern scanf
+     5                                  extern printf
+     6                                  import exit msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import printf msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data
+    11 00000000 0000                        a dw 0
+    12 00000002 0000                        b dw 0
+    13 00000004 0000                        result dw 0
+    14 00000006 496E74726F64752064-         format_ask_for_a_b db "Introdu doua numere: ", 0
+    14 0000000F 6F7561206E756D6572-
+    14 00000018 653A2000           
+    15 0000001C 256420256400                format_input db "%d %d", 0
+    16 00000022 2564202B202564203D-         format_result db "%d + %d = %d", 0
+    16 0000002B 20256400           
+    17                                      
+    18                                  segment code use32 class=code
+    19                                      start:
+    20                                      
+    21 00000000 68[06000000]                push dword format_ask_for_a_b
+    22 00000005 FF15[00000000]              call [printf]
+    23 0000000B 83C404                      add esp, 4 * 1
+    24                                      
+    25                                      ;se citeste a si b
+    26 0000000E 68[02000000]                push dword b
+    27 00000013 68[00000000]                push dword a
+    28 00000018 68[1C000000]                push dword format_input
+    29                                      
+    30 0000001D FF15[00000000]              call [scanf]
+    31                                      
+    32 00000023 83C40C                      add esp, 4 * 3
+    33                                      
+    34                                      ;result = a + b
+    35 00000026 B800000000                  mov eax, 0
+    36 0000002B 66A1[00000000]              mov ax, word[a]
+    37 00000031 660305[02000000]            add ax, word[b]
+    38                                      
+    39 00000038 66A3[04000000]              mov [result], ax
+    40                                      
+    41                                      ;se afiseaza a + b = result
+    42 0000003E 50                          push eax
+    43 0000003F B800000000                  mov eax, 0
+    44 00000044 66A1[02000000]              mov ax, [b]
+    45 0000004A 50                          push eax
+    46 0000004B B800000000                  mov eax, 0
+    47 00000050 66A1[00000000]              mov ax, [a]
+    48 00000056 50                          push eax
+    49 00000057 68[22000000]                push dword format_result
+    50                                      
+    51 0000005C FF15[00000000]              call [printf]
+    52                                      
+    53 00000062 83C410                      add esp, 4 * 4
+    54                                      
+    55                                      ;call [exit]
+    56 00000065 6A00                        push dword 0
+    57                                      
+    58                                      
+    59                                      
+    60                                      

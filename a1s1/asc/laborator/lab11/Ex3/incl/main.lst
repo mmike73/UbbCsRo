@@ -1,0 +1,104 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern exit, printf
+     5                                  
+     6                                  import exit msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  
+     9                                  %include "concatenare_cifre_include.asm"
+     1                              <1> %ifndef _CAT
+     2                              <1> %define _CAT
+     3                              <1> 
+     4                              <1> cat_ext:
+     5                              <1>     ;int cat_ext(string, length, destinaton)
+     6                              <1>     ;returneaza lugimea sirului de cifre concatenate
+     7                              <1>     
+     8                              <1>     urm:
+     9                              <1>     
+    10 00000000 8B4C2408            <1>     mov ecx, [esp + 8]
+    11 00000004 8B74240C            <1>     mov esi, [esp + 12]
+    12 00000008 8B7C2404            <1>     mov edi, [esp + 4]
+    13 0000000C 01D7                <1>     add edi, edx
+    14 0000000E E311                <1>     jecxz fin
+    15                              <1>     
+    16                              <1>     parc1:
+    17 00000010 803E30              <1>         cmp [esi], byte'0'
+    18 00000013 7209                <1>         jb no_digit1
+    19 00000015 803E39              <1>         cmp [esi], byte'9'
+    20 00000018 7704                <1>         ja no_digit1
+    21 0000001A 8A06                <1>             mov al, [esi]
+    22 0000001C AA                  <1>             stosb
+    23 0000001D 42                  <1>             inc edx
+    24                              <1>         no_digit1:
+    25 0000001E 46                  <1>         inc esi
+    26 0000001F E2EF                <1>     loop parc1
+    27                              <1>     
+    28                              <1>     fin:
+    29                              <1>     
+    30 00000021 89D0                <1>     mov eax, edx
+    31                              <1>     
+    32 00000023 C20C00              <1>     ret 4 * 3
+    33                              <1>    
+    34                              <1> %endif
+    10                                  
+    11                                  segment data use32 class=data
+    12                                  
+    13 00000026 31323300                    str1 db "123", 0
+    14 0000002A 04000000                    len1 dd $ - str1
+    15 0000002E 323100                      str2 db "21", 0
+    16 00000031 03000000                    len2 dd $ - str2
+    17 00000035 00000000                    len_rez dd 0
+    18 00000039 <res 000000C8>              rez resb 200 
+    19 00000101 <res 000000C8>              rez2 resb 200
+    20 000001C9 2573200A00                  format db "%s ",0xA, 0
+    21                                  
+    22                                  segment code use32 class=code
+    23                                  
+    24                                  start:
+    25 00000000 BA00000000                  mov edx, 0
+    26 00000005 68[26000000]                push str1
+    27 0000000A FF35[2A000000]              push dword[len1]
+    28 00000010 68[39000000]                push rez
+    29 00000015 E8(00000000)                call cat_ext
+    30 0000001A A3[35000000]                mov [len_rez], eax
+    31                                      
+    32 0000001F 8B15[35000000]              mov edx, [len_rez]
+    33 00000025 68[2E000000]                push str2
+    34 0000002A FF35[31000000]              push dword[len2]
+    35 00000030 68[39000000]                push rez
+    36 00000035 E8(00000000)                call cat_ext
+    37 0000003A A3[35000000]                mov [len_rez], eax
+    38                                      
+    39 0000003F 68[39000000]                push rez
+    40 00000044 68[C9010000]                push format
+    41 00000049 FF15[00000000]              call [printf]
+    42 0000004F 83C408                      add esp, 4 * 2
+    43                                     
+    44 00000052 BA00000000                  mov edx, 0
+    45 00000057 C705[35000000]0000-         mov [len_rez], dword 0
+    45 0000005F 0000               
+    46                                      
+    47                                      
+    48 00000061 68[2E000000]                push str2
+    49 00000066 FF35[31000000]              push dword[len2]
+    50 0000006C 68[01010000]                push rez2
+    51 00000071 E8(00000000)                call cat_ext
+    52 00000076 A3[35000000]                mov [len_rez], eax
+    53                                      
+    54 0000007B 8B15[35000000]              mov edx, [len_rez]
+    55 00000081 68[26000000]                push str1
+    56 00000086 FF35[2A000000]              push dword[len1]
+    57 0000008C 68[01010000]                push rez2
+    58 00000091 E8(00000000)                call cat_ext
+    59 00000096 A3[35000000]                mov [len_rez], eax
+    60                                      
+    61 0000009B 68[01010000]                push rez2
+    62 000000A0 68[C9010000]                push format
+    63 000000A5 FF15[00000000]              call [printf]
+    64 000000AB 83C408                      add esp, 4 * 2
+    65                                      
+    66                                      
+    67 000000AE 6A00                    push dword 0
+    68                                  
+    69 000000B0 FF15[00000000]          call [exit]

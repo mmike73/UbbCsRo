@@ -1,0 +1,6 @@
+1, Tractor1, 10000, Model1, 12.09.2003
+2, Tractor2, 15000, Model2, 15.07.2013
+4, Tractor4, 11000, Model4, 01.01.2022
+5, Tractor5, 25000, Model5, 25.03.2017
+8, Tractor8, 28000, Model8, 28.11.2022
+10, Tractor10, 50000, Model10, 17.01.2006

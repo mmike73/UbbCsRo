@@ -1,0 +1,64 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit
+     4                                  import exit msvcrt.dll
+     5                                  
+     6                                  segment data use32 class=data
+     7                                  
+     8 00000000 785634124D3C2C1A76-         s dd 12345678h, 1a2c3c4dh, 98fcdc76h
+     8 00000009 DCFC98             
+     9                                      len equ ($ - s) / 4
+    10 0000000C <res 00000003>              d resb 3
+    11 0000000F 0A                          hex db 10
+    12                                  
+    13                                  segment code use32 class=code
+    14                                  
+    15                                  start:
+    16                                  
+    17 00000000 BE[02000000]                mov esi, s + 2
+    18 00000005 B903000000                  mov ecx, len
+    19 0000000A E32A                        jecxz final
+    20 0000000C FC                          cld
+    21                                      sir:
+    22 0000000D AD                              lodsd  
+    23                                          
+    24 0000000E 51                              push ecx
+    25 0000000F 56                              push esi
+    26                                          
+    27                                      conv_to_base_10:
+    28 00000010 88C3                            mov bl, al
+    29 00000012 31C0                            xor eax, eax
+    30 00000014 88D8                            mov al, bl
+    31 00000016 31D2                            xor edx, edx
+    32 00000018 31C9                            xor ecx, ecx
+    33                                          
+    34                                      
+    35                                      convert_digit:
+    36 0000001A F635[0F000000]                  div byte [hex]
+    37 00000020 80C230                          add dl, '0'
+    38 00000023 6652                            push dx
+    39 00000025 41                              inc ecx
+    40 00000026 85C0                            test eax, eax
+    41 00000028 75F0                        jnz convert_digit
+    42                                          
+    43                                      pop_digits
+    43          ******************       warning: label alone on a line without a colon might be in error [-w+orphan-labels]
+    44 0000002A 665A                            pop dx
+    45 0000002C 885411FF                            mov [ecx + edx - 1], dl
+    46 00000030 E2F8                            loop pop_digits
+    47                                          
+    48 00000032 5E                              pop esi
+    49 00000033 59                              pop ecx
+    50 00000034 E2D7                        loop sir
+    51                                      
+    52                                      final:
+    53                                      
+    54                                      
+    55 00000036 C3                          ret
+    56                                          
+    57                                          
+    58                                      
+    59                                  
+    60 00000037 6A00                    push dword 0
+    61 00000039 FF15[00000000]          call [exit]
+    62                                  

@@ -1,0 +1,49 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern scanf, exit, printf
+     5                                  import printf msvcrt.dll
+     6                                  import scanf msvcrt.dll
+     7                                  import exit msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10                                  
+    11 00000000 00000000                    max dd 0
+    12 00000004 496E74726F6475206E-         format_inp db "Introdu numere si incheie citirea cu 0:", 0xa, 0
+    12 0000000D 756D65726520736920-
+    12 00000016 696E63686569652063-
+    12 0000001F 697469726561206375-
+    12 00000028 20303A0A00         
+    13 0000002D 4E756D6172756C206D-         format_out db "Numarul maxim este: %d", 0
+    13 00000036 6178696D2065737465-
+    13 0000003F 3A20256400         
+    14 00000044 256400                      format db "%d", 0
+    15 00000047 00000000                    n dd 0
+    16                                  
+    17                                  segment code use32 class=code
+    18                                  start:
+    19 00000000 BA00000000                  mov edx, 0
+    20                                      rd:
+    21 00000005 68[47000000]                    push n
+    22 0000000A 68[44000000]                    push format
+    23 0000000F FF15[00000000]                  call [scanf]
+    24 00000015 83C408                          add esp, 4 * 2
+    25                                          
+    26 00000018 833D[47000000]00                cmp dword[n], 0  
+    27 0000001F 7410                            je gata
+    28 00000021 3915[47000000]                  cmp dword[n], edx
+    29 00000027 7606                            jbe nah
+    30 00000029 8B15[47000000]                      mov edx, [n]
+    31                                          nah:
+    32 0000002F EBD4                        jmp rd
+    33                                      gata:
+    34                                      
+    35 00000031 52                          push edx
+    36 00000032 68[2D000000]                push format_out
+    37 00000037 FF15[00000000]              call [printf]
+    38 0000003D 83C408                      add esp, 4 * 2
+    39                                      
+    40 00000040 6A00                        push dword 0
+    41 00000042 FF15[00000000]              call [exit]
+    42                                      
+    43                                      

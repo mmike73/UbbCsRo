@@ -1,0 +1,40 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit
+     6                                  
+     7                                  import exit msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10                                  
+    11 00000000 FF                          a db 11111111b
+    12 00000001 FFFF                        b dw 1111111111111111b
+    13 00000003 <res 00000001>              c resb 1
+    14                                  
+    15                                  segment code use32 class=code
+    16                                  
+    17                                  ;FF
+    18                                  start:
+    19                                  
+    20                                      ;punem bitii 2-5 ai lui a incepand de la pozitia 0
+    21 00000000 A0[00000000]                mov al, [a]
+    22 00000005 C0E002                      shl al, 2
+    23 00000008 C0E804                      shr al, 4
+    24                                      
+    25                                      ;punem bitii 6-9 ai lui b incepand de la pozitia 4
+    26 0000000B 668B0D[01000000]            mov cx, [b]
+    27 00000012 66C1E106                    shl cx, 6
+    28 00000016 66C1E90C                    shr cx, 12
+    29 0000001A 66C1E104                    shl cx, 4
+    30                                      
+    31 0000001E BB00000000                  mov ebx, 0
+    32 00000023 88C3                        mov bl, al
+    33 00000025 6601CB                      add bx, cx
+    34                                      
+    35                                  
+    36                                      
+    37 00000028 6A00                        push dword 0
+    38 0000002A FF15[00000000]              call [exit]
+    39                                      
+    40                                      

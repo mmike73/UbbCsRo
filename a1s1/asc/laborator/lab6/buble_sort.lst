@@ -1,0 +1,57 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit
+     6                                  
+     7                                  import exit msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10                                  
+    11 00000000 040000000700000001-         sir dd 4,7,1,5,2,9
+    11 00000009 000000050000000200-
+    11 00000012 000009000000       
+    12                                      len equ ($ - sir) / 4
+    13 00000018 00                          ok db 0
+    14                                      
+    15                                  segment code use32 class=code
+    16                                  
+    17                                  start:
+    18                                      
+    19 00000000 B901000000                  mov ecx, 1
+    20                                      
+    21 00000005 BE00000000                  mov esi, 0
+    22                                      
+    23                                      cat_timp_nu_sortat:
+    24 0000000A C605[18000000]01                mov [ok], byte 1
+    25                                          
+    26 00000011 51                              push ecx
+    27 00000012 B906000000                      mov ecx, len
+    28 00000017 49                              dec ecx
+    29                                          parcurge_sir:
+    30 00000018 8B96[00000000]                      mov edx, dword[sir + esi]
+    31 0000001E 3B96[04000000]                      cmp edx, dword[sir + esi + 4]
+    32 00000024 7619                                jbe swap
+    33 00000026 C605[18000000]00                        mov [ok], byte 0
+    34 0000002D 8B86[04000000]                          mov eax, dword[sir + esi + 4]
+    35 00000033 8986[00000000]                          mov dword[sir + esi], eax
+    36 00000039 8996[04000000]                          mov [sir + esi + 4], edx
+    37                                              swap:
+    38                                              
+    39 0000003F E2D7                            loop parcurge_sir
+    40                                          
+    41 00000041 803D[18000000]00                cmp [ok], byte 0
+    42 00000048 59                              pop ecx
+    43 00000049 7501                            jnz sortat
+    44 0000004B 49                                  dec ecx
+    45                                          sortat:
+    46 0000004C 41                              inc ecx
+    47                                          
+    48 0000004D E2BB                        loop cat_timp_nu_sortat
+    49                                      
+    50                                  
+    51                                  
+    52                                  
+    53 0000004F 6A00                    push dword 0
+    54 00000051 FF15[00000000]          call [exit]
+    55                                  

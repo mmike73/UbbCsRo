@@ -1,0 +1,21 @@
+bits 32
+
+global start
+
+extern exit
+
+import extern msvcrt.dll
+
+segment data use32 class=data
+
+a db 5
+b dd 7
+c dq 30
+30 + 25 / 7 = 33
+
+segment code use32 class=code
+
+start:
+
+push dword 0
+call [exit]

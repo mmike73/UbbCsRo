@@ -1,0 +1,43 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit, fopen,fclose, fscanf
+     4                                  
+     5                                  import exit msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import fclose msvcrt.dll
+     8                                  import fscanf msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data
+    11                                  
+    12 00000000 0000<rept>                  n times 10 dw 0
+    13 00000014 6E756D6572652E7478-         nume_fisier db "numere.txt", 0
+    13 0000001D 7400               
+    14 0000001F 7200                        mod_acces db "r", 0
+    15 00000021 256400                      format db "%d", 0
+    16                                      
+    17 00000024 00000000                    descriptor dd 0
+    18                                      
+    19                                  
+    20                                  segment code use32 class=code
+    21                                  
+    22                                  start:
+    23 00000000 68[1F000000]                push mod_acces
+    24 00000005 68[14000000]                push nume_fisier
+    25 0000000A FF15[00000000]              call [fopen]
+    26 00000010 83C408                      add esp, 4 * 2
+    27                                      
+    28 00000013 A3[24000000]                mov [descriptor], eax
+    29                                      
+    30                                      Bucla:
+    31 00000018 68[00000000]                    push n
+    32 0000001D 68[21000000]                    push format
+    33 00000022 FF35[24000000]                  push dword[descriptor]
+    34 00000028 FF15[00000000]                  call [fscanf]
+    35 0000002E 83C40C                          add esp, 4 * 3
+    36 00000031 66833D[00000000]00              cmp word[n], 0
+    37 00000039 7402                            je Final
+    38 0000003B EBDB                        jmp Bucla    
+    39                                      Final:
+    40                                      
+    41                                  
+    42                                      

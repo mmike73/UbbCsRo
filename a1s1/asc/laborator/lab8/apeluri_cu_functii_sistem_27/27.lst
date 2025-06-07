@@ -1,0 +1,60 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  
+     4                                  extern printf, exit, scanf
+     5                                  
+     6                                  import printf msvcrt.dll
+     7                                  import scanf msvcrt.dll
+     8                                  import exit msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data
+    11                                  
+    12 00000000 616668616C6B66686E-         s db "afhalkfhncalkhfalkfhnalajcjflajfkkwhr",0
+    12 00000009 63616C6B6866616C6B-
+    12 00000012 66686E616C616A636A-
+    12 0000001B 666C616A666B6B7768-
+    12 00000024 7200               
+    13                                      len equ $ - s
+    14 00000026 536972756C20646520-         format db "Sirul de caractere contine litera %c de %d ori.", 0
+    14 0000002F 636172616374657265-
+    14 00000038 20636F6E74696E6520-
+    14 00000041 6C6974657261202563-
+    14 0000004A 206465202564206F72-
+    14 00000053 692E00             
+    15 00000056 496E74726F6475206F-         form_c db "Introdu o litera: ", 0
+    15 0000005F 206C69746572613A20-
+    15 00000068 00                 
+    16 00000069 256300                      form_rc db "%c", 0
+    17 0000006C 00                          c db 0
+    18                                      
+    19                                  segment code use32 class=code
+    20                                  
+    21                                  start:
+    22 00000000 68[56000000]                push form_c
+    23 00000005 FF15[00000000]              call [printf]
+    24 0000000B 83C404                      add esp, 4
+    25                                      
+    26 0000000E 68[6C000000]                push c
+    27 00000013 68[69000000]                push form_rc
+    28 00000018 FF15[00000000]              call [scanf]
+    29 0000001E 83C408                      add esp, 4 * 2
+    30                                      
+    31 00000021 B926000000                  mov ecx, dword len
+    32 00000026 BB00000000                  mov ebx, 0
+    33 0000002B 8A1D[6C000000]              mov bl, [c]
+    34 00000031 BA00000000                  mov edx, 0
+    35                                      parc:
+    36 00000036 3899[FFFFFFFF]                  cmp byte[s + ecx - 1], bl
+    37 0000003C 7501                            jne cont
+    38 0000003E 42                                  inc edx
+    39                                          cont:
+    40 0000003F E2F5                        loop parc
+    41                                      
+    42 00000041 52                          push edx
+    43 00000042 53                          push ebx
+    44 00000043 68[26000000]                push format
+    45 00000048 FF15[00000000]              call [printf]
+    46 0000004E 83C40C                      add esp, 4 * 3
+    47                                      
+    48 00000051 6A00                        push dword 0
+    49 00000053 FF15[00000000]              call [exit]

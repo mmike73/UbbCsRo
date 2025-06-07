@@ -1,0 +1,190 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit, fread, printf, fopen, fclose
+     4                                  
+     5                                  import exit msvcrt.dll
+     6                                  import fread msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import fopen msvcrt.dll
+     9                                  import fclose msvcrt.dll
+    10                                  
+    11                                  segment data use32 class-data
+    12                                  
+    13 00000000 746578742E74787400          nume_fisier db "text.txt", 0
+    14 00000009 7200                        mod_acces db "r", 0
+    15 0000000B 00000000                    descriptor dd 0
+    16 0000000F 96000000                    count dd 150
+    17 00000013 01000000                    sz dd 1
+    18                                      
+    19 00000017 00<rept>                    brut times 151 db 0
+    20                                      
+    21 000000AE 00000000                    pus dd 0
+    22 000000B2 00000000                    len dd 0
+    23                                      
+    24 000000B6 00<rept>                    prim_invers times 20 db 0
+    25 000000CA 00<rept>                    cv times 20 db 0
+    26 000000DE 00000000                    cnt_prim dd 0
+    27                                      
+    28 000000E2 00000000                    cnt_cuvinte dd 0
+    29 000000E6 00<rept>                    propozitie times 51 db 0
+    30                                  
+    31                                  segment code use32 class=code
+    32                                  start:
+    33 00000000 68[09000000]                push mod_acces
+    34 00000005 68[00000000]                push nume_fisier
+    35 0000000A FF15[00000000]              call [fopen]
+    36 00000010 83C408                      add esp, 4 * 2
+    37                                      
+    38 00000013 A3[0B000000]                mov [descriptor], eax
+    39                                      
+    40 00000018 FF35[0B000000]              push dword[descriptor]
+    41 0000001E FF35[0F000000]              push dword[count]
+    42 00000024 FF35[13000000]              push dword[sz]
+    43 0000002A 68[17000000]                push brut
+    44 0000002F FF15[00000000]              call [fread]
+    45 00000035 83C410                      add esp, 4 * 4
+    46                                      
+    47 00000038 BE[17000000]                mov esi, brut
+    48 0000003D BF[17000000]                mov edi, brut
+    49                                      parc:
+    50 00000042 803F2E                          cmp byte[edi], '.'
+    51 00000045 0F85CF000000                    jne nope
+    52                                              
+    53 0000004B 56                                  push esi
+    54 0000004C 57                                  push edi
+    55                                              
+    56                                              elim_sp:
+    57 0000004D 803E20                                  cmp [esi], byte' '
+    58 00000050 7503                                    jne eltd
+    59 00000052 46                                      inc esi
+    60 00000053 EBF8                                jmp elim_sp
+    61                                              eltd:
+    62                                                  
+    63 00000055 89F8                                mov eax, edi
+    64 00000057 29F0                                sub eax, esi
+    65 00000059 40                                  inc eax
+    66 0000005A A3[B2000000]                        mov [len], eax
+    67                                              
+    68                                              
+    69                                              
+    70                                              ;copiaza propozitia separat
+    71 0000005F 89C1                                mov ecx, eax
+    72 00000061 BF[E6000000]                        mov edi, propozitie
+    73 00000066 F3A4                                rep movsb
+    74                                              
+    75                                              
+    76 00000068 BE[E6000000]                        mov esi, propozitie
+    77 0000006D BF[E6000000]                        mov edi, propozitie
+    78 00000072 BA00000000                          mov edx, 0
+    79 00000077 C705[DE000000]0000-                 mov [cnt_prim], dword 0
+    79 0000007F 0000               
+    80                                              
+    81 00000081 56                                  push esi
+    82 00000082 BE[B6000000]                        mov esi, prim_invers
+    83 00000087 B914000000                          mov ecx, 20
+    84 0000008C B000                                mov al, 0
+    85 0000008E F3A4                                rep movsb
+    86                                              
+    87 00000090 5E                                  pop esi
+    88 00000091 C705[AE000000]0000-                 mov [pus], dword 0
+    88 00000099 0000               
+    89                                              prc:
+    90 0000009B 803F2E                                  cmp byte[edi], '.'
+    91 0000009E 7458                                    je gataa
+    92 000000A0 803F20                                  cmp byte[edi], ' '
+    93 000000A3 754B                                    jne litera
+    94 000000A5 89F8                                        mov eax, edi
+    95 000000A7 29F0                                        sub eax, esi
+    96 000000A9 83F800                                      cmp eax, 0
+    97 000000AC 7401                                        je nex
+    98 000000AE 42                                              inc edx
+    99                                                      nex:
+   100                                                      
+   101 000000AF 51                                          push ecx
+   102 000000B0 56                                          push esi
+   103 000000B1 57                                          push edi
+   104                                                      
+   105 000000B2 89C1                                            mov ecx, eax
+   106 000000B4 BF[CA000000]                                    mov edi, cv
+   107 000000B9 F3A4                                            rep movsb
+   108                                                          
+   109 000000BB 833D[AE000000]00                                cmp dword[pus], 0
+   110 000000C2 7526                                            jne deja_pus
+   111 000000C4 89C1                                                mov ecx, eax
+   112 000000C6 A3[DE000000]                                        mov [cnt_prim], eax
+   113 000000CB 41                                                  inc ecx
+   114 000000CC BF[B6000000]                                        mov edi, prim_invers
+   115 000000D1 BE[CA000000]                                        mov esi, cv
+   116 000000D6 01C6                                                add esi, eax
+   117                                                              cpy:
+   118 000000D8 8A06                                                    mov al, [esi]
+   119 000000DA 4E                                                      dec esi
+   120 000000DB 8807                                                    mov [edi], al
+   121 000000DD 47                                                      inc edi
+   122 000000DE E2F8                                                loop cpy
+   123                                                              
+   124 000000E0 C705[AE000000]0100-                                 mov dword[pus], 1
+   124 000000E8 0000               
+   125                                                          deja_pus:
+   126                                                          
+   127                                                          
+   128                                                         
+   129                                                          
+   130                                                      
+   131 000000EA 5F                                          pop edi
+   132 000000EB 5E                                          pop esi
+   133 000000EC 59                                          pop ecx  
+   134                                                      
+   135 000000ED 89FE                                        mov esi, edi
+   136 000000EF 46                                          inc esi
+   137                                                  litera:
+   138 000000F0 803E2E                              cmp [esi], byte'.'
+   139 000000F3 7403                                je gataa
+   140 000000F5 47                                  inc edi
+   141 000000F6 EBA3                                jmp prc
+   142                                              gataa:
+   143                                              
+   144 000000F8 89F8                                    mov eax, edi
+   145 000000FA 29F0                                    sub eax, esi
+   146 000000FC 83F800                                  cmp eax, 0
+   147 000000FF 7401                                    je ney
+   148 00000101 42                                      inc edx
+   149                                                  ney:
+   150                                                  
+   151 00000102 51                                      push ecx
+   152 00000103 56                                      push esi
+   153 00000104 57                                      push edi
+   154                                                      
+   155 00000105 89C1                                            mov ecx, eax
+   156 00000107 BF[CA000000]                                    mov edi, cv
+   157 0000010C F3A4                                            rep movsb
+   158                                                  
+   159 0000010E 5F                                      pop edi
+   160 0000010F 5E                                      pop esi
+   161 00000110 59                                      pop ecx
+   162                                                 
+   163                                                  
+   164 00000111 5F                                  pop edi
+   165 00000112 5E                                  pop esi
+   166                                              
+   167 00000113 0335[B2000000]                      add esi, [len]
+   168 00000119 47                                  inc edi
+   169                                              
+   170                                          nope:
+   171 0000011A 47                              inc edi
+   172                                      
+   173 0000011B 803F00                      cmp byte[edi], 0
+   174 0000011E 7405                        je gata
+   175 00000120 E91DFFFFFF                  jmp parc
+   176                                      gata:
+   177                                      
+   178 00000125 FF35[0B000000]              push dword[descriptor]
+   179 0000012B FF15[00000000]              call [fclose]
+   180 00000131 83C404                      add esp, 4 * 1
+   181                                      
+   182 00000134 6A00                        push dword 0
+   183 00000136 FF15[00000000]              call [exit]
+   184                                      
+   185                                      
+   186                                     
+   187                                     

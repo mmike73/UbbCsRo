@@ -1,0 +1,64 @@
+     1                                  bits 32 ; assembling for the 32 bits architecture
+     2                                  
+     3                                  ; declare the EntryPoint (a label defining the very first instruction of the program)
+     4                                  global start        
+     5                                  
+     6                                  ; declare external functions needed by our program
+     7                                  extern exit               ; tell nasm that exit exists even if we won't be defining it
+     8                                  import exit msvcrt.dll    ; exit is a function that ends the calling process. It is defined in msvcrt.dll
+     9                                                            ; msvcrt.dll contains exit, printf and all the other important C-runtime specific functions
+    10                                  
+    11                                  ; our data is declared here (the variables needed by our program)
+    12                                  segment data use32 class=data
+    13 00000000 07                          c DB 7
+    14 00000001 03                          a DB 3
+    15 00000002 06                          b DB 6
+    16 00000003 04                          d DB 4
+    17                                      
+    18 00000004 0400                        a1 DW 4
+    19 00000006 0600                        b1 DW 6
+    20 00000008 0100                        c1 DW 1
+    21 0000000A 0B00                        d1 DW 11
+    22                                  ; our code starts here
+    23                                  segment code use32 class=code
+    24                                      start:
+    25                                          ;exercitii simple
+    26                                          ;1
+    27 00000000 B002                            mov AL, 2
+    28 00000002 0409                            add AL, 9
+    29                                          ;2
+    30 00000004 B004                            mov AL, 4
+    31 00000006 B204                            mov DL, 4
+    32 00000008 F6E2                            mul DL
+    33                                          
+    34                                          ;adunari, scader, vqriabile bytes
+    35                                          ;1
+    36 0000000A A0[00000000]                    mov AL, [c]
+    37 0000000F 8A15[01000000]                  mov DL, [a]
+    38 00000015 0215[03000000]                  add DL, [d]
+    39 0000001B 28D0                            sub AL, DL
+    40 0000001D 8A15[02000000]                  mov DL, [b]
+    41 00000023 0215[03000000]                  add DL, [d]
+    42 00000029 00D0                            add AL, DL
+    43                                          
+    44                                          ;16
+    45 0000002B A0[01000000]                    mov AL, [a]
+    46 00000030 040D                            add AL, 13
+    47 00000032 2A05[00000000]                  sub AL, [c]
+    48 00000038 0205[03000000]                  add AL, [d]
+    49 0000003E 2C07                            sub AL, 7
+    50 00000040 0205[02000000]                  add AL, [b]
+    51                                          
+    52                                          ;a1, b1, c1, d1 - word
+    53 00000046 A0[08000000]                    mov AL, [c1]
+    54 0000004B 0205[06000000]                  add AL, [b1]
+    55 00000051 0205[04000000]                  add AL, [a1]
+    56 00000057 8A15[0A000000]                  mov DL, [d1]
+    57 0000005D 0215[0A000000]                  add DL, [d1]
+    58 00000063 28D0                            sub AL, DL
+    59                                          
+    60                                          
+    61                                          
+    62                                       
+    63 00000065 6A00                            push    dword 0      ; push the parameter for exit onto the stack
+    64 00000067 FF15[00000000]                  call    [exit]       ; call exit to terminate the program

@@ -1,0 +1,86 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit, fopen, fclose, fread, fprintf
+     4                                  
+     5                                  import exit msvcrt.dll
+     6                                  import fopen msvcrt.dll
+     7                                  import fclose msvcrt.dll
+     8                                  import fread msvcrt.dll
+     9                                  import fprintf msvcrt.dll
+    10                                  
+    11                                  segment data use32 class=data
+    12                                  
+    13 00000000 63696672652E747874-         nume_fisier db "cifre.txt", 0
+    13 00000009 00                 
+    14 0000000A 7200                        mod_acces db "r", 0
+    15 0000000C 7700                        mod_acces_w db "w", 0
+    16 0000000E 00000000                    descriptor dd 0
+    17 00000012 00000000                    desc_w dd 0
+    18 00000016 01000000                    siz dd 1
+    19 0000001A 64000000                    count dd 100
+    20 0000001E 00000000                    len dd 0
+    21 00000022 00<rept>                    s times 101 db 0
+    22 00000087 257300                      format db "%s", 0
+    23                                  
+    24                                  segment code use32 class=code
+    25                                  
+    26                                  start:
+    27 00000000 68[0A000000]                push mod_acces
+    28 00000005 68[00000000]                push nume_fisier
+    29 0000000A FF15[00000000]              call [fopen]
+    30 00000010 83C408                      add esp, 4 * 2
+    31                                      
+    32 00000013 A3[0E000000]                mov [descriptor], eax
+    33                                      
+    34 00000018 FF35[0E000000]              push dword [descriptor]
+    35 0000001E FF35[1A000000]              push dword [count]
+    36 00000024 FF35[16000000]              push dword [siz]
+    37 0000002A 68[22000000]                push s
+    38 0000002F FF15[00000000]              call [fread]
+    39 00000035 83C410                      add esp, 4 * 4
+    40                                      
+    41 00000038 BE00000000                  mov esi, 0
+    42 0000003D 89C1                        mov ecx, eax
+    43                                      
+    44                                      parc:
+    45 0000003F 8A86[22000000]                  mov al, [s + esi]
+    46 00000045 3C30                            cmp al, '0'
+    47 00000047 7217                            jb cont
+    48 00000049 3C39                            cmp al, '9'
+    49 0000004B 7713                            ja cont
+    50 0000004D 56                              push esi
+    51 0000004E 83C601                          add esi, 1
+    52 00000051 83E601                          and esi, 1
+    53 00000054 5E                              pop esi
+    54 00000055 7409                            jz cont
+    55 00000057 C686[22000000]58                    mov [s + esi], byte 'X'
+    56 0000005E EB00                                jmp cont
+    57                                  
+    58                                          cont:
+    59 00000060 46                              inc esi    
+    60 00000061 E2DC                        loop parc
+    61                                      
+    62 00000063 68[0C000000]                push mod_acces_w
+    63 00000068 68[00000000]                push nume_fisier
+    64 0000006D FF15[00000000]              call [fopen]
+    65 00000073 83C408                      add esp, 4 * 2
+    66                                      
+    67 00000076 A3[12000000]                mov [desc_w], eax
+    68                                      
+    69 0000007B 68[22000000]                push s
+    70 00000080 68[87000000]                push format
+    71 00000085 FF35[12000000]              push dword [desc_w]
+    72 0000008B FF15[00000000]              call [fprintf]
+    73 00000091 83C403                      add esp, 3
+    74                                      
+    75 00000094 FF35[12000000]              push dword[desc_w]
+    76 0000009A FF15[00000000]              call [fclose]
+    77 000000A0 83C404                      add esp, 4
+    78                                      
+    79 000000A3 FF35[0E000000]              push dword[descriptor]
+    80 000000A9 FF15[00000000]              call [fclose]
+    81 000000AF 83C404                      add esp, 4
+    82                                      
+    83 000000B2 6A00                        push dword 0
+    84 000000B4 FF15[00000000]              call [exit]
+    85                                      

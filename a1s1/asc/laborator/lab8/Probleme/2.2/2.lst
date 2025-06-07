@@ -1,0 +1,77 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern fopen,fread,printf, exit
+     4                                  
+     5                                  import fopen msvcrt.dll
+     6                                  import fread msvcrt.dll
+     7                                  import printf msvcrt.dll
+     8                                  import exit msvcrt.dll
+     9                                  
+    10                                  segment data use32 class=data
+    11                                      
+    12 00000000 746578742E74787400          nume_f db "text.txt", 0
+    13 00000009 7200                        mod_acces db "r", 0
+    14 0000000B <res 00000004>              descriptor resd 1
+    15 0000000F 64                          count db 100
+    16 00000010 01                          sizee db 1
+    17 00000011 <res 00000064>              text resb 100
+    18 00000075 00000000                    dimensiune dd 0
+    19 00000079 6165696F7500                vocale db "aeiou", 0
+    20 0000007F 496E20746578742073-         format db "In text sunt %d consoane.", 0
+    20 00000088 756E7420256420636F-
+    20 00000091 6E736F616E652E00   
+    21                                  
+    22                                  segment code use32 class=code
+    23                                  
+    24                                  start:
+    25                                      ;FILE * fopen(const char* nume_fisier, const char * mod_acces)
+    26 00000000 68[09000000]                push mod_acces
+    27 00000005 68[00000000]                push nume_f
+    28 0000000A FF15[00000000]              call [fopen]
+    29 00000010 83C408                      add esp, 4 * 2
+    30                                      
+    31 00000013 A3[0B000000]                mov [descriptor], eax
+    32                                      
+    33                                      ;int fread(void * str, int size, int count, FILE * stream)
+    34 00000018 FF35[0B000000]              push dword[descriptor]
+    35 0000001E FF35[0F000000]              push dword[count]
+    36 00000024 FF35[10000000]              push dword[sizee]
+    37 0000002A 68[11000000]                push text
+    38 0000002F FF15[00000000]              call [fread]
+    39 00000035 83C410                      add esp, 4 * 4
+    40                                      
+    41 00000038 A3[75000000]                mov [dimensiune], eax
+    42                                      
+    43 0000003D BE00000000                  mov esi, 0
+    44 00000042 BF00000000                  mov edi, 0
+    45 00000047 8B0D[75000000]              mov ecx, dword[dimensiune]
+    46 0000004D B800000000                  mov eax, 0
+    47 00000052 E335                        jecxz final
+    48                                      count_cons:
+    49 00000054 8A86[11000000]                  mov al, [text + esi]
+    50                                          
+    51 0000005A 51                              push ecx
+    52 0000005B B905000000                      mov ecx, 5
+    53 00000060 BB00000000                      mov ebx, 0
+    54                                          vocals:
+    55 00000065 3881[78000000]                      cmp [vocale + ecx - 1], al
+    56 0000006B 7501                                jne nu_voc
+    57 0000006D 43                                      inc ebx
+    58                                              nu_voc:
+    59 0000006E E2F5                            loop vocals
+    60 00000070 59                              pop ecx
+    61 00000071 83FB00                          cmp ebx, 0
+    62 00000074 7501                            jne voc
+    63 00000076 47                                  inc edi
+    64                                          voc:
+    65 00000077 46                              inc esi
+    66 00000078 E2DA                        loop count_cons
+    67                                      
+    68 0000007A 57                          push dword edi
+    69 0000007B 68[7F000000]                push format
+    70 00000080 FF15[00000000]              call [printf]
+    71 00000086 83C408                      add esp, 4 * 2
+    72                                  
+    73                                      final:
+    74 00000089 6A00                        push dword 0
+    75 0000008B FF15[00000000]              call [exit]

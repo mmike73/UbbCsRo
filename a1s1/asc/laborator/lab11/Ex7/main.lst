@@ -1,0 +1,75 @@
+     1                                  bits 32
+     2                                  global start
+     3                                  extern exit, printf
+     4                                  import exit msvcrt.dll
+     5                                  import printf msvcrt.dll
+     6                                  
+     7                                  segment data use32 class=data
+     8                                      
+     9 00000000 6D617269616E                s1 db "marian"
+    10 00000006 06000000                    l1 dd $ - s1
+    11 0000000A 6D617269616E616E64-         s2 db "marianandrei@aof"
+    11 00000013 72656940616F66     
+    12 0000001A 10000000                    l2 dd $ - s2
+    13 0000001E 6D617269616E616E64-         s3 db "marianandrei%aof"
+    13 00000027 72656925616F66     
+    14 0000002E 10000000                    l3 dd $ - s3
+    15 00000032 <res 00000065>              rez resb 101
+    16 00000097 00000000                    len dd 0
+    17 0000009B 43656C206D6169206C-         form db "Cel mai lung prefix este: %s", 0
+    17 000000A4 756E67207072656669-
+    17 000000AD 7820657374653A2025-
+    17 000000B6 7300               
+    18                                      
+    19                                  segment code use32 class=code
+    20                                  
+    21                                  cel_mai_lung_prefix:
+    22 00000000 BE00000000                  mov esi, 0
+    23 00000005 8B4C2404                    mov ecx, [esp + 4]
+    24                                      parc:
+    25 00000009 8B442410                        mov eax, [esp + 16]
+    26 0000000D 01F0                            add eax, esi
+    27 0000000F 8A00                            mov al, byte[eax]
+    28 00000011 8B5C2408                        mov ebx, [esp + 8]
+    29 00000015 01F3                            add ebx, esi
+    30 00000017 8A1B                            mov bl, byte[ebx]
+    31 00000019 38D8                            cmp al, bl
+    32 0000001B 7503                            jne gata
+    33 0000001D 46                              inc esi
+    34 0000001E E2E9                        loop parc
+    35                                      gata:
+    36 00000020 89F0                        mov eax, esi
+    37 00000022 C3                      ret
+    38                                  
+    39                                  
+    40                                  start:
+    41 00000023 68[1E000000]                push s3
+    42 00000028 68[0A000000]                push s2
+    43 0000002D 68[00000000]                push s1
+    44 00000032 FF35[06000000]              push dword[l1]
+    45                                      ;push dword 0
+    46 00000038 E8C3FFFFFF                  call cel_mai_lung_prefix
+    47 0000003D 83C40C                      add esp, 4 * 3
+    48                                      
+    49 00000040 A3[97000000]                mov [len], eax
+    50 00000045 89C1                        mov ecx, eax
+    51                                      
+    52 00000047 BE[00000000]                mov esi, s1
+    53 0000004C BF[32000000]                mov edi, rez
+    54                                      cpy:
+    55 00000051 8A06                            mov al, [esi]
+    56 00000053 AA                              stosb
+    57 00000054 46                              inc esi
+    58 00000055 E2FA                        loop cpy
+    59                                      
+    60 00000057 68[32000000]                push rez
+    61 0000005C 68[9B000000]                push form
+    62 00000061 FF15[00000000]              call [printf]
+    63 00000067 83C408                      add esp, 4 * 2
+    64                                      
+    65 0000006A 6A00                        push dword 0
+    66 0000006C FF15[00000000]              call [exit]
+    67                                      
+    68                                      
+    69                                      
+    70                                      

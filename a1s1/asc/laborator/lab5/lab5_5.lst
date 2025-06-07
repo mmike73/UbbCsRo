@@ -1,0 +1,44 @@
+     1                                  bits 32
+     2                                  
+     3                                  global start
+     4                                  
+     5                                  extern exit
+     6                                  
+     7                                  import exit msvcrt.dll
+     8                                  
+     9                                  segment data use32 class=data
+    10                                  
+    11 00000000 61416242322578              s db 'a','A','b','B2','%','x'
+    12                                      len equ $ - s
+    13 00000007 00<rept>                    d times len db 0
+    14                                      ;d: 'a', 'b', 'x'
+    15                                      
+    16                                  segment code use32 class=code
+    17                                  
+    18                                  start:
+    19                                      
+    20 00000000 B907000000                  mov ecx, len
+    21 00000005 BE00000000                  mov esi, 0
+    22 0000000A BF00000000                  mov edi, 0
+    23 0000000F E319                        jecxz final
+    24                                      
+    25                                      repeta:
+    26 00000011 8A86[00000000]                  mov al, [s + esi]
+    27 00000017 46                              inc esi
+    28 00000018 FC                              cld
+    29 00000019 3C61                            cmp al, 'a'
+    30 0000001B 7C0B                            jnge mare_a
+    31 0000001D 3C7A                                cmp al, 'z'
+    32 0000001F 7F07                                jnle mic_z
+    33                                                  
+    34 00000021 8887[07000000]                          mov [d + edi], al
+    35 00000027 47                                      inc edi
+    36                                                  
+    37                                              mic_z:
+    38                                          mare_a:
+    39                                          
+    40 00000028 E2E7                        loop repeta
+    41                                  
+    42                                      final:
+    43 0000002A 6A00                    push dword 0
+    44 0000002C FF15[00000000]          call [exit]
