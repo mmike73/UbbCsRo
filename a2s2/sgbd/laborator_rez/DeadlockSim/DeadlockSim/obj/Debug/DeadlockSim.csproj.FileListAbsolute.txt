@@ -1,0 +1,7 @@
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\bin\Debug\DeadlockSim.exe.config
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\bin\Debug\DeadlockSim.exe
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\bin\Debug\DeadlockSim.pdb
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\obj\Debug\DeadlockSim.csproj.AssemblyReference.cache
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\obj\Debug\DeadlockSim.csproj.CoreCompileInputs.cache
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\obj\Debug\DeadlockSim.exe
+C:\Faculta\SGBD-local\DeadlockSim\DeadlockSim\obj\Debug\DeadlockSim.pdb

@@ -1,0 +1,13 @@
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\bin\Debug\PcPartsManagerGui.exe.config
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\bin\Debug\PcPartsManagerGui.exe
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\bin\Debug\PcPartsManagerGui.pdb
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.csproj.AssemblyReference.cache
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.Form1.resources
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.Properties.Resources.resources
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.csproj.GenerateResource.cache
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.csproj.CoreCompileInputs.cache
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.exe
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsManagerGui.pdb
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\bin\Debug\System.Data.SqlClient.dll
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\bin\Debug\System.Data.SqlClient.xml
+C:\Faculta\SGBD-local\PcPartsManagerGui\PcPartsManagerGui\obj\Debug\PcPartsM.4D396E5F.Up2Date

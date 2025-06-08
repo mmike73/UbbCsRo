@@ -1,0 +1,30 @@
+USER 
+ADAUGARE
+     => Adaugarea unui producator in tabela Manufacturers
+     => Adaugarea unui processor in tabela CPUs
+     => Adaugarea unei placi de baza in tabela Motherboards
+     => Adaugarea unui sistem in tabela Builds
+     => Adaugarea unei caracase in tabela Cases
+     => Adaugarea unei unitati de stocare externe in tabela ExternalMemory
+     => Adaugarea unei surse in tabela PowerSupplies
+     => Adaugarea unui kit de memorie RAM in tabela RamMemory
+
+MODIFICARE
+     => Modificarea unui producator din tabela Manufacturers
+     => Modificarea unui processor din tabela CPUs
+     => Modificarea unei placi de baza din tabela Motherboards
+     => Modificarea unui sistem din tabela Builds
+     => Modificarea unei caracase din tabela Cases
+     => Modificarea unei unitati de stocare externe din tabela ExternalMemory
+     => Modificarea unei surse in tabela PowerSupplies
+     => Modificarea unui kit de memorie RAM din tabela RamMemory
+
+STERGEREA
+     => Stergerea unui producator din tabela Manufacturers
+     => Stergerea unui processor din tabela CPUs
+     => Stergerea unei placi de baza din tabela Motherboards
+     => Stergerea unui sistem din tabela Builds
+     => Stergerea unei caracase din tabela Cases
+     => Stergerea unei unitati de stocare externe din tabela ExternalMemory
+     => Stergerea unei surse in tabela PowerSupplies
+     => Stergerea unui kit de memorie RAM din tabela RamMemory

@@ -1,0 +1,10 @@
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\bin\Debug\ConsoleAppSem1.exe.config
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\bin\Debug\ConsoleAppSem1.exe
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\bin\Debug\ConsoleAppSem1.pdb
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\bin\Debug\System.Data.SqlClient.dll
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\bin\Debug\System.Data.SqlClient.xml
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\obj\Debug\ConsoleAppSem1.csproj.AssemblyReference.cache
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\obj\Debug\ConsoleAppSem1.csproj.CoreCompileInputs.cache
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\obj\Debug\ConsoleA.51CC5541.Up2Date
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\obj\Debug\ConsoleAppSem1.exe
+C:\Faculta\SGBD-local\ConsoleAppSem1\ConsoleAppSem1\obj\Debug\ConsoleAppSem1.pdb

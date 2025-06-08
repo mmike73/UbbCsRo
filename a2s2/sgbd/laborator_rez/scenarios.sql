@@ -1,0 +1,93 @@
+USE [PcPartsManager];
+GO
+-- dirty reads: for CPUs, Motherboards and CPUMotherboard
+-- Transaction 1:
+SELECT * FROM CPUs;
+-- first
+BEGIN TRANSACTION
+UPDATE CPUs SET baseClock=777777 WHERE boostClock=4.3
+WAITFOR DELAY '00:00:10'
+ROLLBACK TRANSACTION
+--second
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+BEGIN TRAN
+SELECT * FROM CPUs
+WAITFOR DELAY '00:00:15'
+SELECT * FROM CPUs
+COMMIT TRAN
+-- how to solve dirty read:
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+BEGIN TRAN
+SELECT * FROM CPUs
+WAITFOR DELAY '00:00:15'
+SELECT * FROM CPUs
+COMMIT TRAN
+
+
+-- non-repetable reads
+-- first
+UPDATE CPUs SET baseClock=77777 WHERE boostClock=4.3
+BEGIN TRAN
+WAITFOR DELAY '00:00:10'
+UPDATE CPUs SET baseClock=11111 WHERE boostClock=4.3
+COMMIT TRAN
+-- second
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+BEGIN TRAN
+SELECT * FROM CPUs;
+WAITFOR DELAY '00:00:15';
+SELECT * FROM CPUs;
+COMMIT TRAN
+-- solving non-repetable reads
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED
+BEGIN TRAN
+SELECT * FROM CPUs;
+WAITFOR DELAY '00:00:15';
+SELECT * FROM CPUs;
+COMMIT TRAN
+
+-- phantom reads
+-- first
+BEGIN TRAN
+WAITFOR DELAY '00:00:10'
+INSERT INTO CPUs (manufacturerId, model, baseClock, boostClock, socket, noCores, noThreads, fabricationTehnologyNm, powerW, price)
+VALUES 
+(35007, 'Intel Core i9-13900K special boost potion', 3.0, 5.8, 'LGA1700', 24, 32, 10, 125, 600);
+COMMIT TRAN
+--second
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+BEGIN TRAN
+SELECT * FROM CPUs WHERE model='Intel Core i9-13900K special boost potion'
+WAITFOR DELAY '00:00:15'
+SELECT * FROM CPUs WHERE model='Intel Core i9-13900K special boost potion'
+COMMIT TRAN
+-- solving phantom reads
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
+BEGIN TRAN
+SELECT * FROM CPUs WHERE model='Intel Core i9-13900K special boost potion'
+WAITFOR DELAY '00:00:15'
+SELECT * FROM CPUs WHERE model='Intel Core i9-13900K special boost potion'
+COMMIT TRAN
+
+DELETE FROM CPUs WHERE model='Intel Core i9-13900K special boost potion'
+
+-- deadlock
+-- first
+BEGIN TRAN
+UPDATE CPUs SET model='Intel DEADLOCK2' WHERE cpuId=23155
+WAITFOR DELAY '00:00:10'
+UPDATE Motherboards SET model='Asus DEADLOCK2' WHERE motherboardId=23084
+SELECT * FROM CPUs;
+SELECT * FROM Motherboards;
+COMMIT TRAN
+-- second
+BEGIN TRAN
+UPDATE Motherboards SET model='Asus DEADLOCK2' WHERE motherboardId=23084
+WAITFOR DELAY '00:00:10'
+UPDATE CPUs SET model='Intel DEADLOCK2' WHERE cpuId=23155
+SELECT * FROM CPUs;
+SELECT * FROM Motherboards;
+COMMIT TRAN
+
+-- rezolvare
+

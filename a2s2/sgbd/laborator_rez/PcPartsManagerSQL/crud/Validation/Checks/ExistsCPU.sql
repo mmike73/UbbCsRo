@@ -1,0 +1,14 @@
+USE [PcPartsManager];
+GO
+
+CREATE FUNCTION existsCPU
+(
+    @id INT
+)
+RETURNS BIT
+AS
+BEGIN
+    IF EXISTS (SELECT 1 FROM CPUs WHERE cpuId=@id)
+        RETURN 1
+    RETURN 0
+END;

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--<config>
+	<masterTable name="Manufacturers">
+		<primaryKey>manufacturerId</primaryKey>
+	</masterTable>
+	<detailTable name="CPUs">
+		<foreignKey>manufacturerId</foreignKey>
+	</detailTable>
+</config>-->
+<config>
+	<masterTable name="Manufacturers">
+		<primaryKey>manufacturerId</primaryKey>
+	</masterTable>
+	<detailTable name="GPUs">
+		<foreignKey>manufacturerId</foreignKey>
+	</detailTable>
+</config>
+<!--<config>
+	<masterTable name="GPUs">
+		<primaryKey>gpuId</primaryKey>
+	</masterTable>
+	<detailTable name="Builds">
+		<foreignKey>gpuId</foreignKey>
+		<sql>
+			<select>SELECT
+    BS.buildId AS BuildId,
+    CPU.model AS CPUModel,
+    MBO.model AS MboModel,
+    RAM.model AS RAMModel,
+    EM.model AS MemoryModel,
+    GPU.model AS GPUModel,
+    PSU.model AS PSUModel,
+    CS.model AS CaseModel
+FROM
+    Builds AS BS 
+    INNER JOIN CPUs AS CPU ON BS.cpuId = CPU.cpuId
+    INNER JOIN Motherboards AS MBO ON BS.motherboardId = MBO.motherboardId
+    INNER JOIN RamMemory AS RAM ON BS.ramId = RAM.ramId
+    INNER JOIN ExternalMemory AS EM ON BS.memoryId = EM.memoryId
+    INNER JOIN GPUs AS GPU ON BS.gpuId = GPU.gpuId
+    INNER JOIN PowerSupplies AS PSU ON PSU.powerSupplyId = BS.powerSupplyId
+    INNER JOIN Cases AS CS ON BS.caseId = CS.caseId
+			</select>
+		</sql>
+	</detailTable>
+</config>-->

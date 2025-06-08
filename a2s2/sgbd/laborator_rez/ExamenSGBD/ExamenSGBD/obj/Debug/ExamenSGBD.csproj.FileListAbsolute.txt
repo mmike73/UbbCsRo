@@ -1,0 +1,10 @@
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\bin\Debug\ExamenSGBD.exe.config
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\bin\Debug\ExamenSGBD.exe
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\bin\Debug\ExamenSGBD.pdb
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.csproj.AssemblyReference.cache
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.Form1.resources
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.Properties.Resources.resources
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.csproj.GenerateResource.cache
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.csproj.CoreCompileInputs.cache
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.exe
+C:\Faculta\SGBD-local\ExamenSGBD\ExamenSGBD\obj\Debug\ExamenSGBD.pdb
